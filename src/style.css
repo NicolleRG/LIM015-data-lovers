@@ -1,7 +1,66 @@
 *{
     font-family: 'Mulish', sans-serif;
     margin: 0px;
+    padding: 0px;
 }
+/*-----------------------------------barra lateral-----------------------------------*/
+nav{
+    
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    width: 268px;
+    height: 1024px;
+    background-color: #02A650;
+}
+
+.logo{
+    width:208px;
+    height: 90px;
+    margin-top: 53,7px;
+    left:22,13px;
+}
+
+ul{
+    margin: cen;
+    list-style: none;
+    display: block;
+}
+
+.atletas{
+    width:273px;
+    height:56px;
+    left: 5px;
+    opacity: 70%;
+
+}
+
+
+.paises{
+    width:268px;
+    height:56px;
+    
+
+}
+
+.deportes{
+    width:273px;
+    height:56px;
+
+}
+
+.estadisticas{
+    width:273px;
+    height:56px;
+    
+
+}
+
+/*----------------------------------------------------------*/
+
+
+
+
 .cards{
     display: flex;
     justify-content: space-around;
