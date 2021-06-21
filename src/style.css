@@ -2,6 +2,24 @@
     font-family: 'Mulish', sans-serif;
     margin: 0px;
 }
+
+nav{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: #02A650;
+}
+
+nav .logo{
+    width: 208px;
+    height: 90px;
+    margin-top: 53,7px;
+    left: 22,13px;
+    scale: fill;
+
+}
+
+
 footer .rings-logo{
     background:#02A650;
     position: relative;
