@@ -2,6 +2,7 @@
     font-family: 'Mulish', sans-serif;
     margin: 0px;
 }
+<<<<<<< HEAD
 
 nav{
     position: fixed;
@@ -20,6 +21,46 @@ nav .logo{
 }
 
 
+=======
+.cards{
+    display: flex;
+    justify-content: space-around;
+    width: 1098px;
+    height: 200px;
+    left: 310px;
+    top: 220px;
+}
+.card-athlete{
+    width: 260px;
+    background: #efefef;
+    border-radius: 4px;
+}
+.medals{
+    display: flex;
+}
+.medal{
+    display: flex;
+    align-items: center;
+}
+.gold-circle{
+    background: #FCC861;
+    border-radius: 100px;
+    height: 32px;
+    width: 32px;
+}
+.silver-circle{
+    background:  #E5E5E5;;
+    border-radius: 100px;
+    height: 32px;
+    width: 32px;
+}
+.bronze-circle{
+    background: #DCB386;
+    border-radius: 100px;
+    height: 32px;
+    width: 32px;
+}
+>>>>>>> 034710e41ca43da51516efae35ac0f1996527c57
 footer .rings-logo{
     background:#02A650;
     position: relative;
@@ -97,9 +138,9 @@ footer .rings-logo{
     transition: .2s ease all;
     height: 64px;
 }
-.content-option img {
-    width: 40px;
-    height: 40px;
+img {
+    width: 30px;
+    height: 30px;
 }
 .content-option:hover {
     background:#02A650; 
