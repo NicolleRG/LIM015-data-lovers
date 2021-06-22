@@ -10,36 +10,35 @@
     <script src="https://kit.fontawesome.com/4177a2ab13.js" crossorigin="anonymous"></script>
   </head>
   <body>
-
-  <!---Barra lateral----------->  
-
-  <header>
+    
+ <!---------------------------------BARRA LATERAL--------------------------->   
     <nav>
-      <li class="logo">
-        <img src="img-logo/logo2.png" alt="logotipo" class="logo"></li>
+      <ul>
+       <li class="logo"> 
+          <img src="img-logo/logo2.png" alt="logotipo" class="logo"></li>
         
       <ul class="navigation">
-        <section class="atletas">
+        <section class="nav-option active">
+          
           <li i class="fas fa-running"> Atletas</li>
         </section>
 
-        <section class="paises">
+        <section class="nav-option">
           <li i class="fas fa-flag"> Paises</li>
         </section>
 
-        <section class="deportes"> 
+        <section class="nav-option"> 
           <li i class="fas fa-futbol"> Deportes</li>
         </section>
 
-        <section class="estadisticas">
+        <section class="nav-option">
           <li i class="fas fa-chart-line"> Estadisticas</li>
         </section>
       </ul>
     </nav>
-  </header>
-
-      <!---Atletas----------->
-    <section id="athletes" class="athletes">
+ 
+<!--------------------------------ATLETAS------------------------------>
+    <section id="athletes" class="mainSection">
       <h1>Atletas</h1>
       <h2>Atletas destacados</h2>
       <section class="cards">
@@ -166,7 +165,7 @@
       </section> 
 
       <h3>Todos los atletas</h3>
-      <!-- Filtro Atleta-->
+    <!-- Filtro Atleta--------------------->
       <section class="filter-container" id="athleteFilter">
         <section class="select-box">
           <label class="select">
@@ -219,8 +218,9 @@
       <div><i class="fas fa-plus-circle"></i></div>
     </section>
     
-    <!--Países-->
-    <section id="country" class="country">
+<!----------------------------PAISES---------------------------------------->
+
+    <section id="country" class="mainSection">
       <h1>Países</h1>
       <h2>Top 3 países con más medallas</h2>
       <section class="cards">
@@ -364,6 +364,8 @@
     </section>
 
 /*-----------------------DEPORTES--------------------*/
+        
+<section class="mainSection">
 <div class="container">
 <div class="section">
   <button class="btn" id="boton">Json</button>
