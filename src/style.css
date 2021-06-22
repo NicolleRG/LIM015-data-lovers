@@ -12,25 +12,27 @@ nav{
     width: 268px;
     height: 1024px;
     background-color: #02A650;
+    background-position: center;
 }
 
 .logo{
     width:208px;
-    height: 90px;
+    height: 180px;
     margin-top: 53,7px;
-    left:22,13px;
+    right: 50px;
 }
 
 ul{
-    margin: cen;
+    margin-right: auto;
     list-style: none;
     display: block;
 }
 
 .atletas{
+    
     width:273px;
     height:56px;
-    left: 5px;
+    left: 50px;
     opacity: 70%;
 
 }
@@ -81,23 +83,19 @@ ul{
     display: flex;
     align-items: center;
 }
-.gold-circle{
+.medal-circle{
+    border-radius: 100px;
+    height: 32px;
+    width: 32px;
+}
+.medal-circle.gold{
     background: #FCC861;
-    border-radius: 100px;
-    height: 32px;
-    width: 32px;
 }
-.silver-circle{
-    background:  #E5E5E5;;
-    border-radius: 100px;
-    height: 32px;
-    width: 32px;
+.medal-circle.silver{
+    background:  #E5E5E5;
 }
-.bronze-circle{
+.medal-circle.bronze{
     background: #DCB386;
-    border-radius: 100px;
-    height: 32px;
-    width: 32px;
 }
 footer .rings-logo{
     background:#02A650;
