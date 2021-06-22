@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/4177a2ab13.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    
+  <header>
     <nav>
       <ul>
         <li>
@@ -34,17 +34,9 @@
         </section>
       </ul>
     </nav>
-    
+  </header>
 
-
-    <h1></h1>
-    <div id="root"></div>
-
-    <section class="filter-container">
-      <section class="select-box">
-        <label class="select" id="select">
-          <div class="content-select">
-            <p class="filter-criteria">criterio de filtro</p>
+      <!---Atletas----------->
     <section id="athletes" class="athletes">
       <h1>Atletas</h1>
       <h2>Atletas destacados</h2>
@@ -52,22 +44,22 @@
         <div class="card-athlete">
           <div class="medals">
             <div class="medal">
-              <div class="gold-circle">
-                <span class="gold-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="o-letter">O</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="silver-circle">
-                <span class="silver-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="p-letter">P</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="bronze-circle">
-                <span class="bronze-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="b-letter">B</span>
+              <span class="medal-letter"></span>
             </div>
           </div>
           <div class="avatar-circle"><span class="avatar-card">F</span></div>
@@ -82,22 +74,22 @@
         <div class="card-athlete">
           <div class="medals">
             <div class="medal">
-              <div class="gold-circle">
-                <span class="gold-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="o-letter">O</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="silver-circle">
-                <span class="silver-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="p-letter">P</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="bronze-circle">
-                <span class="bronze-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="b-letter">B</span>
+              <span class="medal-letter"></span>
             </div>
           </div>
           <div class="avatar-circle"><span class="avatar-card">F</span></div>
@@ -112,22 +104,22 @@
         <div class="card-athlete">
           <div class="medals">
             <div class="medal">
-              <div class="gold-circle">
-                <span class="gold-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="o-letter">O</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="silver-circle">
-                <span class="silver-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="p-letter">P</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="bronze-circle">
-                <span class="bronze-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="b-letter">B</span>
+              <span class="medal-letter"></span>
             </div>
           </div>
           <div class="avatar-circle"><span class="avatar-card">F</span></div>
@@ -142,22 +134,22 @@
         <div class="card-athlete">
           <div class="medals">
             <div class="medal">
-              <div class="gold-circle">
-                <span class="gold-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="o-letter">O</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="silver-circle">
-                <span class="silver-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="p-letter">P</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
-              <div class="bronze-circle">
-                <span class="bronze-quantity"></span>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
               </div>
-              <span class="b-letter">B</span>
+              <span class="medal-letter"></span>
             </div>
           </div>
           <div class="avatar-circle"><span class="avatar-card">F</span></div>
@@ -169,58 +161,40 @@
             <span class="team-name">Estados Unidos</span>
           </div>
         </div>
-      </section>
-      
+      </section> 
 
       <h3>Todos los atletas</h3>
+      <!-- Filtro Atleta-->
       <section class="filter-container" id="athleteFilter">
         <section class="select-box">
-          <label class="select" id="select">
+          <label class="select">
             <div class="content-select">
-              <p class="filter-criteria">criterio de filtro</p>
+              <p class="filter-criteria">Atletas</p>
             </div>
             <i class="down-icon fas fa-sort-down"></i>
           </label>
-          <label class="options" id="options">
+          <label class="options">
             <a href="#" class="option">
               <div class="content-option">
-                <img src="./img-paises/001-paraguay.png" alt="">
-                <p class="data">Paraguay</p>
+                <div class="avatar-circle"><span class="avatar-card">F</span></div>
+                <p class="data">Michael Phelps</p>
               </div>
             </a>
             <a href="#" class="option">
               <div class="content-option">
-                <img src="./img-paises/002-senegal.png" alt="">
-                <p class="data">Senegal</p>
+                <div class="avatar-circle"><span class="avatar-card">F</span></div>
+                <p class="data"></p>
               </div>
             </a>
             <a href="#" class="option">
               <div class="content-option">
-                <img src="./img-paises/003-democratic republic of congo.png" alt="">
-                <p class="data">Republica del Congo</p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="./img-paises/004-estonia.png" alt="">
-                <p class="data">Estonia</p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="./img-paises/005-georgia.png" alt="">
-                <p class="data">Georgia</p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="./img-paises/006-ghana.png" alt="">
-                <p class="data">Ghana</p>
+                <div class="avatar-circle"><span class="avatar-card">F</span></div>
+                <p class="data"></p>
               </div>
             </a>
           </label>
         </section>
-        <input type="hidden" class="user-selection" id="userSelection">
+        <input type="hidden" class="user-selection" id="athleteSelection">
       </section>
       <table border="1">
         <tr class="table-headers">
@@ -235,19 +209,161 @@
           <td class="column-1"><img src="./img-paises/001-paraguay.png" alt="flag"><span class="noc">USA</span></td>
           <td class="column-2"><div class="avatar-circle"><span class="avatar">M</span></div><span class="name-athlete">Michael Phelps</span></td>
           <td class="column-3"><span class="sport-athlete">Natación</span></td>
-          <td class="column-4"><div class="gold-circle"><span class="gold-quantity"></span></div></td>
-          <td class="column-5"><div class="silver-circle"><span class="silver-quantity"></span></div></td>
-          <td class="column-5"><div class="bronze-circle"><span class="bronze-quantity"></span></div></td>
+          <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+          <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+          <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+        </tr>
+      </table>
+      <div><i class="fas fa-plus-circle"></i></div>
+    </section>
+    
+    <!--Países-->
+    <section id="country" class="country">
+      <h1>Países</h1>
+      <h2>Top 3 países con más medallas</h2>
+      <section class="cards">
+        <div class="card-country top-3">
+          <div class="medals">
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+          </div>
+          <img src="./img-paises/001-paraguay.png" alt="flag">
+          <p class="name-country-card">China</p>
+          <tr class="line-card"></tr>
+          <p class="number-medals"></p>
+          <p class="number-athletes"></p>
+        </div>
+        <div class="card-country top-1">
+          <div class="medals">
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+          </div>
+          <img src="./img-paises/001-paraguay.png" alt="flag">
+          <p class="name-country-card">China</p>
+          <tr class="line-card"></tr>
+          <p class="number-medals"></p>
+          <p class="number-athletes"></p>
+        </div>
+        <div class="card-country top-2">
+          <div class="medals">
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+              <div class="medal-circle">
+                <span class="medal-quantity"></span>
+              </div>
+          </div>
+          <img src="./img-paises/001-paraguay.png" alt="flag">
+          <p class="name-country-card">China</p>
+          <tr class="line-card"></tr>
+          <p class="number-medals"></p>
+          <p class="number-athletes"></p>
+        </div>
+      </section>
+      <h3>Países participantes</h3>
+      <section class="filter-container" id="teamFilter">
+        <section class="select-box">
+          <label class="select">
+            <div class="content-select">
+              <p class="filter-criteria">Equipo</p>
+            </div>
+            <i class="down-icon fas fa-sort-down"></i>
+          </label>
+          <label class="options">
+            <a href="#" class="option">
+              <div class="content-option">
+                <img src="" alt="">
+                <p class="data"></p>
+              </div>
+            </a>
+            <a href="#" class="option">
+              <div class="content-option">
+                <img src="" alt="">
+                <p class="data"></p>
+              </div>
+            </a>
+            <a href="#" class="option">
+              <div class="content-option">
+                <img src="" alt="">
+                <p class="data"></p>
+              </div>
+            </a>
+          </label>
+        </section>
+        <input type="hidden" class="user-selection" id="athleteSelection">
+      </section>
+      <section class="filter-container" id="regionFilter">
+        <section class="select-box">
+          <label class="select">
+            <div class="content-select">
+              <p class="filter-criteria">Región</p>
+            </div>
+            <i class="down-icon fas fa-sort-down"></i>
+          </label>
+          <label class="options">
+            <a href="#" class="option">
+              <div class="content-option">
+                <img src="" alt="">
+                <p class="data"></p>
+              </div>
+            </a>
+            <a href="#" class="option">
+              <div class="content-option">
+                <img src="" alt="">
+                <p class="data"></p>
+              </div>
+            </a>
+            <a href="#" class="option">
+              <div class="content-option">
+                <img src="" alt="">
+                <p class="data"></p>
+              </div>
+            </a>
+          </label>
+        </section>
+        <input type="hidden" class="user-selection" id="regionSelection">
+      </section>
+      <table border="1">
+        <tr class="table-headers">
+          <th>Equipo<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+          <th>Nº de atletas<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+          <th>Oro<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+          <th>Plata<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+          <th>Bronce<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+          <th>Total medallas<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+        </tr>
+        <tr class="table-content">
+          <td class="column-1"><img src="" alt="flag"><span class="team"></span></td>
+          <td class="column-2"><span class="number-athletes"></span></td>
+          <td class="column-3"><div class="medal-circle"><span class="medal-quantity"></span></div></td>
+          <td class="column-4"><div class="medal-circle"><span class="medal-quantity"></span></div></td>
+          <td class="column-5"><div class="medal-circle"><span class="medal-quantity"></span></div></td>
+          <td class="column-6"><span class="total-medals"></span></td>
         </tr>
       </table>
       <div><i class="fas fa-plus-circle"></i></div>
     </section>
 
 
-
-
 /*-----------------------DEPORTES--------------------*/
-
+<section>
     <h1>Deportes</h1>
       <h3>Todos los deportes</h3>
       <tr><p>N° de eventos total</p>
@@ -301,31 +417,7 @@
       </section>
       <input type="hidden" class="user-selection" id="userSelection">
       </section>
-
-      
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </section>
 
     <footer>
       <img class="rings-logo"src="img-logo/rings.png"/>
