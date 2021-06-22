@@ -4,25 +4,25 @@
     padding: 0px;
 }
 /*-----------------------------------barra lateral-----------------------------------*/
-nav{
-    
+nav{ 
     position: fixed;
     margin: 0px;
     padding: 0px;
     width: 225px;
     height: 1024px;
     background-color: #02A650;
+    background-position: center;
 }
 
 .logo{
     width:208px;
-    height: 90px;
+    height: 180px;
     margin-top: 53,7px;
-    left:22,13px;
+    right: 50px;
 }
 
 ul{
-    margin: cen;
+    margin-right: auto;
     list-style: none;
     display: block;
 }
@@ -33,19 +33,18 @@ ul{
 }
 .nav-option.active{
     left: 5px;
-    opacity: 70%;
 }
 
 /*----------------------------------------------------------*/
 
-/*-----------------------------------Secciones-----------------------------------*/
+/*-----------------------------------SECCIONES-----------------------------------*/
 .mainSection{
     display: flex;
     flex-direction: column;
     margin-left: 225px;
 }
 
-/*-----------------------------------Cards Atletas-----------------------------------*/
+/*-----------------------------------ATLETAS TARJETAS-----------------------------------*/
 .cards{
     display: flex;
     justify-content: space-around;
@@ -80,7 +79,8 @@ ul{
 .medal-circle.bronze{
     background: #DCB386;
 }
-/*----------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+
 /*------------------------FOOTER----------------------------------*/
 footer{
     position: relative;
@@ -101,7 +101,7 @@ footer .rings-logo{
     width: 94px;
     height: 66.25px;
 }
-/*----------------------------------------------------------*/
+/*------------------------------------------------------------------*/
 /*---------------------------FILTRADO-------------------------------*/
 .select-box{
     width: 270px;

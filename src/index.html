@@ -10,12 +10,16 @@
     <script src="https://kit.fontawesome.com/4177a2ab13.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    
+ <!---------------------------------BARRA LATERAL--------------------------->   
     <nav>
       <ul>
-        <li>
+       <li class="logo"> 
           <img src="img-logo/logo2.png" alt="logotipo" class="logo"></li>
-
+        
+      <ul class="navigation">
         <section class="nav-option active">
+          
           <li i class="fas fa-running"> Atletas</li>
         </section>
 
@@ -33,7 +37,7 @@
       </ul>
     </nav>
  
-<!----------------------------ATLETAS------------------------------>
+<!--------------------------------ATLETAS------------------------------>
     <section id="athletes" class="mainSection">
       <h1>Atletas</h1>
       <h2>Atletas destacados</h2>
@@ -214,7 +218,7 @@
       <div><i class="fas fa-plus-circle"></i></div>
     </section>
     
-<!----------------------------PAISES----------------------------->
+<!----------------------------PAISES---------------------------------------->
 
     <section id="country" class="mainSection">
       <h1>Países</h1>
@@ -359,9 +363,28 @@
       <div><i class="fas fa-plus-circle"></i></div>
     </section>
 
+/*-----------------------DEPORTES--------------------*/
+        
+<section class="mainSection">
+<div class="container">
+<div class="section">
+  <button class="btn" id="boton">Json</button>
+  <table>
+    <thead>
+      <tr>
+        <th>sport</th>
+        <th>event</th>
+      </tr>
+    </thead>
+    <tbody id="res">
 
-<!----------------------------DEPORTES------------------------>
-   <section class="mainSection">
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+<section>
     <h1>Deportes</h1>
       <h3>Todos los deportes</h3>
       <tr><p>N° de eventos total</p>
@@ -420,7 +443,7 @@
     <footer>
       <img class="rings-logo"src="img-logo/rings.png"/>
       <section>
-        <div>
+        <div
           <i class="fab fa-linkedin"></i>
           <i class="fab fa-github"></i>
         </div>
