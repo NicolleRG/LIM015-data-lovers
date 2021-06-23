@@ -1,54 +1,88 @@
 import data from './data/athletes/athletes.js';
 
 /* Mostrar la data en las tablas*/
+const tableContent = document.querySelector('.table-content');
+const dataAthletes = data.athletes;// array de objetos de atletas
+let initialPosition = 0; 
+let n = 10;
+const tenDataAthletes = dataAthletes.splice(initialPosition, n);
+/*tenDataAthletes.forEach(item=>{
+    tableContent.innerHTML+=`
+        <tr>
+            <td class="column-1"><img src="" alt="flag"><span class="noc-text">${item.noc}</span></td>
+            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text">${item.name}</span></td>
+            <td class="column-3"><span class="sport-text"></span></td>
+            <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+            <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+            <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+        </tr>`
+});*/
 
-const dataAthletes = data.athletes;
-let i=0;
-document.querySelector('.noc-text').innerText = dataAthletes[i].noc;
-const nameTag = document.querySelector('.name-text').innerText = dataAthletes[i].name;
-const sportTag = document.querySelector('.sport-text').innerText = dataAthletes[i].sport; 
-const newRow = document.createElement("tr");
-
-const newColumn1 = document.createElement("td");
-    let imgColumn1 = document.createElement("img");
-    let imgAttribute = document.createAttribute("src")
-        imgAttribute.value = "./img-paises/001-paraguay.png"; // img para sacar de la carpeta de imágenes
-        imgColumn1.setAttributeNode(imgAttribute);
-const spanColumn1 = document.createElement('span');
-const textColumn1 = document.createTextNode('holi');// texto para sacar de la data columna 1
-newRow.appendChild(newColumn1).appendChild(imgColumn1);
-newRow.appendChild(newColumn1).appendChild(spanColumn1).appendChild(textColumn1);
-
-const newColumn2 = document.createElement("td");
-    let divColumn2 = document.createElement("div");
-    let spanDivColumn2 = document.createElement("span")
-    let spanDivColumn2Text = document.createTextNode('F') // identificador F O M del avatar
-    divColumn2.appendChild(spanDivColumn2).appendChild(spanDivColumn2Text);
-const spanColumn2 = document.createElement('span');
-const textColumn2 = document.createTextNode('holi 2');// texto para sacar de la data columna 2
-newRow.appendChild(newColumn2).appendChild(divColumn2);
-newRow.appendChild(newColumn2).appendChild(spanColumn2).appendChild(textColumn2);
-
-const newColumn3 = document.createElement("td");
-newRow.appendChild(newColumn3);
-const newColumn4 = document.createElement("td");
-newRow.appendChild(newColumn4);
-const newColumn5 = document.createElement("td");
-newRow.appendChild(newColumn5);
-const newColumn6 = document.createElement("td");
-newRow.appendChild(newColumn6);
-
-document.querySelector('.table-content').appendChild(newRow);
-
-    for(i=0; i<dataAthletes.length; i++){
-        
-        //nocTag.innerHTML=data.athletes[i].noc;
-
-        //nameArray.push(data.athletes[i].name);
-        //sportArray.push(data.athletes[i].sport);
-    }
-
-
+/* bucle muestra n cantidad de objetos en la tabla*/
+const fragment = new DocumentFragment();
+tenDataAthletes.forEach(item=>{
+    const newRow = document.createElement('tr')
+    /*columna 1*/
+    const newColumn1 = document.createElement("td");
+    const imgColumn1 = document.createElement("img");
+    const imgAttribute = document.createAttribute("src")
+        imgAttribute.value = `./img-paises/${item.team}.png` // 
+    imgColumn1.setAttributeNode(imgAttribute);
+    const spanColumn1 = document.createElement('span');
+        spanColumn1.textContent = item.noc; // equipo del atleta
+    newColumn1.appendChild(imgColumn1);
+    newColumn1.appendChild(spanColumn1);
+    newRow.appendChild(newColumn1);
+     /*columna 2*/
+    const newColumn2 = document.createElement('td');
+    const divColumn2 = document.createElement('div');
+    const spanDivColumn2 = document.createElement('span');
+        spanDivColumn2.textContent = item.gender; // género del atleta
+    divColumn2.appendChild(spanDivColumn2);
+    const spanColumn2 = document.createElement('span');
+        spanColumn2.textContent = item.name // nombre del atleta
+    newColumn2.appendChild(divColumn2);
+    newColumn2.appendChild(spanColumn2);
+    newRow.appendChild(newColumn2);
+    /*columna 3*/
+    const newColumn3 = document.createElement('td');
+    const spanColumn3 = document.createElement('span');
+        spanColumn3.textContent = item.sport; // deporte del atleta
+    newColumn3.appendChild(spanColumn3);
+    newRow.appendChild(newColumn3);
+    /*columna 4*/
+    const newColumn4 = document.createElement('td');
+    const divColumn4 = document.createElement('div');
+    divColumn4.classList.add('medal-circle')
+    divColumn4.classList.add('gold');
+    const spanDivColumn4 = document.createElement('span');
+        spanDivColumn4.textContent = 0; // agregar función contadora de medallas de oro por atletas
+    divColumn4.appendChild(spanDivColumn4);
+    newColumn4.appendChild(divColumn4);
+    newRow.appendChild(newColumn4);
+    /*columna 5*/
+    const newColumn5 = document.createElement('td');
+    const divColumn5 = document.createElement('div');
+    divColumn5.classList.add('medal-circle')
+    divColumn5.classList.add('silver');
+    const spanDivColumn5 = document.createElement('span');
+        spanDivColumn5.textContent = 0; // agregar función contadora de medallas de oro por atletas
+    divColumn5.appendChild(spanDivColumn5);
+    newColumn5.appendChild(divColumn5);
+    newRow.appendChild(newColumn5);
+    /*columna 6*/
+    const newColumn6 = document.createElement('td');
+    const divColumn6 = document.createElement('div');
+    divColumn6.classList.add('medal-circle')
+    divColumn6.classList.add('bronze');
+    const spanDivColumn6 = document.createElement('span');
+        spanDivColumn6.textContent = 0; // agregar función contadora de medallas de oro por atletas
+    divColumn6.appendChild(spanDivColumn6);
+    newColumn6.appendChild(divColumn6);
+    newRow.appendChild(newColumn6);
+    fragment.appendChild(newRow);
+});
+tableContent.appendChild(fragment);
 
 //Filtro
 /*const select= document.querySelectorAll('.select');
