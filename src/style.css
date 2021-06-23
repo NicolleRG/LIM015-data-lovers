@@ -80,7 +80,6 @@ ul{
     background: #DCB386;
 }
 
-
 /*-------------------------DEPORTES------------------------------------*/
 
 .item{
@@ -90,27 +89,30 @@ ul{
     height: 400px;
     left: 310px;
     top: 220px;
-
 }
-
 
 .articleImg{
     height: 220px;
     width: 170px;
     background-color: #E5E5E5;
 }
-
 .sportTitle{
     color: rgb(2, 1, 1);
     text-align: center;
-    text-transform: uppercase;
-    
+    text-transform: uppercase; 
 }
 
 a:link {
     text-decoration:none; }
 
 
+=======
+/*----------------------------------------------------------------*/
+
+/*------------------------TABLA ATLETAS----------------------------------*/
+tr{
+    height: 20px;
+}
 
 /*------------------------FOOTER----------------------------------*/
 footer{
