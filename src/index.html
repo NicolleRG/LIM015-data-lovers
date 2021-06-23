@@ -35,7 +35,7 @@
           <li i class="fas fa-chart-line"> Estadisticas</li>
         </section>
       </ul>
-    </nav>
+    </nav> 
  
 <!--------------------------------ATLETAS------------------------------>
     <section id="athletes" class="mainSection">
@@ -363,82 +363,146 @@
       <div><i class="fas fa-plus-circle"></i></div>
     </section>
 
-/*-----------------------DEPORTES--------------------*/
-        
-<section class="mainSection">
-<div class="container">
-<div class="section">
-  <button class="btn" id="boton">Json</button>
-  <table>
-    <thead>
-      <tr>
-        <th>sport</th>
-        <th>event</th>
-      </tr>
-    </thead>
-    <tbody id="res">
+<!-----------------------DEPORTES-------------------->
 
-    </tbody>
-  </table>
-</div>
-</div>
-
-
-<section>
+    <!-- Filtro deporte--------------------->
+    <section id="sports" class="mainSection">
     <h1>Deportes</h1>
-      <h3>Todos los deportes</h3>
-      <tr><p>N° de eventos total</p>
-        <div class="silver-circle"><span class="silver-quantity"></span></div></tr>
-      <section class="filter-container" id="athleteFilter">
+    <h3>Todos los deportes</h3>
+    <tr><p>N° de eventos total</p>
+    <section class="filter-container" id="sportFilter">
       <section class="select-box">
-        <label class="select" id="select">
+        <label class="select">
           <div class="content-select">
-            <p class="filter-criteria">criterio de filtro</p>
+            <p class="filter-criteria">Deportes</p>
           </div>
           <i class="down-icon fas fa-sort-down"></i>
         </label>
-        <label class="options" id="options">
+        <label class="options">
           <a href="#" class="option">
             <div class="content-option">
-              <img src=" " alt="">
+              <div class="avatar-circle"><span class="avatar-card">F</span></div>
               <p class="data">Atletismo</p>
             </div>
           </a>
           <a href="#" class="option">
             <div class="content-option">
-              <img src=" " alt="">
-              <p class="data">Baloncesto</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <img src=" " alt="">
-              <p class="data">Curling</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <img src="" alt="">
-              <p class="data">Judo</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <img src="" alt="">
+              <div class="avatar-circle"><span class="avatar-card">F</span></div>
               <p class="data">Natación</p>
             </div>
           </a>
           <a href="#" class="option">
             <div class="content-option">
-              <img src="" alt="">
-              <p class="data">Golf</p>
+              <div class="avatar-circle"><span class="avatar-card">F</span></div>
+              <p class="data">Tenis</p>
             </div>
           </a>
         </label>
       </section>
-      <input type="hidden" class="user-selection" id="userSelection">
-      </section>
+      <input type="hidden" class="user-selection" id="sportSelection">
     </section>
+
+    
+    <section class="filter-container" id="eventsFilter">
+      <section class="select-box">
+        <label class="select">
+          <div class="content-select">
+            <p class="filter-criteria">Eventos</p>
+          </div>
+          <i class="down-icon fas fa-sort-down"></i>
+        </label>
+        <label class="options">
+          <a href="#" class="option">
+            <div class="content-option">
+              <p class="data">Team Mixec</p>
+            </div>
+          </a>
+          <a href="#" class="option">
+            <div class="content-option">
+              <p class="data">Team three</p>
+            </div>
+          </a>
+          <a href="#" class="option">
+            <div class="content-option">
+              <p class="data">Team four</p>
+            </div>
+          </a>
+        </label>
+      </section>
+      <input type="hidden" class="user-selection" id="eventsSelection">
+    </section>
+
+
+    <div class="item">
+      <article class="cardAthletics">
+                  <a href="/deportes/atletismo.html" class="Atle">
+                   <figure class="articleImg">
+                     <picture class="imgSvg">
+                       <img src="img-deportes/atletismo.svg" style="width: 180px; height: 130px;">
+                     </picture>
+                     <div class="articleContent">
+                      <p class="sportTitle">Athletics</p>
+                    </div>
+                   </figure>
+                  </a>
+                  <div class="cantEvents">
+                      <input type="radio" value="5" >
+                  </div>
+      </article>
+
+      <article class="cardBasketball">
+                  <a href="/deportes/atletismo.html" class="basket">
+                   <figure class="articleImg">
+                     <picture>
+                       <img src="img-deportes/baloncesto.svg" style="width: 170px; height: 130px;" atl="Basketball">
+                     </picture>
+                     <div class="articleContent">
+                      <p class="sportTitle">Basketball</p>
+                    </div>
+                   </figure>
+                  </a>
+                  <div class="cantEvents">
+                      <input type="radio" value="5" >
+                  </div>
+      </article>
+
+      <article class="cardBoxing">
+                  <a href="/deportes/atletismo.html" class="box">
+                   <figure class="articleImg">
+                     <picture>
+                       <img src="img-deportes/boxeo.svg" style="width: 190px; height: 130px;" atl="boxing">
+                     </picture>
+                     <div class="article--content">
+                      <p class="sportTitle">Boxing</p>
+                    </div>
+                   </figure>
+                  </a>
+                  <div class="cantEvents">
+                      <input type="radio" value="5" >
+                  </div>
+      </article>
+
+      <article class="cardHandball">
+        <a href="/deportes/atletismo.html" class="handball">
+         <figure class="articleImg">
+           <picture>
+             <img src="img-deportes/balonmano.svg" style="width: 190px; height: 130px;" atl="hand">
+           </picture>
+           <div class="article--content">
+            <p class="sportTitle">Handball</p>
+          </div>
+         </figure>
+        </a>
+        <div class="cantEvents">
+            <input type="radio" value="5" >
+        </div>
+      </article>          
+
+    </div>
+    </section>
+
+
+  <!-----------------------FOOTER-------------------->
 
     <footer>
       <img class="rings-logo"src="img-logo/rings.png"/>
