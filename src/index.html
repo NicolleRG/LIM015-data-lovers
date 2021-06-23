@@ -163,7 +163,6 @@
           </div>
         </div>
       </section> 
-
       <h3>Todos los atletas</h3>
     <!-- Filtro Atleta--------------------->
       <section class="filter-container" id="athleteFilter">
@@ -197,23 +196,26 @@
         </section>
         <input type="hidden" class="user-selection" id="athleteSelection">
       </section>
-      <table border="1">
-        <tr class="table-headers">
+      <table id="athleteTable" border="1">
+        <thead class="table-headers">
           <th>Equipo<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
           <th>Atletas<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
           <th>Deporte<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
           <th>Oro<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
           <th>Plata<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
           <th>Bronce<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
-        </tr>
-        <tr class="table-content">
-          <td class="column-1"><img src="./img-paises/001-paraguay.png" alt="flag"><span class="noc">USA</span></td>
-          <td class="column-2"><div class="avatar-circle"><span class="avatar">M</span></div><span class="name-athlete">Michael Phelps</span></td>
-          <td class="column-3"><span class="sport-athlete">Natación</span></td>
-          <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-          <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-          <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-        </tr>
+        </thead>
+        <tbody class="table-content">
+          <tr>
+            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+            <td class="column-3"><span class="sport-text"></span></td>
+            <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+            <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+            <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+          </tr>
+          
+        </tbody>
       </table>
       <div><i class="fas fa-plus-circle"></i></div>
     </section>
@@ -352,7 +354,7 @@
           <th>Total medallas<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
         </tr>
         <tr class="table-content">
-          <td class="column-1"><img src="" alt="flag"><span class="team"></span></td>
+          <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
           <td class="column-2"><span class="number-athletes"></span></td>
           <td class="column-3"><div class="medal-circle"><span class="medal-quantity"></span></div></td>
           <td class="column-4"><div class="medal-circle"><span class="medal-quantity"></span></div></td>
@@ -457,7 +459,7 @@
         <p>© by Alisson Cruz Holguin</p>
       </section>
     </footer>
-    <script src="main.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
   
   </body>
 </html>
