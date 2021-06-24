@@ -103,7 +103,7 @@ ul{
 }
 
 a:link {
-    text-decoration:none; 
+    text-decoration:none;
 }
 
 
@@ -111,7 +111,7 @@ a:link {
 
 /*------------------------TABLA ATLETAS----------------------------------*/
 tr{
-    height: 20px;
+    height: 80px;
 }
 
 /*------------------------FOOTER----------------------------------*/
