@@ -3,7 +3,6 @@ import data from './data/athletes/athletes.js';
 /* Mostrar la data en las tablas*/
 const tableContent = document.querySelector('.table-content');
 const dataAthletes = data.athletes;// array de objetos de atletas
-console.log(dataAthletes);
 /* función que mueestra un fragmento con la creación de filas y columnas con la data*/
 
 function createRowsInTable(data){
@@ -41,7 +40,7 @@ function createRowsInTable(data){
         /*columna 4*/
         const newColumn4 = document.createElement('td');
         const divColumn4 = document.createElement('div');
-        divColumn4.classList.add('medal-circle')
+        divColumn4.classList.add('medal-circle');
         divColumn4.classList.add('gold');
         const spanDivColumn4 = document.createElement('span');
             spanDivColumn4.textContent = 0; // agregar función contadora de medallas de oro por atletas
@@ -51,7 +50,7 @@ function createRowsInTable(data){
         /*columna 5*/
         const newColumn5 = document.createElement('td');
         const divColumn5 = document.createElement('div');
-        divColumn5.classList.add('medal-circle')
+        divColumn5.classList.add('medal-circle');
         divColumn5.classList.add('silver');
         const spanDivColumn5 = document.createElement('span');
             spanDivColumn5.textContent = 0; // agregar función contadora de medallas de oro por atletas
@@ -82,6 +81,7 @@ function dataPart() {
     n=n+15; 
 }
 plusButton.addEventListener('click',dataPart);
+
 /*tenDataAthletes.forEach(item=>{
     tableContent.innerHTML+=`
         <tr>
