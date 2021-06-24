@@ -51,6 +51,7 @@ document.querySelector('.table-content').appendChild(newRow);
 
 
 //Filtro
+
 /*const select= document.querySelectorAll('.select');
 const options =document.querySelectorAll('.options');
 const contentSelect = document.querySelectorAll('.select .content-select');
@@ -76,6 +77,8 @@ const captureInputFilter = i => {
 captureInputFilter(0)*/
 
 
+
+/* Mostrar la data DEPORTE en el recuadro*/
 
 
 
