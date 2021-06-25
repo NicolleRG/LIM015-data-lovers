@@ -94,7 +94,9 @@ function dataPart() {
 plusButton.addEventListener('click',dataPart);
 
 const sortIcons = document.querySelectorAll('.sort-icons');
-sortIcons[1].addEventListener('click',function(){
+sortIcons[1].addEventListener('click',showSort);
+
+function showSort(){
     const imgColumn1=document.querySelectorAll('.table-content img');
     const nameColumn2 =document.querySelectorAll('.name-text');
     const avatarColumn2 = document.querySelectorAll('.avatar');
@@ -106,7 +108,7 @@ sortIcons[1].addEventListener('click',function(){
         avatarColumn2[index].textContent = item.gender;
         sportColumn3[index].textContent = item.sport;
     }) 
-});
+}
 
 /*tenDataAthletes.forEach(item=>{
     tableContent.innerHTML+=`
