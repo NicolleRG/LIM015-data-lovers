@@ -1,5 +1,5 @@
-export const sortData = (data) => {
-        const array = data.sort((a,b)=>{
+export const sortDataName = (data) => {
+        const arrayDataSort = data.sort((a,b)=>{
           const nameA = a.name.toUpperCase();
           const nameB = b.name.toUpperCase();
           if(nameA<nameB){
@@ -10,9 +10,8 @@ export const sortData = (data) => {
           }
           return 0;
         });
-  return array;
+  return arrayDataSort;
 }
-
 
 /*export const anotherExample = () => {
   return 'OMG';

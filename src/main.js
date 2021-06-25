@@ -1,114 +1,42 @@
-import { sortData } from './data.js';
+import {sortDataName} from './data.js';
 import data from './data/athletes/athletes.js';
 
 /* Mostrar la data en las tablas*/
-const tableContent = document.querySelector('.table-content');
 const dataAthletes = data.athletes;// array de objetos de atletas
 
-/* función que mueestra un fragmento con la creación de filas y columnas con la data*/
-const fragment = new DocumentFragment();
+const imgColumn1 = document.querySelectorAll('.table-content img');
+const nocTextColumn1 =document.querySelectorAll('.noc-text');
+const avatarColumn2 = document.querySelectorAll('.avatar');
+const nameColumn2 = document.querySelectorAll('.name-text');
+const sportColumn3 = document.querySelectorAll('.sport-text');
 
-function createRowsInTable(team,noc,gender,name, sport){
-        const newRow = document.createElement('tr')    
-        /*columna 1*/
-        const newColumn1 = document.createElement("td");
-        const imgColumn1 = document.createElement("img");
-        const imgAttribute = document.createAttribute("src")
-            imgAttribute.value = `./img-paises/${team}.png` //bandera de país
-        imgColumn1.setAttributeNode(imgAttribute);
-        const spanColumn1 = document.createElement('span');
-            spanColumn1.textContent = noc; // equipo del atleta
-        newColumn1.appendChild(imgColumn1);
-        newColumn1.appendChild(spanColumn1);
-        newRow.appendChild(newColumn1);
-        /*columna 2*/
-        const newColumn2 = document.createElement('td');
-        newColumn2.classList.add('column-2');
-        const divColumn2 = document.createElement('div');
-        const spanDivColumn2 = document.createElement('span');
-            spanDivColumn2.textContent = gender; // género del atleta
-            spanDivColumn2.classList.add('avatar');
-        divColumn2.appendChild(spanDivColumn2);
-        const spanColumn2 = document.createElement('span');
-            spanColumn2.textContent = name; // nombre del atleta
-            spanColumn2.classList.add('name-text');
-        newColumn2.appendChild(divColumn2);
-        newColumn2.appendChild(spanColumn2);
-        newRow.appendChild(newColumn2);
-        /*columna 3*/
-        const newColumn3 = document.createElement('td');
-        const spanColumn3 = document.createElement('span');
-            spanColumn3.textContent = sport; // deporte del atleta
-            spanColumn3.classList.add('sport-text');
-        newColumn3.appendChild(spanColumn3);
-        newRow.appendChild(newColumn3);
-        /*columna 4*/
-        const newColumn4 = document.createElement('td');
-        const divColumn4 = document.createElement('div');
-        divColumn4.classList.add('medal-circle');
-        divColumn4.classList.add('gold');
-        const spanDivColumn4 = document.createElement('span');
-            spanDivColumn4.textContent = 0; // agregar función contadora de medallas de oro por atletas
-        divColumn4.appendChild(spanDivColumn4);
-        newColumn4.appendChild(divColumn4);
-        newRow.appendChild(newColumn4);
-        /*columna 5*/
-        const newColumn5 = document.createElement('td');
-        const divColumn5 = document.createElement('div');
-        divColumn5.classList.add('medal-circle');
-        divColumn5.classList.add('silver');
-        const spanDivColumn5 = document.createElement('span');
-            spanDivColumn5.textContent = 0; // agregar función contadora de medallas de oro por atletas
-        divColumn5.appendChild(spanDivColumn5);
-        newColumn5.appendChild(divColumn5);
-        newRow.appendChild(newColumn5);
-        /*columna 6*/
-        const newColumn6 = document.createElement('td');
-        const divColumn6 = document.createElement('div');
-        divColumn6.classList.add('medal-circle')
-        divColumn6.classList.add('bronze');
-        const spanDivColumn6 = document.createElement('span');
-            spanDivColumn6.textContent = 0; // agregar función contadora de medallas de oro por atletas
-        divColumn6.appendChild(spanDivColumn6);
-        newColumn6.appendChild(divColumn6);
-        newRow.appendChild(newColumn6);  
-        fragment.appendChild(newRow);
-        tableContent.appendChild(fragment);   
-}
-let i=0;
-let n=20;
-dataAthletes.slice(i,n).forEach(item=>{
-    createRowsInTable(item.team,item.noc,item.gender,item.name,item.sport);
-});
-/*Botton '+' para mostrar la data en tabla para abajo*/
+const showDataTable = data =>{
+   data.forEach((item,objectIndex)=>{
+        imgColumn1[objectIndex].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[objectIndex].textContent = item.noc;
+        nameColumn2[objectIndex].textContent = item.name;
+        avatarColumn2[objectIndex].textContent = item.gender;
+        sportColumn3[objectIndex].textContent = item.sport;
+    }) 
+};
+showDataTable(dataAthletes);
+
 const plusButton = document.querySelector('.plus-icon');
-i=i+n;
-n=n+n;
 function dataPart() {
-    dataAthletes.slice(i,n).forEach(item=>{
-    createRowsInTable(item.team,item.noc,item.gender,item.name,item.sport);
-    });
-    i=i+20; 
-    n=n+20; 
-}
+} 
 plusButton.addEventListener('click',dataPart);
 
-const sortIcons = document.querySelectorAll('.sort-icons');
-sortIcons[1].addEventListener('click',showSort);
 
-function showSort(){
-    const imgColumn1=document.querySelectorAll('.table-content img');
-    const nameColumn2 =document.querySelectorAll('.name-text');
-    const avatarColumn2 = document.querySelectorAll('.avatar');
-    const sportColumn3 = document.querySelectorAll('.sport-text');
-    const sortDataArray = sortData(dataAthletes);
-    sortDataArray.forEach((item,index)=>{
-        imgColumn1[index].src = `./img-paises/${item.team}.png`
+const sortIcons = document.querySelectorAll('.sort-icons');
+sortIcons[1].addEventListener('click',function(){ 
+    sortDataName(dataAthletes).forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
         nameColumn2[index].textContent = item.name;
         avatarColumn2[index].textContent = item.gender;
         sportColumn3[index].textContent = item.sport;
     }) 
-}
+});
 
 /*tenDataAthletes.forEach(item=>{
     tableContent.innerHTML+=`
