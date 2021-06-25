@@ -23,22 +23,22 @@ showDataTable(dataAthletes,0);
 //const pages = dataAthletes.length/rowsNum; //135 páginas aprox.
 //console.log(pages);
 
-const nextIcon = document.querySelector('.next-icon');
-const previousIcon = document.querySelector('.previous-icon');
+const nextIcon = document.querySelectorAll('.next-icon');
+const previousIcon = document.querySelectorAll('.previous-icon');
 let rowsNum = 0;
 function showNextData() {
     rowsNum = rowsNum + 20;
     showDataTable(dataAthletes,rowsNum);
     //console.log(rowsNum);
 } 
-nextIcon.addEventListener('click',showNextData);
+nextIcon[0].addEventListener('click',showNextData);
 
 function showPreviousData() {
     rowsNum===0 ? showDataTable(dataAthletes,0): rowsNum=rowsNum-20;
-   //console.log(rowsNum);
+    //console.log(rowsNum);
     showDataTable(dataAthletes,rowsNum);
 }
-previousIcon.addEventListener('click',showPreviousData);
+previousIcon[0].addEventListener('click',showPreviousData);
 
 /*Orden alfabético por noc, nombre, sport */
 const sortIcons = document.querySelectorAll('.sort-icons');
@@ -66,7 +66,6 @@ sortIcons[1].addEventListener('click',function(){
         sportColumn3[index].textContent = item.sport;
     }) 
 })
-
 sortIcons[2].addEventListener('click',function(){ 
     rowsNum=0;
     showDataTable(dataAthletes,rowsNum);
