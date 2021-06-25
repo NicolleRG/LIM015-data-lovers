@@ -1,4 +1,4 @@
-import {sortDataName} from './data.js';
+import {sortDataName , sortDataNoc, sortDataSport} from './data.js';
 import data from './data/athletes/athletes.js';
 
 const dataAthletes = data.athletes;// array de objetos de atletas
@@ -19,30 +19,45 @@ const showDataTable = (data,startIndexItem) =>{
     }
 }
 showDataTable(dataAthletes,0);
-let rowsNum = 0;
+
 //const pages = dataAthletes.length/rowsNum; //135 páginas aprox.
 //console.log(pages);
 
 const nextIcon = document.querySelector('.next-icon');
 const previousIcon = document.querySelector('.previous-icon');
-
+let rowsNum = 0;
 function showNextData() {
     rowsNum = rowsNum + 20;
     showDataTable(dataAthletes,rowsNum);
-    console.log(rowsNum);
+    //console.log(rowsNum);
 } 
 nextIcon.addEventListener('click',showNextData);
 
 function showPreviousData() {
     rowsNum===0 ? showDataTable(dataAthletes,0): rowsNum=rowsNum-20;
-    console.log(rowsNum);
+   //console.log(rowsNum);
     showDataTable(dataAthletes,rowsNum);
 }
-previousIcon.addEventListener('click',showPreviousData)
+previousIcon.addEventListener('click',showPreviousData);
 
-
+/*Orden alfabético por noc, nombre, sport */
 const sortIcons = document.querySelectorAll('.sort-icons');
+sortIcons[0].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortDataNoc(dataAthletes));
+    sortDataNoc(dataAthletes).forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
 sortIcons[1].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortDataName(dataAthletes));
     sortDataName(dataAthletes).forEach((item,index)=>{
         imgColumn1[index].src = `./img-paises/${item.team}.png`;
         nocTextColumn1[index].textContent = item.noc;
@@ -52,6 +67,18 @@ sortIcons[1].addEventListener('click',function(){
     }) 
 })
 
+sortIcons[2].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortDataSport(dataAthletes));
+    sortDataSport(dataAthletes).forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
 /*tenDataAthletes.forEach(item=>{
     tableContent.innerHTML+=`
         <tr>
