@@ -1,87 +1,142 @@
+import {sortData} from './data.js';
 import data from './data/athletes/athletes.js';
 
-/* Mostrar la data en las tablas*/
-const tableContent = document.querySelector('.table-content');
 const dataAthletes = data.athletes;// array de objetos de atletas
-console.log(dataAthletes);
-/* función que mueestra un fragmento con la creación de filas y columnas con la data*/
+const imgColumn1 = document.querySelectorAll('.table-content img');
+const nocTextColumn1 =document.querySelectorAll('.noc-text');
+const avatarColumn2 = document.querySelectorAll('.avatar');
+const nameColumn2 = document.querySelectorAll('.name-text');
+const sportColumn3 = document.querySelectorAll('.sport-text');
+ 
+const showDataTable = (data,startIndexItem) =>{
+   for(let i = 0; i<20 ; i++){ 
+        const item = data[i+startIndexItem];
+        imgColumn1[i].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[i].textContent = item.noc;
+        nameColumn2[i].textContent = item.name;
+        avatarColumn2[i].textContent = item.gender;
+        sportColumn3[i].textContent = item.sport;
+    }
+}
+showDataTable(dataAthletes,0);
 
-function createRowsInTable(data){
-    const fragment = new DocumentFragment();
-    data.forEach(item=>{
-        const newRow = document.createElement('tr')
-        /*columna 1*/
-        const newColumn1 = document.createElement("td");
-        const imgColumn1 = document.createElement("img");
-        const imgAttribute = document.createAttribute("src")
-            imgAttribute.value = `./img-paises/${item.team}.png` //bandera de país
-        imgColumn1.setAttributeNode(imgAttribute);
-        const spanColumn1 = document.createElement('span');
-            spanColumn1.textContent = item.noc; // equipo del atleta
-        newColumn1.appendChild(imgColumn1);
-        newColumn1.appendChild(spanColumn1);
-        newRow.appendChild(newColumn1);
-        /*columna 2*/
-        const newColumn2 = document.createElement('td');
-        const divColumn2 = document.createElement('div');
-        const spanDivColumn2 = document.createElement('span');
-            spanDivColumn2.textContent = item.gender; // género del atleta
-        divColumn2.appendChild(spanDivColumn2);
-        const spanColumn2 = document.createElement('span');
-            spanColumn2.textContent = item.name // nombre del atleta
-        newColumn2.appendChild(divColumn2);
-        newColumn2.appendChild(spanColumn2);
-        newRow.appendChild(newColumn2);
-        /*columna 3*/
-        const newColumn3 = document.createElement('td');
-        const spanColumn3 = document.createElement('span');
-            spanColumn3.textContent = item.sport; // deporte del atleta
-        newColumn3.appendChild(spanColumn3);
-        newRow.appendChild(newColumn3);
-        /*columna 4*/
-        const newColumn4 = document.createElement('td');
-        const divColumn4 = document.createElement('div');
-        divColumn4.classList.add('medal-circle')
-        divColumn4.classList.add('gold');
-        const spanDivColumn4 = document.createElement('span');
-            spanDivColumn4.textContent = 0; // agregar función contadora de medallas de oro por atletas
-        divColumn4.appendChild(spanDivColumn4);
-        newColumn4.appendChild(divColumn4);
-        newRow.appendChild(newColumn4);
-        /*columna 5*/
-        const newColumn5 = document.createElement('td');
-        const divColumn5 = document.createElement('div');
-        divColumn5.classList.add('medal-circle')
-        divColumn5.classList.add('silver');
-        const spanDivColumn5 = document.createElement('span');
-            spanDivColumn5.textContent = 0; // agregar función contadora de medallas de oro por atletas
-        divColumn5.appendChild(spanDivColumn5);
-        newColumn5.appendChild(divColumn5);
-        newRow.appendChild(newColumn5);
-        /*columna 6*/
-        const newColumn6 = document.createElement('td');
-        const divColumn6 = document.createElement('div');
-        divColumn6.classList.add('medal-circle')
-        divColumn6.classList.add('bronze');
-        const spanDivColumn6 = document.createElement('span');
-            spanDivColumn6.textContent = 0; // agregar función contadora de medallas de oro por atletas
-        divColumn6.appendChild(spanDivColumn6);
-        newColumn6.appendChild(divColumn6);
-        newRow.appendChild(newColumn6);
-        fragment.appendChild(newRow);
-    });
-    return tableContent.appendChild(fragment);
+//const pages = dataAthletes.length/rowsNum; //135 páginas aprox.
+//console.log(pages);
+
+const nextIcon = document.querySelectorAll('.next-icon');
+const previousIcon = document.querySelectorAll('.previous-icon');
+let rowsNum = 0;
+function showNextData() {
+    rowsNum = rowsNum + 20;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(rowsNum);
+} 
+nextIcon[0].addEventListener('click',showNextData);
+
+function showPreviousData() {
+    rowsNum===0 ? showDataTable(dataAthletes,0): rowsNum=rowsNum-20;
+    //console.log(rowsNum);
+    showDataTable(dataAthletes,rowsNum);
 }
-createRowsInTable(dataAthletes.slice(0,15));
-const plusButton = document.querySelector('.plus-icon');
-let i=15;
-let n=30;
-function dataPart() {
-    createRowsInTable(dataAthletes.slice(i,n));
-    i=i+15; 
-    n=n+15; 
+previousIcon[0].addEventListener('click',showPreviousData);
+
+/*Orden alfabético por noc, nombre, sport */
+
+const iconUp =document.querySelectorAll('.icon-up');
+const iconDown =document.querySelectorAll('.icon-down');
+
+iconDown[0].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortData(dataAthletes,'noc'));
+    sortData(dataAthletes,'noc','desc').forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
+
+iconDown[1].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    sortData(dataAthletes,'name','desc').forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
+iconDown[2].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortData(dataAthletes,'noc'));
+    sortData(dataAthletes,'sport','desc').forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
+
+iconUp[0].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortData(dataAthletes,'noc'));
+    sortData(dataAthletes,'noc','asc').forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
+iconUp[1].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortData(dataAthletes,'name'));
+    sortData(dataAthletes,'name','asc').forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
+iconUp[2].addEventListener('click',function(){ 
+    rowsNum=0;
+    showDataTable(dataAthletes,rowsNum);
+    //console.log(sortData(dataAthletes,'sport'));
+    sortData(dataAthletes,'sport','asc').forEach((item,index)=>{
+        imgColumn1[index].src = `./img-paises/${item.team}.png`;
+        nocTextColumn1[index].textContent = item.noc;
+        nameColumn2[index].textContent = item.name;
+        avatarColumn2[index].textContent = item.gender;
+        sportColumn3[index].textContent = item.sport;
+    }) 
+})
+
+function groupBy(key){
+    return function group(array){
+        return array.reduce((acc,obj)=>{
+            const property = obj[key]; 
+            acc[property] = acc[property] || [];
+            acc[property].push(obj);
+            return acc;
+        }, {});
+    };
 }
-plusButton.addEventListener('click',dataPart);
+const groupByName = groupBy("name");
+groupByName(dataAthletes.slice(0,7));
+console.log(groupByName(dataAthletes.slice(0,7)));
+
+
+
+
+
 /*tenDataAthletes.forEach(item=>{
     tableContent.innerHTML+=`
         <tr>
@@ -95,7 +150,6 @@ plusButton.addEventListener('click',dataPart);
 });*/
 
 //Filtro
-
 /*const select= document.querySelectorAll('.select');
 const options =document.querySelectorAll('.options');
 const contentSelect = document.querySelectorAll('.select .content-select');
@@ -120,9 +174,3 @@ const captureInputFilter = i => {
 };
 captureInputFilter(0)*/
 
-
-
-/* Mostrar la data DEPORTE en el recuadro*/
-
-
-//console.log(example, data);
