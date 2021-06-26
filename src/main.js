@@ -125,7 +125,4 @@ captureInputFilter(0)*/
 /* Mostrar la data DEPORTE en el recuadro*/
 
 
-
-
-
 //console.log(example, data);
