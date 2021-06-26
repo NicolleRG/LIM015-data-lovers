@@ -214,7 +214,19 @@ a:link {
 
 /*------------------------TABLA ATLETAS----------------------------------*/
 tr{
-    height: 80px;
+    height: 35px;
+}
+.column-1{
+    width: 100px;
+}
+.column-2{
+    width: 250px;
+}
+.column-3{
+    width: 180px;
+}
+.column-4, .column-5, .column-6{
+    width: 80px;
 }
 
 /*------------------------FOOTER----------------------------------*/
