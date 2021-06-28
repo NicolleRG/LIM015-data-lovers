@@ -117,18 +117,22 @@ header nav ul li a:hover{
     display: flex;
     align-items: center;
 }
-.medal-circle{
+.medal-circle-golden{
     border-radius: 100px;
     height: 32px;
     width: 32px;
-}
-.medal-circle.gold{
     background: #FCC861;
 }
-.medal-circle.silver{
+.medal-circle-silver{
+    border-radius: 100px;
+    height: 32px;
+    width: 32px;
     background:  #E5E5E5;
 }
-.medal-circle.bronze{
+.medal-circle-bronze{
+    border-radius: 100px;
+    height: 32px;
+    width: 32px;
     background: #DCB386;
 }
 
