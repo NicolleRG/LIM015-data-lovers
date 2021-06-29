@@ -1,14 +1,16 @@
 import { sortData } from './data.js';
 import data from './data/athletes/athletes.js';
+
+//---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
-const imgColumn1 = document.querySelectorAll('.table-content img');
-const nocTextColumn1 = document.querySelectorAll('.noc-text');
-const avatarColumn2 = document.querySelectorAll('.avatar');
-const nameColumn2 = document.querySelectorAll('.name-text');
-const sportColumn3 = document.querySelectorAll('.sport-text');
-const medalQuantityGold = document.querySelectorAll('.medal-quantity-golden');
-const medalQuantitySilver = document.querySelectorAll('.medal-quantity-silver');
-const medalQuantityBronze = document.querySelectorAll('.medal-quantity-bronze');
+const imgColumn1 = document.querySelectorAll('#athleteTable img');
+const nocTextColumn1 = document.querySelectorAll('#athleteTable .noc-text');
+const avatarColumn2 = document.querySelectorAll('#athleteTable .avatar');
+const nameColumn2 = document.querySelectorAll('#athleteTable .name-text');
+const sportColumn3 = document.querySelectorAll('#athleteTable .sport-text');
+const medalQuantityGold = document.querySelectorAll('#athleteTable .medal-quantity-golden');
+const medalQuantitySilver = document.querySelectorAll('#athleteTable .medal-quantity-silver');
+const medalQuantityBronze = document.querySelectorAll('#athleteTable .medal-quantity-bronze');
 const nextIcon = document.querySelectorAll('.next-icon');
 const previousIcon = document.querySelectorAll('.previous-icon');
 const iconUp = document.querySelectorAll('.icon-up');
@@ -33,7 +35,7 @@ function showMedalQuantity (array , typeMedal) {
     const typeMedalArray = medalArray.filter(element=>element===typeMedal);
     return typeMedalArray.length>0? typeMedalArray.length : '-';
 }
-function showDataTable(array , startIndexProperty , data){
+function showDataTable(array, startIndexProperty, data){
     //console.log(array);
     let i = 0;
     for (let key in data){
@@ -51,8 +53,7 @@ function showDataTable(array , startIndexProperty , data){
         i<19? i++ : false;
     }
 }
-showDataTable(arrayOfNames , 0 , newData);
-
+showDataTable(arrayOfNames, 0, newData);
 let index = 0;
 nextIcon[0].addEventListener('click', () => {
     index = index + 20;
@@ -60,20 +61,78 @@ nextIcon[0].addEventListener('click', () => {
     //console.log(index);  
 });
 previousIcon[0].addEventListener('click', () => {
-    index===0 ? showDataTable(0): index = index-20;
+    index===0 ? index=0 : index = index-20;
     //console.log(index);
     showDataTable(arrayOfNames , index , newData);
 });
 
-/*Orden alfabético por nombre */
-index=0;
-const sortName = order =>{
+//Se ordena alfabéticamente por nombre
+const sortName = order => {
     index = 0;
-    showDataTable(sortData(arrayOfNames,order),index,newData)
+    showDataTable(sortData(arrayOfNames,order),index,newData);
 }
-iconDown[1].addEventListener('click', () => sortName('asc'))
+iconDown[1].addEventListener('click', () => sortName('asc'));
 iconUp[1].addEventListener('click', () => sortName('desc'));
 
+//--------------------PAISES------------------------------------------------------------------------------
+const imgCountryTable = document.querySelectorAll('#countryTable img');
+const nocTextCountry = document.querySelectorAll('#countryTable .noc-text');
+const numberAthletes = document.querySelectorAll('#countryTable .number-athletes')
+const medalQuantityGoldCountry = document.querySelectorAll('#countryTable .medal-quantity-golden');
+const medalQuantitySilverCountry = document.querySelectorAll('#countryTable .medal-quantity-silver');
+const medalQuantityBronzeCountry = document.querySelectorAll('#countryTable .medal-quantity-bronze');
+const totalMedals = document.querySelectorAll('.total-medals');
+
+const groupByNoc = groupBy('noc');
+const dataNoc = groupByNoc(dataAthletes);
+const arrayOfNocs = Object.keys(dataNoc); // [nocs]
+
+function showMedalQuantityCountry (array , typeMedal) {
+    const medalArray = array.map(element=>element.medal);
+    const typeMedalArray = medalArray.filter(element=>element===typeMedal);
+    return typeMedalArray.length>0? typeMedalArray.length : '-';
+}
+function showNumberAthletes (array) {
+    const athletesArray = array.map(element=>element.name);
+    return athletesArray.length;
+}
+function showTotalMedals (array) {
+    const medalArray = array.map(element=>element.medal);
+    return medalArray.length;
+}
+function showDataTableCountry (array , startIndexProperty , data){
+    let i = 0;
+    for (let key in data){
+        key = array[i+startIndexProperty];
+        const arrayInProperty = data[key]; //[{},{},{}]
+            imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
+            nocTextCountry[i].textContent = arrayInProperty[0].team;
+            numberAthletes[i].textContent = showNumberAthletes(arrayInProperty);
+            medalQuantityGoldCountry[i].textContent = showMedalQuantityCountry(arrayInProperty, 'Gold');
+            medalQuantitySilverCountry[i].textContent = showMedalQuantityCountry(arrayInProperty, 'Silver');
+            medalQuantityBronzeCountry[i].textContent = showMedalQuantityCountry(arrayInProperty, 'Bronze');
+            totalMedals[i].textContent = showTotalMedals(arrayInProperty);
+        i<19? i++ : false;
+    }
+}
+showDataTableCountry(arrayOfNocs, 0, dataNoc);
+index = 0;
+nextIcon[1].addEventListener('click', () => {
+    index = index + 20;
+    showDataTableCountry(arrayOfNocs , index , dataNoc);
+    //console.log(index);  
+});
+previousIcon[1].addEventListener('click', () => {
+    index===0 ? index=0 : index = index-20;
+    //console.log(index);
+    showDataTableCountry(arrayOfNocs , index , dataNoc);
+});
+const sortNoc = order => {
+    index = 0;
+    showDataTableCountry(sortData(arrayOfNocs,order),index, dataNoc);
+}
+iconDown[6].addEventListener('click', () => sortNoc('asc'));
+iconUp[6].addEventListener('click', () => sortNoc('desc'));
 
 // const showDataInTable = (data , startIndexItem) =>{
 //    for(let i = 0; i<20 ; i++){ 
