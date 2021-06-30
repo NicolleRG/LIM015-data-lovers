@@ -1,7 +1,7 @@
 
 //SPORT.HTML
-var remplaza = /\+/gi; //expresion regular
-var url = window.location.href; //Captura la URL de la ventana actual
+let remplaza = /\+/gi; //expresion regular
+let url = window.location.href; //Captura la URL de la ventana actual
 
 url = decodeURI(url); //decodificia la url
 url = url.replace(remplaza, " "); //remplaza epsacion en blanco por +
@@ -12,9 +12,9 @@ console.log(url);
 
 function obtener_valor(variable) { //Funcion que obtine el valor de la variable en la url    
     // variable -="verinfo" 
-    var variable_may = variable.toUpperCase(); // variable_may = "VERINFO" 
+    let variable_may = variable.toUpperCase(); // variable_may = "VERINFO" 
     console.log(variable_may);
-    var variable_pos = url.indexOf(variable_may); //  variable_pos = 38
+    let variable_pos = url.indexOf(variable_may); //  variable_pos = 38
     console.log(variable_pos);
 
     if (variable_pos != -1) {
