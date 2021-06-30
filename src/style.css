@@ -329,3 +329,44 @@ img {
 .content-option:hover p{
     color: white; 
 }
+
+/*SPORT.HMTL*/
+
+.sportContent{
+    background-color: #f7a700;
+    margin: 0px;
+    padding: 0px;
+    display:block;
+    width: 80%;
+    height: 1000%;
+}
+.acordeon{
+    width: 80%;
+    max-width: 120em;
+    background-color: #02A650;
+    padding: 2em;
+    
+}
+.acordeon .bloque{
+
+    background-color: #fad700;
+    margin: 0 0 1em;
+    padding: 1em;
+}
+.acordeon .h2 {
+    background-color: rgb(226, 241, 241);
+    margin: 0 0 1em;
+    padding: 0.5em;
+
+}
+.acordeon .contenido {
+    background-color: #DCB386;
+    padding: 1em;
+    height: 0;
+    padding: 0em;
+    overflow: hidden;
+    transition: all .5s ease;
+}
+.acordeon .bloque.activo .contenido{
+    height: 4em;
+}

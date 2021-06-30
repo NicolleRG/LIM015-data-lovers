@@ -5,13 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitroDeportes</title>
+    <link rel="stylesheet" href="normalize.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://kit.fontawesome.com/4177a2ab13.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
+
+  <h1 id="title">
+
+  </h1>
+  <div id="container-events">
+
+  </div>
     
-    <h1>Tenis</h1>
-    <tr><p>N° de eventos total</p>
-    
-    
+  <main class="sportContent">
+   
+    <!-------------------Filtros---------------------------------------------------------->
     <section class="filter-container" id="sportFilter">
       <section class="select-box">
         <label class="select">
@@ -73,7 +85,6 @@
       <input type="hidden" class="user-selection" id="eventsSelection">
     </section>
 
-
     <section class="filter-container" id="eventsFilter">
         <section class="select-box">
           <label class="select">
@@ -102,7 +113,29 @@
         </section>
         <input type="hidden" class="user-selection" id="eventsSelection">
       </section>
-  
 
+    
+
+    
+
+    <!------------------------ Eventos----------------------------------------------------->
+
+      <div class="acordeon">
+        <div class="bloque">
+          <h2 class="h2">Titular</h2>
+          <div class="contenido">Soy el contenido 1</div>
+        </div>
+        <div class="bloque">
+          <h2 class="h2">Titular</h2>
+          <div class="contenido">Soy el contenido 2</div>
+        </div>
+      </div>
+
+
+
+      <script src="./sports.js" type="module"></script>
+
+  
+    </main>
 </body>
 </html>
