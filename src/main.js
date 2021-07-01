@@ -159,7 +159,7 @@ iconUp[6].addEventListener('click', () => sortNoc('desc'));
 });*/
 
 //Filtro
-/*const select= document.querySelectorAll('.select');
+const select= document.querySelectorAll('.select');
 const options =document.querySelectorAll('.options');
 const contentSelect = document.querySelectorAll('.select .content-select');
 const hiddenInput = document.querySelectorAll('.user-selection');
@@ -181,7 +181,7 @@ const captureInputFilter = i => {
         options[i].classList.toggle('active');
     });
 };
-captureInputFilter(0)*/
+captureInputFilter(0)
 
 
 
