@@ -13,26 +13,36 @@
   <body>
     
  <!---------------------------------BARRA LATERAL--------------------------->   
-
-   <header>
-    
-     <nav>
-       <section id="logo">
-        <a href="#"><img src="img-logo/logo1.png" style="width: 160px; height: 130px;" ></a>
+  <input type="checkbox" id="nav-toggle">
+  <nav>
+       <section class="logo">
+        <a href="#"><img src="img-logo/logo1.png" style="width: 250px; height: 200px;" ></a>
        </section>
 
-       <ul>
-        <li><a href="#"><i class="fas fa-running"></i>Atletas</a></li>
-        <li><a href="#"><i class="fas fa-flag"></i>Paises</a></li>
-        <li><a href="#"><i class="fas fa-futbol"></i>Deportes</a></li>
-        <li><a href="#"><i class="fas fa-chart-line"></i>Estadisticas</a></li>
-        <li><a href="#"><i class="fas fa-comment-alt"></i>Comentarios</a></li>
+       <ul class="sidebar-menu">
+        <li><a class="active" href="#"><i class="fas fa-running"></i><span>Atletas</span></a></li>
+        <li><a href="#"><i class="fas fa-flag"></i><span>Paises</span></a></li>
+        <li><a href="#"><i class="fas fa-futbol"></i><span>Deportes</span></a></li>
+        <li><a href="#"><i class="fas fa-chart-line"></i><span>Estadisticas</span></a></li>
+        <li><a href="#"><i class="fas fa-comment-alt"></i><span>Comentarios</span></a></li>
        </ul>
-     </nav>
+  </nav>
 
-   </header>
  
-   <main id="contenido">
+  <section class="container">
+    <header>
+      <h1>
+        <label for="nav-toggle">
+          <i class="fas fa-bars"></i>
+            </label>
+            Menú
+          </h1>
+
+          <span class="header-title">
+          <h2>Olimpiadas Rio de Janeiro 2016 </h2> </span>
+    </header>
+
+   <main>
 <!--------------------------------ATLETAS-------------->
     <section id="athletes" class="mainSection">
       <h1>Atletas</h1>
@@ -193,6 +203,7 @@
         <input type="hidden" class="user-selection" id="athleteSelection">
       </section>
     <!-----------TABLA ATLETAS---------------------------------------------->
+    <section class="table-responsive">
       <table id="athleteTable">
         <thead class="table-headers">
           <th>Equipo<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
@@ -365,6 +376,7 @@
           </tr>
         </tbody>
       </table>
+    </section>
       <div><i class="previous-icon fas fa-arrow-circle-left"></i></div>
       <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
     </section>
@@ -1222,6 +1234,6 @@
     </footer>
     <script src="./main.js" type="module"></script>
    
-  
+  </section>
   </body>
 </html>
