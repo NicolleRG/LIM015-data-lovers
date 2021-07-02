@@ -1,4 +1,4 @@
-import { sortData } from './data.js';
+import { ranking, sortData } from './data.js';
 import data from './data/athletes/athletes.js';
 
 //---------------ATLETAS-----------------------------------------------------------------------------
@@ -28,48 +28,64 @@ function groupBy(key){
 }
 const groupByName = groupBy('name');
 const newData = groupByName(dataAthletes);
-const arrayOfNames = Object.keys(newData); // [names]
+//const arrayOfNames = Object.keys(newData); //[names]
 
-function showMedalQuantity (array , typeMedal) {
-    const medalArray = array.map(element=>element.medal);
-    const typeMedalArray = medalArray.filter(element=>element===typeMedal);
-    return typeMedalArray.length>0? typeMedalArray.length : '-';
+for (let key in newData){
+    const medalArray = newData[key].map(element=>element.medal);
+    const goldQuantity = medalArray.filter(element=>element==='Gold').length;
+    const silverQuantity = medalArray.filter(element=>element==='Silver').length;
+    const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
+    newData[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
+
+const arrayNames = ranking(newData, 'Gold', 'desc');
+// console.table(arrayNames);
 function showDataTable(array, startIndexProperty, data){
-    //console.log(array);
     let i = 0;
     for (let key in data){
         key = array[i+startIndexProperty];
-        //console.log(key);
         const arrayInProperty = data[key]; //[{},{},{}]
+        //console.log(arrayInProperty[arrayInProperty.length-1]);
             imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
             nocTextColumn1[i].textContent = arrayInProperty[0].noc;
             nameColumn2[i].textContent = arrayInProperty[0].name;
             avatarColumn2[i].textContent = arrayInProperty[0].gender;
             sportColumn3[i].textContent = arrayInProperty[0].sport;
-            medalQuantityGold[i].textContent = showMedalQuantity(arrayInProperty, 'Gold');
-            medalQuantitySilver[i].textContent = showMedalQuantity(arrayInProperty, 'Silver');
-            medalQuantityBronze[i].textContent = showMedalQuantity(arrayInProperty, 'Bronze');
+            medalQuantityGold[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
+            medalQuantitySilver[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
+            medalQuantityBronze[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
         i<19? i++ : false;
     }
 }
-showDataTable(arrayOfNames, 0, newData);
+
+showDataTable(arrayNames, 0, newData);
+const rankingMedal = (typeMedal, order) =>{
+    index = 0;
+    showDataTable(ranking(newData, typeMedal, order),index,newData);
+}
+iconDown[3].addEventListener('click', () => rankingMedal('Gold','desc'));
+iconUp[3].addEventListener('click', () => rankingMedal('Gold','asc'));
+iconDown[4].addEventListener('click', () => rankingMedal('Silver','desc'));
+iconUp[4].addEventListener('click', () => rankingMedal('Silver','asc'));
+iconDown[5].addEventListener('click', () => rankingMedal('Bronze','desc'));
+iconUp[5].addEventListener('click', () => rankingMedal('Bronze','asc'));
+
 let index = 0;
 nextIcon[0].addEventListener('click', () => {
     index = index + 20;
-    showDataTable(arrayOfNames , index , newData);
-    //console.log(index);  
+    console.log(arrayNames);
+    showDataTable(arrayNames , index , newData); 
 });
 previousIcon[0].addEventListener('click', () => {
     index===0 ? index=0 : index = index-20;
-    //console.log(index);
-    showDataTable(arrayOfNames , index , newData);
+    console.log(arrayNames);
+    showDataTable(arrayNames , index , newData);
 });
 
 //Se ordena alfabéticamente por nombre
 const sortName = order => {
     index = 0;
-    showDataTable(sortData(arrayOfNames,order),index,newData);
+    showDataTable(sortData(arrayNames,order),index,newData);
 }
 iconDown[1].addEventListener('click', () => sortName('asc'));
 iconUp[1].addEventListener('click', () => sortName('desc'));
@@ -134,30 +150,6 @@ const sortNoc = order => {
 iconDown[6].addEventListener('click', () => sortNoc('asc'));
 iconUp[6].addEventListener('click', () => sortNoc('desc'));
 
-// const showDataInTable = (data , startIndexItem) =>{
-//    for(let i = 0; i<20 ; i++){ 
-//         const item = data[i+startIndexItem];
-//         imgColumn1[i].src = `./img-paises/${item.team}.png`;
-//         nocTextColumn1[i].textContent = item['noc'];
-//         nameColumn2[i].textContent = item.name;
-//         avatarColumn2[i].textContent = item.gender;
-//         sportColumn3[i].textContent = item.sport;
-//     }
-// }
-// showDataInTable(dataAthletes , 0);
-
-/*tenDataAthletes.forEach(item=>{
-    tableContent.innerHTML+=`
-        <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text">${item.noc}</span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text">${item.name}</span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-            <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-            <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-        </tr>`
-});*/
-
 //Filtro
 const select= document.querySelectorAll('.select');
 const options =document.querySelectorAll('.options');
@@ -183,6 +175,26 @@ const captureInputFilter = i => {
 };
 captureInputFilter(0)
 
+// const showDataInTable = (data , startIndexItem) =>{
+//    for(let i = 0; i<20 ; i++){ 
+//         const item = data[i+startIndexItem];
+//         imgColumn1[i].src = `./img-paises/${item.team}.png`;
+//         nocTextColumn1[i].textContent = item['noc'];
+//         nameColumn2[i].textContent = item.name;
+//         avatarColumn2[i].textContent = item.gender;
+//         sportColumn3[i].textContent = item.sport;
+//     }
+// }
+// showDataInTable(dataAthletes , 0);
 
-
-
+/*tenDataAthletes.forEach(item=>{
+    tableContent.innerHTML+=`
+        <tr>
+            <td class="column-1"><img src="" alt="flag"><span class="noc-text">${item.noc}</span></td>
+            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text">${item.name}</span></td>
+            <td class="column-3"><span class="sport-text"></span></td>
+            <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+            <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+            <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
+        </tr>`
+});*/
