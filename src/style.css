@@ -144,22 +144,27 @@ main h1{
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
     margin-top: 1rem;
-    
 }
 
-.card-athlete{
+.card-athlete, .card-country{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background: var(--color-light-silver);
     padding: 2rem;
     border-radius: 5px;
-    height: 300px;
+    height: 350px;
 }
 
-.card-athlete .name-athlete-card{
-    color: red;
-    
+.img-box {
+    display: flex;
+    justify-content: center;
+}
+
+.cards .img-card{
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
 }
 
 .medals{
@@ -274,9 +279,9 @@ thead th{
     text-align: left;
 }
 
-td img{
-    height: 44px;
-    width: 44px;
+img{
+    height: 40px;
+    width: 40px;
     border-radius: 100;
 }
 
@@ -451,120 +456,9 @@ footer{
 }
 
 
-/*----------------------------------------------------------*/
-
-#logo{
-    
-}
-#contenido{
-   
-}
-/*-----------------------------------SECCIONES-----------------------------------*/
 
 
-
-    
-
-.medal{
-    
-    
-}
-.medal-circle-golden{
-   
-}
-.medal-circle-silver{
-    
-}
-.medal-circle-bronze{
-    
-}
-
-/*-------------------------DEPORTES------------------------------------*/
-
-
-
-#sportFilter{
-   
-
-#eventsFilter{
-  
-}
-
-.group1{
-
-    
-}
-
-.group2{
-
-    
-
-.group3{
-
-    
-}
-
-.group4{
-
-    
-
-.group5{
-
-    
-    
-}
-
-.group6{
-
-    
-}
-
-.tableSport{
-    
-   
-}
-
-.articleImg{
-    
-}
-.sportTitle{
-    
-}
-
-a:link {
-   
-}
-
-
-
-/*----------------------------------------------------------------*/
-
-/*------------------------TABLA ATLETAS----------------------------------*/
-tr{
-    
-}
-.column-1{
-    
-}
-.column-2{
-    
-}
-.column-3{
-    
-}
-.column-4, .column-5, .column-6{
-    
-}
-
-/*------------------------FOOTER----------------------------------*/
-
-
-footer .rings-logo{
-    
-   
-}
 /*------------------------------------------------------------------*/
-/
 
 /*SPORT.HMTL*/
 
