@@ -1,4 +1,4 @@
-import { rankingOnlyMedals, sortData, rankingTotalMedals, rankingTotalAthletes, arrayData, arrayDataCountry} from './data.js';
+import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrayData, arrayDataCountry } from './data.js';
 import data from './data/athletes/athletes.js';
 //---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
@@ -43,13 +43,13 @@ function showDataTable(array, startIndexProperty, data){
         key = array[i+startIndexProperty];
         const arrayInProperty = data[key]; //[{},{},{}]
             imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
-            nocTextColumn1[i].textContent = arrayInProperty[0].noc;
-            nameColumn2[i].textContent = arrayInProperty[0].name;
-            avatarColumn2[i].textContent = arrayInProperty[0].gender;
-            sportColumn3[i].textContent = arrayInProperty[0].sport;
-            medalQuantityGold[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
-            medalQuantitySilver[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
-            medalQuantityBronze[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
+            nocTextColumn1[i].innerText = arrayInProperty[0].noc;
+            nameColumn2[i].innerText = arrayInProperty[0].name;
+            avatarColumn2[i].innerText = arrayInProperty[0].gender;
+            sportColumn3[i].innerText = arrayInProperty[0].sport;
+            medalQuantityGold[i].innerText = arrayInProperty[arrayInProperty.length-1]['Gold'];
+            medalQuantitySilver[i].innerText = arrayInProperty[arrayInProperty.length-1]['Silver'];
+            medalQuantityBronze[i].innerText = arrayInProperty[arrayInProperty.length-1]['Bronze'];
         i<19? i++ : false;
     }
 }
@@ -60,17 +60,17 @@ showDataTable(arrayNames, 0, newData);
 let index = 0;
 nextIcon[0].addEventListener('click', () => {
     index += 20;
-    showDataTable(arrayNames , index , newData); 
+    return showDataTable(arrayNames , index , newData); 
 });
 previousIcon[0].addEventListener('click', () => {
     index === 0 ? index = 0 : index -= 20;
-    showDataTable(arrayNames , index , newData);
+    return showDataTable(arrayNames , index , newData);
 });
 
 //Orden alfabético Atletas
 const sortName = order => {
     index = 0;
-    showDataTable(sortData(arrayNames,order),index,newData);
+    return showDataTable(sortData(arrayNames,order),index,newData);
 }
 iconDown[0].addEventListener('click', () => sortName('desc'));
 iconUp[0].addEventListener('click', () => sortName('asc'));
@@ -79,7 +79,7 @@ iconUp[0].addEventListener('click', () => sortName('asc'));
 const rankingMedal = (typeMedal, order) =>{
     arrayNames = rankingOnlyMedals(newData, typeMedal, order);
     index = 0;
-    showDataTable(arrayNames,index,newData);
+    return showDataTable(arrayNames,index,newData);
 }
 iconDown[1].addEventListener('click', () => rankingMedal('Gold','desc'));
 iconUp[1].addEventListener('click', () => rankingMedal('Gold','asc'));
@@ -115,7 +115,8 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
               <span class="medal-letter">Bronce</span>
             </div>
           </div>
-          <div class="img-box"><img class="img-card"src="./img-atletas/${(accesInformation[0].name || "KathleenGenevieve")}.jpg"></div>
+          <div class="img-box"><img class="img-card"src="./img-atletas/${accesInformation[0].name !=='Kathleen Genevieve "Katie" Ledecky'? accesInformation[0].name :'KathleenGenevieve'}.jpg"></div>
+         
           <p class="name-athlete-card">${accesInformation[0].name}</p>
           <tr class="line-card"></tr>
           <p class="sport-athlete-card">${accesInformation[0].sport}</p>
@@ -150,7 +151,7 @@ function showNumberAthletes (array) {
     const athletesArray = array.map(element=>element.name);
     return athletesArray.length;
 }
-const showDataTableCountry = (array , startIndexProperty , data) => {
+function showDataTableCountry (array , startIndexProperty , data) {
     let i = 0;
     for (let key in data){
         key = array[i+startIndexProperty];
@@ -200,7 +201,7 @@ iconUp[5].addEventListener('click', () => showRankingTotalAthletes('asc'));
 const rankingMedalCountry = (typeMedal, order) =>{
     arrayNocs = rankingOnlyMedals(dataNoc, typeMedal, order);
     index = 0;
-    showDataTableCountry(arrayNocs, index, dataNoc);
+    return showDataTableCountry(arrayNocs, index, dataNoc);
 }
 iconDown[6].addEventListener('click', () => rankingMedalCountry('Gold','desc'));
 iconUp[6].addEventListener('click', () => rankingMedalCountry('Gold','asc'));
@@ -213,7 +214,7 @@ iconUp[8].addEventListener('click', () => rankingMedalCountry('Bronze','asc'));
 const showRankingTotalMedals = (order) => {
     arrayNocs = rankingTotalMedals(dataNoc, order);
     index = 0;
-    showDataTableCountry(arrayNocs, index, dataNoc);
+    return showDataTableCountry(arrayNocs, index, dataNoc);
 }
 iconDown[9].addEventListener('click', () => showRankingTotalMedals('desc'));
 iconUp[9].addEventListener('click', () => showRankingTotalMedals('asc'));

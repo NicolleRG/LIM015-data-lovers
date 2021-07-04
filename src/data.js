@@ -1,11 +1,11 @@
-export const sortData = (array, order)=> {
+const sortData = (array, order)=> {
          array.sort((a,b)=>{
          return a.localeCompare(b);
          });
       return order === 'desc' ? array.reverse() : array;
 } 
 export let arrayData;
-export const rankingOnlyMedals= (data,key,order) =>{
+const rankingOnlyMedals = (data,key,order) =>{
        arrayData = Object.entries(data);
        arrayData.sort((a,b) => {
          const valueA = a[1][(a[1].length-1)][key];
@@ -26,7 +26,7 @@ export const rankingOnlyMedals= (data,key,order) =>{
    return newArray;
 }  
 export let arrayDataCountry;
-export const rankingTotalMedals = (data,order) =>{
+const rankingTotalMedals = (data,order) =>{
          arrayDataCountry = Object.entries(data); 
          arrayDataCountry.sort((a,b) => {
          const valueA = a[1].length;
@@ -47,7 +47,7 @@ export const rankingTotalMedals = (data,order) =>{
    return newArray;
 }
 
-export const rankingTotalAthletes = (data,order) =>{
+const rankingTotalAthletes = (data,order) =>{
        const arrayData = Object.entries(data); 
        arrayData.sort((a,b) => {
          const valueA = a[1].map(element=>element.name).length;
@@ -68,6 +68,7 @@ export const rankingTotalAthletes = (data,order) =>{
    return newArray;
 }
 
+export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes}
 
 
 
