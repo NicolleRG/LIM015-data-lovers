@@ -129,6 +129,7 @@ main{
     padding: 2rem 4.3rem;
     background: white;
     min-height: calc(100vh - 90px);
+    
 }
 
 /*----------ATLETAS TARJETAS---------------*/
@@ -310,6 +311,56 @@ td{
 .table-responsive{
     width: 100%;
     overflow-x: auto;
+}
+
+
+@media only screen and (max-width:1440px){
+    
+    nav{
+        width: 250px;
+    }
+    
+    nav li{
+        padding-left: 1rem;
+        text-align: center;
+    }
+    
+    nav li a{
+        padding-left: 0rem;
+    }
+    
+    nav .logo,
+    nav li a span{
+        display: none;
+    }
+    
+    .container{
+        margin-left: 70px;
+    }
+    
+    .container header{
+        width: calc(100% - 70px);
+        left: 70px;
+    }
+
+    nav:hover{
+        width: 345px;
+        z-index:200;
+    }
+    
+    nav:hover li{
+        padding-left: 2rem;
+        text-align: left;
+    }
+    
+    nav:hover li a{
+        padding-left: 1rem;
+    }
+    
+    nav:hover .logo,
+    nav:hover li a span{
+        display: inline;
+    }
 }
 
 
