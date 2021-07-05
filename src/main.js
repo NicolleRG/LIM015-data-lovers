@@ -145,7 +145,7 @@ for (let key in dataNoc){
     const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
     dataNoc[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
-function totalAthletes (array) {
+function totalAthletes(array) {
     const onlyNames = array.map(element=>element.name).filter((element,index,arr)=>arr.indexOf(element)===index);
     return  onlyNames.length-1;
 }
