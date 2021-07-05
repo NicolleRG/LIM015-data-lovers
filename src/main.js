@@ -88,12 +88,11 @@ iconUp[2].addEventListener('click', () => rankingMedal('Silver','asc'));
 iconDown[3].addEventListener('click', () => rankingMedal('Bronze','desc'));
 iconUp[3].addEventListener('click', () => rankingMedal('Bronze','asc'));
 
-const topRanking = arrRankingCardAthlete.slice(0,4);
-
 //Mostrar información Tarjetas
+const topRankingAthlete = arrRankingCardAthlete.slice(0,4);
 let i = 0;
 document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
-    const accesInformation = topRanking[i][1];
+    const accesInformation = topRankingAthlete[i][1];
     cardAthlete.innerHTML += `
           <div class="medals">
             <div class="medal">
@@ -146,7 +145,7 @@ for (let key in dataNoc){
     const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
     dataNoc[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
-function showNumberAthletes (array) {
+function totalAthletes (array) {
     const onlyNames = array.map(element=>element.name).filter((element,index,arr)=>arr.indexOf(element)===index);
     return  onlyNames.length-1;
 }
@@ -157,7 +156,7 @@ function showDataTableCountry (array , startIndexProperty) {
         const arrayInProperty = dataNoc[key]; //[{},{},{}]
             imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
             nocTextCountry[i].textContent = arrayInProperty[0].team;
-            numberAthletes[i].textContent = showNumberAthletes(arrayInProperty);
+            numberAthletes[i].textContent = totalAthletes(arrayInProperty);
             medalQuantityGoldCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
             medalQuantitySilverCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
             medalQuantityBronzeCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
@@ -191,7 +190,7 @@ iconUp[4].addEventListener('click', () => sortNoc('asc'));
 const showRankingTotalAthletes = (order) =>{
     arrayNocs = rankingTotalAthletes(dataNoc, order)
     index = 0;
-    showDataTableCountry(arrayNocs, index);
+    return showDataTableCountry(arrayNocs, index);
 }
 iconDown[5].addEventListener('click', () => showRankingTotalAthletes('desc'));
 iconUp[5].addEventListener('click', () => showRankingTotalAthletes('asc'));
@@ -248,7 +247,7 @@ document.querySelectorAll('.cards > .card-country').forEach((cardCountry)=>{
                         <p class="name-country-card">${accesInformation[0].team}</p>
                         <tr class="line-card"></tr>
                         <p class="number-medals">Total medallas: ${accesInformation.length-1}</p>
-                        <p class="number-athletes">Total atletas: ${showNumberAthletes(accesInformation)}</p>`
+                        <p class="number-athletes">Total atletas: ${totalAthletes(accesInformation)}</p>`
           
     i2<3? i2++ : false;
 })
@@ -267,9 +266,9 @@ function createElementsInOptions(indexTag, key) {
     const fragment = new DocumentFragment();
     for(let i = 0; i<newTable.length ; i++) {
         const aTag = document.createElement('a');
-        //const hAtt = document.createAttribute('href');
-        //hAtt.value = '#';
-        //aTag.setAttributeNode(hAtt);
+        const hAtt = document.createAttribute('href');
+        hAtt.value = '#';
+        aTag.setAttributeNode(hAtt);
         const classAtt = document.createAttribute('class')
         classAtt.value = 'option'+indexTag;
         aTag.setAttributeNode(classAtt);
