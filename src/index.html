@@ -58,6 +58,15 @@
         </div> 
       </section> 
       <h3>Todos los atletas</h3>
+      <p id="prueba"></p>
+
+      <!---InputFilter------------------>
+      <section class="inputFilter">
+            <label class="input-label" for="searchInput">
+              <input type="text" class="search-input" id="searchInput" autocomplete="off">
+              <i class="fas fa-search"></i>
+            </label>
+      </section>
     <!-- Filtro Atleta--------------------->
       <section class="filter-container" id="athleteFilter">
         <section class="select-box">
@@ -68,28 +77,11 @@
             <i class="down-icon fas fa-sort-down"></i>
           </label>
           <label class="options">
-            <a href="#" class="option">
-              <div class="content-option">
-                <div class="avatar-circle"><span class="avatar-card">F</span></div>
-                <p class="data">Michael Phelps</p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <div class="avatar-circle"><span class="avatar-card">F</span></div>
-                <p class="data"></p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <div class="avatar-circle"><span class="avatar-card">F</span></div>
-                <p class="data"></p>
-              </div>
-            </a>
           </label>
         </section>
         <input type="hidden" class="user-selection" id="athleteSelection">
       </section>
+    
     <!-----------TABLA ATLETAS---------------------------------------------->
     <section class="table-responsive">
       <table id="athleteTable">
@@ -101,7 +93,7 @@
           <th>Plata<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
           <th>Bronce<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
         </thead>
-        <tbody class="table-content">
+        <tbody id="tableContentAthlete">
           <tr>
             <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
             <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
@@ -265,7 +257,7 @@
         </tbody>
       </table>
     </section>
-      <div><i class="previous-icon fas fa-arrow-circle-left"></i></div>
+      <div></style><i class="previous-icon fas fa-arrow-circle-left"></i></div>
       <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
     </section>
     
@@ -283,6 +275,14 @@
         </div>  
       </section>
       <h3>Países participantes</h3>
+      <!----InputFilter Países------------------------------------>
+      <section class="inputFilter">
+        <label class="input-label" for="searchInput">
+          <input type="text" class="search-input" id="searchInputCountry" autocomplete="off">
+          <i class="fas fa-search"></i>
+        </label>
+      </section>
+      <!------Filtrado--------------------------------------------->
       <section class="filter-container" id="teamFilter">
         <section class="select-box">
           <label class="select">
@@ -292,24 +292,6 @@
             <i class="down-icon fas fa-sort-down"></i>
           </label>
           <label class="options">
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="" alt="">
-                <p class="data"></p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="" alt="">
-                <p class="data"></p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="" alt="">
-                <p class="data"></p>
-              </div>
-            </a>
           </label>
         </section>
         <input type="hidden" class="user-selection" id="athleteSelection2">
@@ -323,24 +305,6 @@
             <i class="down-icon fas fa-sort-down"></i>
           </label>
           <label class="options">
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="" alt="">
-                <p class="data"></p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="" alt="">
-                <p class="data"></p>
-              </div>
-            </a>
-            <a href="#" class="option">
-              <div class="content-option">
-                <img src="" alt="">
-                <p class="data"></p>
-              </div>
-            </a>
           </label>
         </section>
         <input type="hidden" class="user-selection" id="regionSelection">
@@ -539,24 +503,6 @@
           <i class="down-icon fas fa-sort-down"></i>
         </label>
         <label class="options">
-          <a href="#" class="option">
-            <div class="content-option">
-              <div class="avatar-circle"><span class="avatar-card">F</span></div>
-              <p class="data">Atletismo</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <div class="avatar-circle"><span class="avatar-card">F</span></div>
-              <p class="data">Natación</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <div class="avatar-circle"><span class="avatar-card">F</span></div>
-              <p class="data">Tenis</p>
-            </div>
-          </a>
         </label>
       </section>
       <input type="hidden" class="user-selection" id="sportSelection">
@@ -566,29 +512,14 @@
       <section class="select-box">
         <label class="select">
           <div class="content-select">
-            <p class="filter-criteria">Eventos</p>
+            <p class="filter-criteria">Deportes</p>
           </div>
           <i class="down-icon fas fa-sort-down"></i>
         </label>
         <label class="options">
-          <a href="#" class="option">
-            <div class="content-option">
-              <p class="data">Team Mixec</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <p class="data">Team three</p>
-            </div>
-          </a>
-          <a href="#" class="option">
-            <div class="content-option">
-              <p class="data">Team four</p>
-            </div>
-          </a>
         </label>
       </section>
-      <input type="hidden" class="user-selection" id="eventsSelection">
+      <input type="hidden" class="user-selection" id="sportSelection">
     </section>
 
     <!--------------------tabla de deportes---------------------->

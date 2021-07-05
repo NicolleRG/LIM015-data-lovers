@@ -1,4 +1,4 @@
-import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrayData, arrayDataCountry } from './data.js';
+import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, sortDataTwo, searchTable} from './data.js';
 import data from './data/athletes/athletes.js';
 //---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
@@ -26,22 +26,22 @@ function groupBy(key){
     };
 }
 const groupByName = groupBy('name');
-const newData = groupByName(dataAthletes);
+const dataName = groupByName(dataAthletes);
 //const arrayOfNames = Object.keys(newData); //[names]
 
 //Se agrega un objeto con cantidad de medallas dentro de cada array agrupado por nombre
-for (let key in newData){
-    const medalArray = newData[key].map(element=>element.medal);
+for (let key in dataName){
+    const medalArray = dataName[key].map(element=>element.medal);
     const goldQuantity = medalArray.filter(element=>element==='Gold').length;
     const silverQuantity = medalArray.filter(element=>element==='Silver').length;
     const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
-    newData[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
+    dataName[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
-function showDataTable(array, startIndexProperty, data){
+const showDataTable = (array, startIndexProperty) => {
     let i = 0;
-    for (let key in data){
+    for (let key in dataName){
         key = array[i+startIndexProperty];
-        const arrayInProperty = data[key]; //[{},{},{}]
+        const arrayInProperty = dataName[key]; //[{},{},{}]
             imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
             nocTextColumn1[i].innerText = arrayInProperty[0].noc;
             nameColumn2[i].innerText = arrayInProperty[0].name;
@@ -53,33 +53,33 @@ function showDataTable(array, startIndexProperty, data){
         i<19? i++ : false;
     }
 }
-let arrayNames = rankingOnlyMedals(newData, 'Gold', 'desc');
-showDataTable(arrayNames, 0, newData);
+let arrayNames = rankingOnlyMedals(dataName, 'Gold', 'desc');
+showDataTable(arrayNames, 0);
 
 // Flechas siguiente y atrás muestran la data que corresponde
 let index = 0;
 nextIcon[0].addEventListener('click', () => {
     index += 20;
-    return showDataTable(arrayNames , index , newData); 
+    return showDataTable(arrayNames , index); 
 });
 previousIcon[0].addEventListener('click', () => {
     index === 0 ? index = 0 : index -= 20;
-    return showDataTable(arrayNames , index , newData);
+    return showDataTable(arrayNames , index);
 });
 
 //Orden alfabético Atletas
 const sortName = order => {
     index = 0;
-    return showDataTable(sortData(arrayNames,order),index,newData);
+    return showDataTable(sortData(arrayNames,order),index);
 }
 iconDown[0].addEventListener('click', () => sortName('desc'));
 iconUp[0].addEventListener('click', () => sortName('asc'));
 
 //Ranking por medalla de Oro, Plata y Bronze
 const rankingMedal = (typeMedal, order) =>{
-    arrayNames = rankingOnlyMedals(newData, typeMedal, order);
+    arrayNames = rankingOnlyMedals(dataName, typeMedal, order);
     index = 0;
-    return showDataTable(arrayNames,index,newData);
+    return showDataTable(arrayNames, index);
 }
 iconDown[1].addEventListener('click', () => rankingMedal('Gold','desc'));
 iconUp[1].addEventListener('click', () => rankingMedal('Gold','asc'));
@@ -88,7 +88,7 @@ iconUp[2].addEventListener('click', () => rankingMedal('Silver','asc'));
 iconDown[3].addEventListener('click', () => rankingMedal('Bronze','desc'));
 iconUp[3].addEventListener('click', () => rankingMedal('Bronze','asc'));
 
-const topRanking = arrayData.slice(0,4);
+const topRanking = arrRankingCardAthlete.slice(0,4);
 
 //Mostrar información Tarjetas
 let i = 0;
@@ -98,19 +98,19 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
           <div class="medals">
             <div class="medal">
               <div class="medal-circle-golden">
-                <span class="medal-quantity">${accesInformation[topRanking[i][1].length -1].Gold}</span>
+                <span class="medal-quantity">${accesInformation[accesInformation.length -1].Gold}</span>
               </div>
               <span class="medal-letter">Oro</span>
             </div>
             <div class="medal">
               <div class="medal-circle-silver">
-                <span class="medal-quantity">${accesInformation[topRanking[i][1].length -1].Silver}</span>
+                <span class="medal-quantity">${accesInformation[accesInformation.length -1].Silver}</span>
               </div>
               <span class="medal-letter">Plata</span>
             </div>
             <div class="medal">
               <div class="medal-circle-bronze">
-                <span class="medal-quantity">${accesInformation[topRanking[i][1].length -1].Bronze}</span>
+                <span class="medal-quantity">${accesInformation[accesInformation.length -1].Bronze}</span>
               </div>
               <span class="medal-letter">Bronce</span>
             </div>
@@ -138,7 +138,6 @@ const totalMedals = document.querySelectorAll('.total-medals');
 
 const groupByNoc = groupBy('noc');
 const dataNoc = groupByNoc(dataAthletes);
-
 //Se agrega un objeto con cantidad de medallas dentro de cada array agrupado por noc
 for (let key in dataNoc){
     const medalArray = dataNoc[key].map(element=>element.medal);
@@ -148,14 +147,14 @@ for (let key in dataNoc){
     dataNoc[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
 function showNumberAthletes (array) {
-    const athletesArray = array.map(element=>element.name);
-    return athletesArray.length;
+    const onlyNames = array.map(element=>element.name).filter((element,index,arr)=>arr.indexOf(element)===index);
+    return  onlyNames.length-1;
 }
-function showDataTableCountry (array , startIndexProperty , data) {
+function showDataTableCountry (array , startIndexProperty) {
     let i = 0;
-    for (let key in data){
+    for (let key in dataNoc){
         key = array[i+startIndexProperty];
-        const arrayInProperty = data[key]; //[{},{},{}]
+        const arrayInProperty = dataNoc[key]; //[{},{},{}]
             imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
             nocTextCountry[i].textContent = arrayInProperty[0].team;
             numberAthletes[i].textContent = showNumberAthletes(arrayInProperty);
@@ -167,23 +166,23 @@ function showDataTableCountry (array , startIndexProperty , data) {
     }
 }
 let arrayNocs = rankingTotalMedals(dataNoc, 'desc');
-showDataTableCountry(arrayNocs, 0, dataNoc);
+showDataTableCountry(arrayNocs, 0);
 
 // Flechas siguiente y atrás muestran la data que corresponde
 index = 0;
 nextIcon[1].addEventListener('click', () => {
     index += 20;
-    showDataTableCountry(arrayNocs, index, dataNoc); 
+    showDataTableCountry(arrayNocs, index); 
 });
 previousIcon[1].addEventListener('click', () => {
     index===0 ? index = 0 : index -= 20;
-    showDataTableCountry(arrayNocs, index, dataNoc);
+    showDataTableCountry(arrayNocs, index);
 });
 
 //Orden Alfabético Equipo
 const sortNoc = order => {
     index = 0;
-    showDataTableCountry(sortData(arrayNocs, order), index, dataNoc);
+    return showDataTableCountry(sortData(arrayNocs, order), index);
 }
 iconDown[4].addEventListener('click', () => sortNoc('desc'));
 iconUp[4].addEventListener('click', () => sortNoc('asc'));
@@ -192,7 +191,7 @@ iconUp[4].addEventListener('click', () => sortNoc('asc'));
 const showRankingTotalAthletes = (order) =>{
     arrayNocs = rankingTotalAthletes(dataNoc, order)
     index = 0;
-    showDataTableCountry(arrayNocs, index, dataNoc);
+    showDataTableCountry(arrayNocs, index);
 }
 iconDown[5].addEventListener('click', () => showRankingTotalAthletes('desc'));
 iconUp[5].addEventListener('click', () => showRankingTotalAthletes('asc'));
@@ -201,7 +200,7 @@ iconUp[5].addEventListener('click', () => showRankingTotalAthletes('asc'));
 const rankingMedalCountry = (typeMedal, order) =>{
     arrayNocs = rankingOnlyMedals(dataNoc, typeMedal, order);
     index = 0;
-    return showDataTableCountry(arrayNocs, index, dataNoc);
+    return showDataTableCountry(arrayNocs, index);
 }
 iconDown[6].addEventListener('click', () => rankingMedalCountry('Gold','desc'));
 iconUp[6].addEventListener('click', () => rankingMedalCountry('Gold','asc'));
@@ -214,7 +213,7 @@ iconUp[8].addEventListener('click', () => rankingMedalCountry('Bronze','asc'));
 const showRankingTotalMedals = (order) => {
     arrayNocs = rankingTotalMedals(dataNoc, order);
     index = 0;
-    return showDataTableCountry(arrayNocs, index, dataNoc);
+    return showDataTableCountry(arrayNocs, index);
 }
 iconDown[9].addEventListener('click', () => showRankingTotalMedals('desc'));
 iconUp[9].addEventListener('click', () => showRankingTotalMedals('asc'));
@@ -254,30 +253,67 @@ document.querySelectorAll('.cards > .card-country').forEach((cardCountry)=>{
     i2<3? i2++ : false;
 })
 
-//Filtro
+//FILTRADO
 const select= document.querySelectorAll('.select');
 const options = document.querySelectorAll('.options');
 const contentSelect = document.querySelectorAll('.select .content-select');
 const hiddenInput = document.querySelectorAll('.user-selection');
-//función que captura la opción seleccionada y la muestra en el select, guardar el valor en una variable;
-const captureInputFilter = i => {
-    document.querySelectorAll('.options > .option').forEach((option)=>{
-        option.addEventListener('click', (e)=>{
-            e.preventDefault();
-            contentSelect[i].innerHTML=e.currentTarget.querySelector('.data').innerText;
-            //console.log(e.currentTarget.innerHTML);
-            select[i].classList.toggle('active');
-            options[i].classList.toggle('active');
-            hiddenInput.value = e.currentTarget.querySelector('.data').innerText;
-        });
+
+//función que captura la opción seleccionada y la muestra en el select, guardar el valor en hiddenInput;   
+
+function createElementsInOptions(indexTag, key) { 
+    const newTable = filterOnlyOneName(dataAthletes, key);
+    sortDataTwo(newTable, key);
+    const fragment = new DocumentFragment();
+    for(let i = 0; i<newTable.length ; i++) {
+        const aTag = document.createElement('a');
+        //const hAtt = document.createAttribute('href');
+        //hAtt.value = '#';
+        //aTag.setAttributeNode(hAtt);
+        const classAtt = document.createAttribute('class')
+        classAtt.value = 'option'+indexTag;
+        aTag.setAttributeNode(classAtt);
         
+        aTag.innerHTML= `<div class="content-option">
+                            <p class="data">${newTable[i][key]}</p>
+                        </div>`
+    fragment.appendChild(aTag);
+    }
+    options[indexTag].appendChild(fragment);
+
+    select[indexTag].addEventListener('click', () => {
+        select[indexTag].classList.toggle('active');
+        options[indexTag].classList.toggle('active');
     });
-    select[i].addEventListener('click', ()=>{
-        select[i].classList.toggle('active');
-        options[i].classList.toggle('active');
-    });
-};
-captureInputFilter(0);
+    
+    document.querySelectorAll('.options > .option'+indexTag).forEach( option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                contentSelect[indexTag].innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select[indexTag].classList.toggle('active');
+                options[indexTag].classList.toggle('active');
+                hiddenInput[indexTag].value = e.currentTarget.querySelector('.data').innerText;
+            });
+    });     
+}
+createElementsInOptions(0,'name');
+createElementsInOptions(1,'team');
+
+//Input de filtrado
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('keyup',(e) => {
+    const value = e.currentTarget.value;
+    const filterData = searchTable(value, dataName);
+    showDataTable(filterData, 0);
+});
+
+const searchInputCountry = document.getElementById('searchInputCountry');
+searchInputCountry.addEventListener('keyup',(e) => {
+    const value = e.currentTarget.value;
+    const filterData = searchTable(value, dataNoc);
+    showDataTableCountry(filterData, 0);
+});
+
 
 // const showDataInTable = (data , startIndexItem) =>{
 //    for(let i = 0; i<20 ; i++){ 
