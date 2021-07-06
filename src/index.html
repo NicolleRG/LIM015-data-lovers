@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="style.css"/>
     <script src="https://kit.fontawesome.com/4177a2ab13.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  </head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+  </head> 
   <body>
     
  <!---------------------------------BARRA LATERAL--------------------------->   
@@ -27,8 +28,6 @@
         <li><a href="#"><i class="fas fa-comment-alt"></i><span>Comentarios</span></a></li>
        </ul>
   </nav>
-
- 
   <section class="container">
     <header>
       <h1>
@@ -42,519 +41,564 @@
           <h2>Olimpiadas Rio de Janeiro 2016 </h2> </span>
     </header>
 
-   <main>
+    <main>
 <!--------------------------------ATLETAS-------------->
-    <section id="athletes" class="mainSection">
-      <h1>Atletas</h1>
-      <h2>Atletas destacados</h2>
-      <section class="cards">
-        <div class="card-athlete">
-        </div>
-        <div class="card-athlete">
-        </div> 
-        <div class="card-athlete">
-        </div> 
-        <div class="card-athlete">
-        </div> 
-      </section> 
-      <h3>Todos los atletas</h3>
-      <p id="prueba"></p>
+      <section id="athletes" class="mainSection">
+        <h1>Atletas</h1>
+        <h2>Atletas destacados</h2>
+        <section class="cards">
+          <div class="card-athlete">
+          </div>
+          <div class="card-athlete">
+          </div> 
+          <div class="card-athlete">
+          </div> 
+          <div class="card-athlete">
+          </div> 
+        </section> 
+        <h3>Todos los atletas</h3>
+        <p id="prueba"></p>
 
-      <!---InputFilter------------------>
-      <section class="inputFilter">
-            <label class="input-label" for="searchInput">
-              <input type="text" class="search-input" id="searchInput" autocomplete="off">
-              <i class="fas fa-search"></i>
-            </label>
-      </section>
-    <!-- Filtro Atleta--------------------->
-      <section class="filter-container" id="athleteFilter">
-        <section class="select-box">
-          <label class="select">
-            <div class="content-select">
-              <p class="filter-criteria">Atletas</p>
-            </div>
-            <i class="down-icon fas fa-sort-down"></i>
-          </label>
-          <label class="options">
-          </label>
+        <!---InputFilter------------------>
+        <section class="inputFilter">
+              <label class="input-label" for="searchInput">
+                <input type="text" class="search-input" id="searchInput" autocomplete="off">
+                <i class="fas fa-search"></i>
+              </label>
         </section>
-        <input type="hidden" class="user-selection" id="athleteSelection">
+      <!-- Filtro Atleta--------------------->
+        <section class="filter-container" id="athleteFilter">
+          <section class="select-box">
+            <label class="select">
+              <div class="content-select">
+                <p class="filter-criteria">Atletas</p>
+              </div>
+              <i class="down-icon fas fa-sort-down"></i>
+            </label>
+            <label class="options">
+            </label>
+          </section>
+          <input type="hidden" class="user-selection" id="athleteSelection">
+        </section>
+      
+      <!-----------TABLA ATLETAS---------------------------------------------->
+      <section class="table-responsive">
+        <table id="athleteTable">
+          <thead class="table-headers">
+            <th>Equipo</th>
+            <th>Atletas<span ><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
+            <th>Deporte</th>
+            <th>Oro<span><i class="icons fas fa-sort-up" data-medal-type="Gold" data-order="asc"></i><i class="icons fas fa-sort-down" data-medal-type="Gold" data-order="desc"></i></span></th>
+            <th>Plata<span><i class="icons fas fa-sort-up" data-medal-type="Silver" data-order="asc"></i><i class="icons fas fa-sort-down" data-medal-type="Silver" data-order="desc"></i></span></th>
+            <th>Bronce<span><i class="icons fas fa-sort-up" data-medal-type="Bronze" data-order="asc"></i><i class="icons fas fa-sort-down" data-medal-type="Bronze" data-order="desc"></i></span></th>
+          </thead>
+          <tbody id="tableContentAthlete">
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+            <tr>
+              <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
+              <td class="column-3"><span class="sport-text"></span></td>
+              <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+            </tr>
+          </tbody>
+        </table>
       </section>
-    
-    <!-----------TABLA ATLETAS---------------------------------------------->
-    <section class="table-responsive">
-      <table id="athleteTable">
-        <thead class="table-headers">
-          <th>Equipo</th>
-          <th>Atletas<span ><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-          <th>Deporte</th>
-          <th>Oro<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-          <th>Plata<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-          <th>Bronce<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-        </thead>
-        <tbody id="tableContentAthlete">
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-          <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text"></span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td class="column-5"> <div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td class="column-6"> <div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-      <div></style><i class="previous-icon fas fa-arrow-circle-left"></i></div>
-      <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
-    </section>
+        <div></style><i class="previous-icon fas fa-arrow-circle-left"></i></div>
+        <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
+      </section>
     
 <!----------------------------PAISES--------------  -->
 
-    <section id="country" class="mainSection">
-      <h1>Países</h1>
-      <h2>Top 3 países con más medallas</h2>
-      <section class="cards">
-        <div class="card-country">
-        </div>
-        <div class="card-country">
-        </div> 
-        <div class="card-country">
-        </div>  
-      </section>
-      <h3>Países participantes</h3>
-      <!----InputFilter Países------------------------------------>
-      <section class="inputFilter">
-        <label class="input-label" for="searchInput">
-          <input type="text" class="search-input" id="searchInputCountry" autocomplete="off">
-          <i class="fas fa-search"></i>
-        </label>
-      </section>
-      <!------Filtrado--------------------------------------------->
-      <section class="filter-container" id="teamFilter">
-        <section class="select-box">
-          <label class="select">
-            <div class="content-select">
-              <p class="filter-criteria">Equipo</p>
-            </div>
-            <i class="down-icon fas fa-sort-down"></i>
-          </label>
-          <label class="options">
+      <section id="country" class="mainSection">
+        <h1>Países</h1>
+        <h2>Top 3 países con más medallas</h2>
+        <section class="cards">
+          <div class="card-country">
+          </div>
+          <div class="card-country">
+          </div> 
+          <div class="card-country">
+          </div>  
+        </section>
+        <h3>Países participantes</h3>
+        <!----InputFilter Países------------------------------------>
+        <section class="inputFilter">
+          <label class="input-label" for="searchInput">
+            <input type="text" class="search-input" id="searchInputCountry" autocomplete="off">
+            <i class="fas fa-search"></i>
           </label>
         </section>
-        <input type="hidden" class="user-selection" id="athleteSelection2">
-      </section>
-      <section class="filter-container" id="regionFilter">
-        <section class="select-box">
-          <label class="select">
-            <div class="content-select">
-              <p class="filter-criteria">Región</p>
-            </div>
-            <i class="down-icon fas fa-sort-down"></i>
-          </label>
-          <label class="options">
-          </label>
+        <!------Filtrado--------------------------------------------->
+        <section class="filter-container" id="teamFilter">
+          <section class="select-box">
+            <label class="select">
+              <div class="content-select">
+                <p class="filter-criteria">Equipo</p>
+              </div>
+              <i class="down-icon fas fa-sort-down"></i>
+            </label>
+            <label class="options">
+            </label>
+          </section>
+          <input type="hidden" class="user-selection" id="athleteSelection2">
         </section>
-        <input type="hidden" class="user-selection" id="regionSelection">
+        <section class="filter-container" id="regionFilter">
+          <section class="select-box">
+            <label class="select">
+              <div class="content-select">
+                <p class="filter-criteria">Región</p>
+              </div>
+              <i class="down-icon fas fa-sort-down"></i>
+            </label>
+            <label class="options">
+            </label>
+          </section>
+          <input type="hidden" class="user-selection" id="regionSelection">
+        </section>
+        <table id="countryTable">
+          <thead class="table-headers">
+              <th>Equipo<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
+              <th>Nº de atletas<span><i class="icon-up fas fa-sort-up"></i><i class=" icon-down fas fa-sort-down"></i></span></th>
+              <th>Oro<span><i class="icons fas fa-sort-up" data-medal-type="Gold" data-order="asc"></i><i class="icons fas fa-sort-down" data-medal-type="Gold" data-order="desc"></i></span></th>
+              <th>Plata<span><i class="icons fas fa-sort-up" data-medal-type="Silver" data-order="asc"></i><i class="icons fas fa-sort-down" data-medal-type="Silver" data-order="desc"></i></span></th>
+              <th>Bronce<span><i class="icons fas fa-sort-up" data-medal-type="Bronze" data-order="asc"></i><i class="icons fas fa-sort-down" data-medal-type="Bronze" data-order="desc"></i></span></th>
+              <th>Total medallas<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
+          </thead>
+          <tbody class="table-content">
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+            <tr>
+              <td><img src="" alt="flag"><span class="noc-text"></span></td>
+              <td><span class="number-athletes"></span></td>
+              <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
+              <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
+              <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
+              <td><span class="total-medals"></span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div><i class="previous-icon fas fa-arrow-circle-left"></i></div>
+        <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
       </section>
-      <table id="countryTable">
-        <thead class="table-headers">
-            <th>Equipo<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-            <th>Nº de atletas<span><i class="icon-up fas fa-sort-up"></i><i class=" icon-down fas fa-sort-down"></i></span></th>
-            <th>Oro<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-            <th>Plata<span><i class="icon-up  fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-            <th>Bronce<span><i class="icon-up  fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-            <th>Total medallas<span><i class="icon-up fas fa-sort-up"></i><i class="icon-down fas fa-sort-down"></i></span></th>
-        </thead>
-        <tbody class="table-content">
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-          <tr>
-            <td><img src="" alt="flag"><span class="noc-text"></span></td>
-            <td><span class="number-athletes"></span></td>
-            <td><div class="medal-circle-golden"><span class="medal-quantity-golden"></span></div></td>
-            <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
-            <td><div class="medal-circle-bronze"><span class="medal-quantity-bronze"></span></div></td>
-            <td><span class="total-medals"></span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div><i class="previous-icon fas fa-arrow-circle-left"></i></div>
-      <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
-    </section>
 
 <!-----------------------DEPORTES-------------------->
 
     <!-- Filtro deporte--------------------->
-  <section id="sports" class="mainSection">
-    <h1>Deportes</h1>
+      <section id="sports" class="mainSection">
+        <h1>Deportes</h1>
 
-    <tr><p>N° de eventos total</p></tr>                                  
-    <h3>Todos los deportes</h3>
-    
-    <section class="filter-container" id="sportFilter">
-      <section class="select-box">
-        <label class="select">
-          <div class="content-select">
-            <p class="filter-criteria">Deportes</p>
-          </div>
-          <i class="down-icon fas fa-sort-down"></i>
-        </label>
-        <label class="options">
-        </label>
-      </section>
-      <input type="hidden" class="user-selection" id="sportSelection">
-    </section>
-
-    <section class="filter-container" id="eventsFilter">
-      <section class="select-box">
-        <label class="select">
-          <div class="content-select">
-            <p class="filter-criteria">Deportes</p>
-          </div>
-          <i class="down-icon fas fa-sort-down"></i>
-        </label>
-        <label class="options">
-        </label>
-      </section>
-      <input type="hidden" class="user-selection" id="sportSelection">
-    </section>
-
-    <!--------------------tabla de deportes---------------------->
-
-    <div class="group1">
-      <div class="tableSport"> 
-
-      <article class="cardArchery">
-                  <a href="sports.html?data=Archery" class="Archery">
-                   <figure class="articleImg">
-                     <picture>
-                       <img src="img-deportes/Archery.svg" style="width: 170px; height: 130px;" atl="Archery">
-                     </picture>
-                     <div class="articleContent">
-                      <p class="sportTitle">Archery</p>
-                    </div>
-                   </figure>
-                  </a>
-                  
-      </article>
-
-      <article class="cardAthletics">
-        <a href="sports.html?data=Athletics" class="Athletics">
-         <figure class="articleImg">
-           <picture>
-             <img src="img-deportes/Athletics.svg" style="width: 190px; height: 130px;" atl="Athletics">
-           </picture>
-           <div class="articleContent">
-            <p class="sportTitle">Athletics</p>
-          </div>
-         </figure>
-        </a>
+        <tr><p>N° de eventos total</p></tr>                                  
+        <h3>Todos los deportes</h3>
         
-      </article>
+        <section class="filter-container" id="sportFilter">
+          <section class="select-box">
+            <label class="select">
+              <div class="content-select">
+                <p class="filter-criteria">Deportes</p>
+              </div>
+              <i class="down-icon fas fa-sort-down"></i>
+            </label>
+            <label class="options">
+            </label>
+          </section>
+          <input type="hidden" class="user-selection" id="sportSelection">
+        </section>
 
+<<<<<<< HEAD
+        <section class="filter-container" id="eventsFilter">
+          <section class="select-box">
+            <label class="select">
+              <div class="content-select">
+                <p class="filter-criteria">Deportes</p>
+              </div>
+              <i class="down-icon fas fa-sort-down"></i>
+            </label>
+            <label class="options">
+            </label>
+          </section>
+          <input type="hidden" class="user-selection" id="sportSelection">
+        </section>
+
+        <!--------------------tabla de deportes---------------------->
+
+        <div class="group1">
+          <div class="tableSport"> 
+
+          <article class="cardArchery">
+                      <a href="sports.html?data=Archery" class="Archery">
+                      <figure class="articleImg">
+                        <picture>
+                          <img src="img-deportes/Archery.svg" style="width: 170px; height: 130px;" atl="Archery">
+                        </picture>
+                        <div class="articleContent">
+                          <p class="sportTitle">Archery</p>
+                        </div>
+                      </figure>
+                      </a>
+                      
+          </article>
+
+          <article class="cardAthletics">
+            <a href="sports.html?data=Athletics" class="Athletics">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Athletics.svg" style="width: 190px; height: 130px;" atl="Athletics">
+              </picture>
+              <div class="articleContent">
+                <p class="sportTitle">Athletics</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
+
+          <article class="cardBadminton">
+            <a href="sports.html?data=Badminton" class="Badminton">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Badminton.svg" style="width: 190px; height: 130px;" atl="Badminton">
+              </picture>
+              <div class="articleContent">
+                <p class="sportTitle">Badminton</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
+          <article class="cardBasketball">
+            <a href="sports.html?data=Basketball" class="box">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Basketball.svg" style="width: 190px; height: 130px;" atl="Basketball">
+              </picture>
+              <div class="articleContent">
+                <p class="sportTitle">Basketball</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
+          <article class="cardBeach-Volleyball">
+                      <a href="sports.html?data=Beach Volleyball" class="Beach-Volleyball">
+                      <figure class="articleImg">
+                        <picture>
+                          <img src="img-deportes/Beach Volleyball.svg" style="width: 190px; height: 130px;" atl="Beach-Volleyball">
+                        </picture>
+                        <div class="articleContent">
+                          <p class="sportTitle">Beach Volleyball</p>
+                        </div>
+                      </figure>
+                      </a>
+                      
+          </article>
+
+=======
       <article class="cardBadminton">
         <a href="sports.html?data=Badminton" class="Badminton">
          <figure class="articleImg">
@@ -625,20 +669,83 @@
            </picture>
            <div class="articleContent">
             <p class="sportTitle">Canoeing</p>
+>>>>>>> 29a89af26cfea72103504fe12df88ffd175fe928
           </div>
-         </figure>
-        </a>
-        
-      </article>
+        </div>
 
-      <article class="cardCycling">
-        <a href="sports.html?data=Cycling" class="Cycling">
-         <figure class="articleImg">
-           <picture>
-             <img src="img-deportes/Cycling.svg" style="width: 190px; height: 130px;" atl="Cycling">
-           </picture>
-           <div class="article--content">
-            <p class="sportTitle">Cycling</p>
+        <div class="group2">
+          <div class="tableSport">
+
+          <article class="cardBoxing">
+              <a href="sports.html?data=Boxing" class="box">
+              <figure class="articleImg">
+                <picture>
+                  <img src="img-deportes/Boxing.svg" style="width: 190px; height: 130px;" atl="Boxing">
+                </picture>
+                <div class="articleContent">
+                  <p class="sportTitle">Boxing</p>
+                </div>
+              </figure>
+              </a>
+              
+          </article>
+
+          <article class="cardCanoeing">
+            <a href="sports.html?data=Canoeing" class="canoeing">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Canoeing.svg" style="width: 190px; height: 130px;" atl="Canoeing">
+              </picture>
+              <div class="articleContent">
+                <p class="sportTitle">Canoeing</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
+          <article class="cardCycling">
+            <a href="sports.html?data=Cycling" class="Cycling">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Cycling.svg" style="width: 190px; height: 130px;" atl="Cycling">
+              </picture>
+              <div class="article--content">
+                <p class="sportTitle">Cycling</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
+          <article class="cardEquestrianism">
+            <a href="/deportes/atletismo.html" class="Equestrianism">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Equestrianism.svg" style="width: 190px; height: 130px;" atl="Equestrianism">
+              </picture>
+              <div class="article--content">
+                <p class="sportTitle">Equestrianism</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
+          <article class="cardFencing">
+            <a href="/deportes/Fencing.html" class="Fencing">
+            <figure class="articleImg">
+              <picture>
+                <img src="img-deportes/Fencing.svg" style="width: 190px; height: 130px;" atl="Fencing">
+              </picture>
+              <div class="article--content">
+                <p class="sportTitle">Fencing</p>
+              </div>
+            </figure>
+            </a>
+            
+          </article>
+
           </div>
          </figure>
         </a>
@@ -744,8 +851,7 @@
            <div class="article--content">
             <p class="sportTitle">Handball</p>
           </div>
-         </figure>
-        </a>
+        </div>
         
       </article>
 
@@ -1025,18 +1131,20 @@
             </div>
           </figure>
           </a>
-          
       </article>
-    
       </div>
     </div>
-
   </section>
-
-   </main>  
-
+          <!-----------------------ESTADÍSTICAS-------------------->
+      <section id="statistics" class="mainSection">
+        <canvas id="topCountry" width="400" height="400">
+          
+        </canvas>
+        <canvas id="doughnut">
+        </canvas>
+      </section>
+    </main>  
 <!-----------------------FOOTER-------------------->
-
     <footer>
       <img class="rings-logo" src="./img-logo/rings.png"/>
       <section>
@@ -1055,7 +1163,6 @@
       </section>
     </footer>
     <script src="./main.js" type="module"></script>
-   
   </section>
   </body>
 </html>
