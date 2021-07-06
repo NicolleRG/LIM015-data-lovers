@@ -25,6 +25,7 @@ function groupBy(key){
         }, {});
     };
 }
+
 const groupByName = groupBy('name');
 const dataGroupByName = groupByName(dataAthletes);
 
@@ -243,6 +244,8 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
                         <p class="number-athletes">Total atletas: ${totalAthletes(accesInformation)}</p>`
     i2<3? i2++ : false;
 })
+
+
 
 //FILTRADO
 const select= document.querySelectorAll('.select');
