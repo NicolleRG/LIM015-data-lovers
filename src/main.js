@@ -1,4 +1,4 @@
-import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, sortDataTwo, searchTable} from './data.js';
+import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, sortDataTwo, searchTable, sortDataTwoByNumber, average, athletesByGender, percentage} from './data.js';
 import data from './data/athletes/athletes.js';
 //---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
@@ -26,22 +26,21 @@ function groupBy(key){
     };
 }
 const groupByName = groupBy('name');
-const dataName = groupByName(dataAthletes);
-//const arrayOfNames = Object.keys(newData); //[names]
+const dataGroupByName = groupByName(dataAthletes);
 
 //Se agrega un objeto con cantidad de medallas dentro de cada array agrupado por nombre
-for (let key in dataName){
-    const medalArray = dataName[key].map(element=>element.medal);
+for (let key in dataGroupByName){
+    const medalArray = dataGroupByName[key].map(element=>element.medal);
     const goldQuantity = medalArray.filter(element=>element==='Gold').length;
     const silverQuantity = medalArray.filter(element=>element==='Silver').length;
     const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
-    dataName[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
+    dataGroupByName[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
 const showDataTable = (array, startIndexProperty) => {
     let i = 0;
-    for (let key in dataName){
+    for (let key in dataGroupByName){
         key = array[i+startIndexProperty];
-        const arrayInProperty = dataName[key]; //[{},{},{}]
+        const arrayInProperty = dataGroupByName[key]; //[{},{},{}]
             imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
             nocTextColumn1[i].innerText = arrayInProperty[0].noc;
             nameColumn2[i].innerText = arrayInProperty[0].name;
@@ -53,7 +52,7 @@ const showDataTable = (array, startIndexProperty) => {
         i<19? i++ : false;
     }
 }
-let arrayNames = rankingOnlyMedals(dataName, 'Gold', 'desc');
+let arrayNames = rankingOnlyMedals(dataGroupByName, 'Gold', 'desc');
 showDataTable(arrayNames, 0);
 
 // Flechas siguiente y atrás muestran la data que corresponde
@@ -76,18 +75,16 @@ iconDown[0].addEventListener('click', () => sortName('desc'));
 iconUp[0].addEventListener('click', () => sortName('asc'));
 
 //Ranking por medalla de Oro, Plata y Bronze
-const rankingMedal = (typeMedal, order) =>{
-    arrayNames = rankingOnlyMedals(dataName, typeMedal, order);
+const rankingMedal = (medalType, order) =>{
+    arrayNames = rankingOnlyMedals(dataGroupByName, medalType, order);
     index = 0;
     return showDataTable(arrayNames, index);
 }
-iconDown[1].addEventListener('click', () => rankingMedal('Gold','desc'));
-iconUp[1].addEventListener('click', () => rankingMedal('Gold','asc'));
-iconDown[2].addEventListener('click', () => rankingMedal('Silver','desc'));
-iconUp[2].addEventListener('click', () => rankingMedal('Silver','asc'));
-iconDown[3].addEventListener('click', () => rankingMedal('Bronze','desc'));
-iconUp[3].addEventListener('click', () => rankingMedal('Bronze','asc'));
-
+document.querySelectorAll('.icons').forEach( icon =>{
+    icon.addEventListener('click', (e) => {
+        rankingMedal(e.target.dataset.medalType, e.target.dataset.order)
+    })
+})
 //Mostrar información Tarjetas
 const topRankingAthlete = arrRankingCardAthlete.slice(0,4);
 let i = 0;
@@ -183,8 +180,8 @@ const sortNoc = order => {
     index = 0;
     return showDataTableCountry(sortData(arrayNocs, order), index);
 }
-iconDown[4].addEventListener('click', () => sortNoc('desc'));
-iconUp[4].addEventListener('click', () => sortNoc('asc'));
+iconDown[1].addEventListener('click', () => sortNoc('desc'));
+iconUp[1].addEventListener('click', () => sortNoc('asc'));
 
 //Ranking Nº de atletas
 const showRankingTotalAthletes = (order) =>{
@@ -192,8 +189,8 @@ const showRankingTotalAthletes = (order) =>{
     index = 0;
     return showDataTableCountry(arrayNocs, index);
 }
-iconDown[5].addEventListener('click', () => showRankingTotalAthletes('desc'));
-iconUp[5].addEventListener('click', () => showRankingTotalAthletes('asc'));
+iconDown[2].addEventListener('click', () => showRankingTotalAthletes('desc'));
+iconUp[2].addEventListener('click', () => showRankingTotalAthletes('asc'));
 
 //Ranking Medalla de Oro, Plata y Bronze
 const rankingMedalCountry = (typeMedal, order) =>{
@@ -201,26 +198,22 @@ const rankingMedalCountry = (typeMedal, order) =>{
     index = 0;
     return showDataTableCountry(arrayNocs, index);
 }
-iconDown[6].addEventListener('click', () => rankingMedalCountry('Gold','desc'));
-iconUp[6].addEventListener('click', () => rankingMedalCountry('Gold','asc'));
-iconDown[7].addEventListener('click', () => rankingMedalCountry('Silver','desc'));
-iconUp[7].addEventListener('click', () => rankingMedalCountry('Silver','asc'));
-iconDown[8].addEventListener('click', () => rankingMedalCountry('Bronze','desc'));
-iconUp[8].addEventListener('click', () => rankingMedalCountry('Bronze','asc'));
-
+document.querySelectorAll('#countryTable .icons').forEach( icon =>{
+    icon.addEventListener('click', (e) => rankingMedalCountry(e.target.dataset.medalType, e.target.dataset.order))
+})
 //Ranking Total de medallas
 const showRankingTotalMedals = (order) => {
     arrayNocs = rankingTotalMedals(dataNoc, order);
     index = 0;
     return showDataTableCountry(arrayNocs, index);
 }
-iconDown[9].addEventListener('click', () => showRankingTotalMedals('desc'));
-iconUp[9].addEventListener('click', () => showRankingTotalMedals('asc'));
+iconDown[3].addEventListener('click', () => showRankingTotalMedals('desc'));
+iconUp[3].addEventListener('click', () => showRankingTotalMedals('asc'));
 
 //Mostrar información Tarjetas
-const topRankingCountry = arrayDataCountry.slice(0,3);
+const topRankingCountry = arrayDataCountry.slice(0,10);
 let i2 = 0;
-document.querySelectorAll('.cards > .card-country').forEach((cardCountry)=>{
+document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
     const accesInformation = topRankingCountry[i2][1];
     cardCountry.innerHTML += `
                         <div class="medals">
@@ -248,7 +241,6 @@ document.querySelectorAll('.cards > .card-country').forEach((cardCountry)=>{
                         <tr class="line-card"></tr>
                         <p class="number-medals">Total medallas: ${accesInformation.length-1}</p>
                         <p class="number-athletes">Total atletas: ${totalAthletes(accesInformation)}</p>`
-          
     i2<3? i2++ : false;
 })
 
@@ -302,7 +294,7 @@ createElementsInOptions(1,'team');
 const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('keyup',(e) => {
     const value = e.currentTarget.value;
-    const filterData = searchTable(value, dataName);
+    const filterData = searchTable(value, dataGroupByName);
     showDataTable(filterData, 0);
 });
 
@@ -312,6 +304,155 @@ searchInputCountry.addEventListener('keyup',(e) => {
     const filterData = searchTable(value, dataNoc);
     showDataTableCountry(filterData, 0);
 });
+
+//ESTADISTICAS - CANVAS
+const sortHeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'height');
+const sortWeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'weight');
+const sortAge = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'age');
+
+const arrayMedals = topRankingCountry.map(item=>item[1][item[1].length-1]);
+
+const arrayTotalMedalsByTopCountrys = arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze);
+// console.log(arrayTotalMedalsByTopCountrys)
+const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
+
+const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
+const percentageFemales = percentage(onlyFemales.length, dataOnlyOneName.length);
+// console.log(percentageFemales);
+const onlyMales = athletesByGender(dataOnlyOneName,'M');
+//console.log(onlyMales.length)
+const averageWeight = average(dataOnlyOneName, 'weight', 2);
+// console.log(`${averageWeight} + ${dataOnlyOneName.length}`);
+const averageWeightFemales = average(onlyFemales,'weight', 2);
+const averageWeightMales = average(onlyMales,'weight', 2);
+// console.log(`${averageWeightFemales} + ${onlyFemales.length}`);
+// console.log(`${averageWeightMales} + ${onlyMales.length}`);
+const averageHeight = average(dataOnlyOneName, 'height', 2);
+const averageAge = average(dataOnlyOneName, 'age', 0);
+
+let ctx = document.getElementById('topCountry').getContext('2d');
+let myChartTopCountry = new Chart (ctx, {
+    type: 'bar',
+    data: {
+        labels: topRankingCountry.map(item=>item[1][0].team),
+        datasets: [
+        {
+            label: 'Total medallas',
+            data: arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze),
+            backgroundColor: [
+                'rgba(153, 102, 255, 1)',    
+            ],
+            borderColor: [
+                'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 2,
+            type: 'line',
+            order: 0
+        },
+        {
+            label: 'Oro',
+            data: topRankingCountry.map(item=>item[1][item[1].length-1].Gold),
+            backgroundColor: [
+                'rgba(255, 206, 86, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1,
+            order: 1
+        },
+        {
+            label: 'Plata',
+            data: topRankingCountry.map(item=>item[1][item[1].length-1].Silver),
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.5)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1,
+            order: 1
+        },
+        {
+            label: 'Bronce',
+            data: topRankingCountry.map(item=>item[1][item[1].length-1].Bronze),
+            backgroundColor: [
+                'rgba(255, 159, 64, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            order: 1
+        }
+    ]
+    },
+    options: {
+        // indexAxis: 'y',
+        elements: {
+            bar: {
+              borderWidth: 2,
+            }
+        },
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },    
+          title: {
+            display: true,
+            text: 'Top 10 Países con más medallas en todo los Juegos de Río de Janeiro'
+          },
+        },
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true
+          }
+        }
+      }
+});
+let ctxDoughnut = document.getElementById('doughnut').getContext('2d');
+let myChartDoughnut = new Chart (ctxDoughnut, {
+    type: 'doughnut',
+    data: {
+        labels: ['Atletas Mujeres', 'Atletas Varones'],
+        datasets: [{
+            label: 'Atletas',
+            data: [onlyFemales.length, onlyMales.length],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de atletas participantes por género'
+          }
+        }
+    }
+});
+
+
+
+
+
+
 
 
 // const showDataInTable = (data , startIndexItem) =>{

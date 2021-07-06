@@ -96,9 +96,33 @@ function searchTable(value,data) {
     })
     return newDataSort;
  }
+ function sortDataTwoByNumber (data, key){
+   const newDataSort = data.sort((a,b)=>{
+     const valueA = parseFloat(a[key]);
+     const valueB = parseFloat(b[key]);
+     return valueA-valueB;
+   })
+   return newDataSort;
+}
 
+const average = (data, key, round) => {
+   let numberKeysWithoutValue = 0;
+   const sum = data.reduce((acum, item)=>{
+       if(item[key] === 'NA') {
+           item[key] = 0;
+           numberKeysWithoutValue++;
+       }
+       return acum += parseFloat(item[key])
+   },0)
+   let avg = sum/(data.length-numberKeysWithoutValue);
+   return avg.toFixed(round)
+}
 
-export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, sortDataTwo }
+const athletesByGender = (data, key) => data.filter(item=>item.gender===key);
+
+export const percentage = (num, total) => ((num/total)*100).toFixed(2);
+
+export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, sortDataTwo, sortDataTwoByNumber, average, athletesByGender }
 
 
 
