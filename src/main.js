@@ -25,6 +25,7 @@ function groupBy(key){
         }, {});
     };
 }
+
 const groupByName = groupBy('name');
 const dataName = groupByName(dataAthletes);
 //const arrayOfNames = Object.keys(newData); //[names]
@@ -251,6 +252,8 @@ document.querySelectorAll('.cards > .card-country').forEach((cardCountry)=>{
           
     i2<3? i2++ : false;
 })
+
+
 
 //FILTRADO
 const select= document.querySelectorAll('.select');
