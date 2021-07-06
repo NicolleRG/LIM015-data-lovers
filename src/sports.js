@@ -1,3 +1,6 @@
+import data from './data/athletes/athletes.js';
+import { filterOnlyOneName } from './data.js';
+
 
 //SPORT.HTML
 let remplaza = /\+/gi; //expresion regular
@@ -8,18 +11,18 @@ url = url.replace(remplaza, " "); //remplaza epsacion en blanco por +
 url = url.toUpperCase(); // pasa a mayusculas el texto
 // url = "HTTP://127.0.0.1:5500/SRC/SPORTS.HTML?VERINFO=ARCHERY"
 // url = "HTTP://127.0.0.1:5500/SRC/SPORTS.HTML?1"
-console.log(url);
+//console.log(url);
 
 function obtener_valor(variable) { //Funcion que obtine el valor de la variable en la url    
     // variable -="verinfo" 
     let variable_may = variable.toUpperCase(); // variable_may = "VERINFO" 
-    console.log(variable_may);
+    //console.log(variable_may);
     let variable_pos = url.indexOf(variable_may); //  variable_pos = 38
-    console.log(variable_pos);
+    //console.log(variable_pos);
 
     if (variable_pos != -1) {
         var pos_separador = url.indexOf("?", variable_pos);
-        console.log(pos_separador);
+        //console.log(pos_separador);
 
         if (pos_separador != -1) {
             return url.substring(variable_pos + variable_may.length + 1, pos_separador);
@@ -31,47 +34,76 @@ function obtener_valor(variable) { //Funcion que obtine el valor de la variable 
     }
 }
 
-let valor = obtener_valor("data");
-console.log(valor);
 
-document.getElementById('title').innerHTML = valor;
+let sportName = obtener_valor("data");
+//console.log(sportName);
+document.getElementById('title').innerHTML = sportName;
+
+
+//Mostrar los eventos y sus atletas
+const dataAthletes = data.athletes;
+const dataEvents = filterOnlyOneName(dataAthletes, 'event'); //306 eventos
+// [{sport:"",..."},{},{},...]
+console.log(dataAthletes);
+
+//console.log(dataEvents)
 
 let plantillaHTML = "";
-let titular; 
-let titular2 = "Jose";
-let texto = "Soy el contenido de Cristina";
-let texto2 = "Soy el contenido de Jose";
-let events = ["Team mixed", "atletis 100m", "ATletis 300m"];
 
-for (let index = 0; index < events.length; index++) {
+for (let key in dataEvents) {
     
-    titular =  events[index];
-    titular2 = titular2 + " - " + events[index];
-    texto = texto + " - " + events[index];
-    texto2 = texto2 + " - " + events[index];
-    plantillaHTML += `
-        <div class="acordeon">
-            <div class="bloque">
-                <h2 class="h2">${titular}</h2>
-                <div class="contenido">${texto}</div>
-                </div>
+    let sportArray = dataEvents[key]; //{ 'sport': 'Archery' }
+    if (sportArray.sport.toUpperCase() == sportName) { 
+        //console.log("Data= ", sportArray);
+        plantillaHTML += `
+            <div class="acordeon">
                 <div class="bloque">
-                    <h2 class="h2">${titular2}</h2>
-                <div class="contenido">${texto2}</div>
+                    <h2 class="h2">${sportArray.event}</h2>
+                    <div class="contenido">
+                        <section class="cards">
+        `;
+        for (let key in dataAthletes) {
+            if( dataAthletes[key].event == sportArray.event){
+                //console.log("Atleta= ",dataAthletes[key]);
+                plantillaHTML += `
+                    <div class="card-athlete">
+                        <div class="medals">
+                            <div class="medal">
+                                <div class="medal-circle-${dataAthletes[key].medal.toLowerCase()}">
+                                </div>
+                                <span class="medal-letter">${dataAthletes[key].medal}</span>
+                            </div>
+                        </div>
+                        <div class="img-box">
+                            <img class="img-card" src="./img-atletas/${dataAthletes[key].name !=='Kathleen Genevieve" Katie" Ledecky'? dataAthletes[key].name :'KathleenGenevieve'}.jpg">
+                        </div>
+                        <p class="name-athlete-card">${dataAthletes[key].name}</p>
+                        <tr class="line-card"></tr>
+                        <div class="team-athlete-card">
+                            <img src="./img-paises/${dataAthletes[key].team}.png" alt="flag">
+                            <span class="team-name">${dataAthletes[key].noc}</span>
+                        </div>
+                    </div>
+                `;
+
+            }
+        }
+        plantillaHTML += `
+                        </section>
+                    </div>
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }
 }
 
-console.log(plantillaHTML);
+
+//console.log(plantillaHTML);
 
 
 //container-events
 let contentDiv = document.getElementById('container-events');
 contentDiv.innerHTML = plantillaHTML; //agregar plantilla html con innerhtml
-
-//var p = document.createElement("div");
-//contentDiv.appendChild(p);
 
 
 
@@ -99,3 +131,5 @@ h2.forEach((cadaH2, i) => {
         bloque[i].classList.add('activo')
     })
 })
+
+

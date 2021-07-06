@@ -326,6 +326,13 @@ td{
     border-radius: 1000px;
 }
 
+.medal-circle-gold{
+    background-color: var(--color-gold);
+    height: 32px;
+    width: 32px;
+    border-radius: 1000px;
+}
+
 .medal-circle-silver{
     background-color: var(--color-silver);
     height: 32px;
@@ -483,14 +490,16 @@ footer{
 }
 
 
-
+.filterSports{
+    display: flex;
+}
 
 /*------------------------------------------------------------------*/
 
 /*SPORT.HMTL*/
 
-/*.sportContent{
-    background-color: #f7a700;
+.sportContent{
+    background-color: #2500f7;
     margin: 0px;
     padding: 0px;
     display:block;
@@ -525,5 +534,5 @@ footer{
     transition: all .5s ease;
 }
 .acordeon .bloque.activo .contenido{
-    height: 4em;
+    height: 24em;
 }
