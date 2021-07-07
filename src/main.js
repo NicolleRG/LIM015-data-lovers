@@ -97,19 +97,19 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
               <div class="medal-circle-golden">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Gold}</span>
               </div>
-              <span class="medal-letter">Oro</span>
+              <span class="medal-letter">O</span>
             </div>
             <div class="medal">
               <div class="medal-circle-silver">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Silver}</span>
               </div>
-              <span class="medal-letter">Plata</span>
+              <span class="medal-letter">P</span>
             </div>
             <div class="medal">
               <div class="medal-circle-bronze">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Bronze}</span>
               </div>
-              <span class="medal-letter">Bronce</span>
+              <span class="medal-letter">B</span>
             </div>
           </div>
           <div class="img-box"><img class="img-card"src="./img-atletas/${accesInformation[0].name !=='Kathleen Genevieve "Katie" Ledecky'? accesInformation[0].name :'KathleenGenevieve'}.jpg"></div>
@@ -222,19 +222,19 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
                                 <div class="medal-circle-golden">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Gold}</span>
                                 </div>
-                                <span class="medal-letter">Oro</span>
+                                <span class="medal-letter">O</span>
                              </div>
                              <div class="medal">
                              <div class="medal-circle-silver">
                                  <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Silver}</span>
                              </div>
-                             <span class="medal-letter">Plata</span>
+                             <span class="medal-letter">P</span>
                           </div>
                           <div class="medal">
                                 <div class="medal-circle-bronze">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Bronze}</span>
                                 </div>
-                                <span class="medal-letter">Bronce</span>
+                                <span class="medal-letter">B</span>
                              </div>
                         </div>
                         <div class="img-box"><img class="img-card" src="./img-paises/${accesInformation[0].team}.png" alt="flag"></div>
@@ -314,34 +314,24 @@ const sortWeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'
 const sortAge = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'age');
 
 const arrayMedals = topRankingCountry.map(item=>item[1][item[1].length-1]);
-
-const arrayTotalMedalsByTopCountrys = arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze);
-// console.log(arrayTotalMedalsByTopCountrys)
 const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
-
 const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
-const percentageFemales = percentage(onlyFemales.length, dataOnlyOneName.length);
-// console.log(percentageFemales);
 const onlyMales = athletesByGender(dataOnlyOneName,'M');
-//console.log(onlyMales.length)
-const averageWeight = average(dataOnlyOneName, 'weight', 2);
-// console.log(`${averageWeight} + ${dataOnlyOneName.length}`);
-const averageWeightFemales = average(onlyFemales,'weight', 2);
-const averageWeightMales = average(onlyMales,'weight', 2);
-// console.log(`${averageWeightFemales} + ${onlyFemales.length}`);
-// console.log(`${averageWeightMales} + ${onlyMales.length}`);
-const averageHeight = average(dataOnlyOneName, 'height', 2);
-const averageAge = average(dataOnlyOneName, 'age', 0);
-
+//Gráficas de Barras Top Country
+const countryLabels = topRankingCountry.map(item=>item[1][0].team);
+const arrayTotalMedalsByTopCountrys = arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze);
+const arrayGoldMedalQuantity = topRankingCountry.map(item=>item[1][item[1].length-1].Gold);
+const arraySilverMedalQuantity = topRankingCountry.map(item=>item[1][item[1].length-1].Silver);
+const arrayBronzeMedalQuantity = topRankingCountry.map(item=>item[1][item[1].length-1].Bronze);
 let ctx = document.getElementById('topCountry').getContext('2d');
-let myChartTopCountry = new Chart (ctx, {
+let myChartBar = new Chart (ctx, {
     type: 'bar',
     data: {
-        labels: topRankingCountry.map(item=>item[1][0].team),
+        labels: countryLabels,
         datasets: [
         {
             label: 'Total medallas',
-            data: arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze),
+            data: arrayTotalMedalsByTopCountrys,
             backgroundColor: [
                 'rgba(153, 102, 255, 1)',    
             ],
@@ -354,7 +344,7 @@ let myChartTopCountry = new Chart (ctx, {
         },
         {
             label: 'Oro',
-            data: topRankingCountry.map(item=>item[1][item[1].length-1].Gold),
+            data: arrayGoldMedalQuantity,
             backgroundColor: [
                 'rgba(255, 206, 86, 0.5)'
             ],
@@ -366,7 +356,7 @@ let myChartTopCountry = new Chart (ctx, {
         },
         {
             label: 'Plata',
-            data: topRankingCountry.map(item=>item[1][item[1].length-1].Silver),
+            data: arraySilverMedalQuantity,
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)'
             ],
@@ -378,7 +368,7 @@ let myChartTopCountry = new Chart (ctx, {
         },
         {
             label: 'Bronce',
-            data: topRankingCountry.map(item=>item[1][item[1].length-1].Bronze),
+            data: arrayBronzeMedalQuantity,
             backgroundColor: [
                 'rgba(255, 159, 64, 0.5)'
             ],
@@ -417,14 +407,18 @@ let myChartTopCountry = new Chart (ctx, {
         }
       }
 });
+
+//Gráfica Dona % por género
+const percentageFemales = percentage(onlyFemales.length, dataOnlyOneName.length);
+const percentageMales = percentage(onlyMales.length, dataOnlyOneName.length);
 let ctxDoughnut = document.getElementById('doughnut').getContext('2d');
 let myChartDoughnut = new Chart (ctxDoughnut, {
     type: 'doughnut',
     data: {
-        labels: ['Atletas Mujeres', 'Atletas Varones'],
+        labels: ['% Atletas Mujeres', ' % Atletas Varones'],
         datasets: [{
             label: 'Atletas',
-            data: [onlyFemales.length, onlyMales.length],
+            data: [percentageFemales, percentageMales],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -450,8 +444,67 @@ let myChartDoughnut = new Chart (ctxDoughnut, {
         }
     }
 });
-
-
+// Radar de Promedios Altura, Peso y Edad
+const averageAge = average(dataOnlyOneName, 'age', 0);
+const averageAgeFemales = average(onlyFemales,'age', 0);
+const averageAgeMales = average(onlyMales,'age', 0);
+const averageHeight = average(dataOnlyOneName, 'height', 2);
+const averageHeightFemales = average(onlyFemales,'height', 0);
+const averageHeightMales = average(onlyMales,'height', 0);
+const averageWeight = average(dataOnlyOneName, 'weight', 2);
+const averageWeightFemales = average(onlyFemales,'weight', 2);
+const averageWeightMales = average(onlyMales,'weight', 2);
+let ctxRadar = document.getElementById('radar').getContext('2d');
+let myChartRadar = new Chart (ctxRadar, {
+    type: 'radar',
+    data: {
+        labels: ['Cm altura promedio', 'Kg peso promedio', 'Edad promedio'],
+        datasets: [
+        {
+            label: 'Total atletas',
+            data: [ averageHeight, averageWeight, averageAge],
+            backgroundColor: [
+                'rgba(153, 102, 255, 0.2)',    
+            ],
+            borderColor: [
+                'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1,
+        },
+        {
+            label: 'Mujeres',
+            data: [averageHeightFemales, averageWeightFemales, averageAgeFemales],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', 
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1,
+        },
+        {
+            label: 'Varones',
+            data: [averageHeightMales, averageWeightMales, averageAgeMales],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1,
+        }
+    ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Promedios: altura, peso y edad'
+          }
+        }
+    },
+});
 
 
 

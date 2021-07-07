@@ -129,7 +129,7 @@ main{
     padding: 2rem 4.3rem;
     background: white;
     min-height: calc(100vh - 90px);
-    
+    overflow: hidden;
 }
 
 /*----------ATLETAS TARJETAS---------------*/
@@ -170,10 +170,18 @@ main h1{
 
 .medals{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items:center;
 }
-
+.medal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.medal-letter{
+    padding-left: 5px;
+}
 .medals .medal-circle{
     background-color: var(--color-gold);
     height: 32px;
@@ -291,14 +299,6 @@ h3{
 .content-option:hover p{
     color: white; 
 }
-
-table{
-    position: relative;
-    border-collapse: collapse;
-    margin-top: 2.5rem;
-    width: 100%;
-}
-
 thead th{
     padding: .5rem 1rem;
     border-bottom: 2px solid var(--color-dark-silver);
@@ -306,58 +306,95 @@ thead th{
     font-size: 1rem;
     text-align: left;
 }
-
 img{
     height: 40px;
     width: 40px;
     border-radius: 100;
 }
-
 td{
     padding: .5rem 1rem;
     font-size: .9rem;
     border-bottom: 1px solid var(--color-light-silver) ;
 }
+table{
+    width: 100%;
 
+}
+.medal .medal-circle-golden{
+    box-shadow: 0 0 5px var(--color-gold), 0 0 5px var(--color-gold), 0 0 5px var(--color-gold);
+}
+.medal .medal-circle-silver{
+    box-shadow: 0 0 5px var(--color-silver), 0 0 5px var(--color-silver), 0 0 5px var(--color-silver);
+}
+.medal .medal-circle-bronze{
+    box-shadow: 0 0 5px var(--color-bronze), 0 0 5px var(--color-bronze), 0 0 5px var(--color-bronze);
+}
 .medal-circle-golden{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-gold);
     height: 32px;
     width: 32px;
     border-radius: 1000px;
 }
-
-.medal-circle-gold{
-    background-color: var(--color-gold);
-    height: 32px;
-    width: 32px;
-    border-radius: 1000px;
+.medal-circle-golden:hover {
+    box-shadow: 0 0 10px var(--color-gold), 0 0 10px var(--color-gold), 0 0 10px var(--color-gold);
 }
-
 .medal-circle-silver{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-silver);
     height: 32px;
     width: 32px;
     border-radius: 1000px;
 }
-
+.medal-circle-silver:hover{
+    box-shadow: 0 0 10px var(--color-silver), 0 0 10px var(--color-silver), 0 0 10px var(--color-silver);
+}
 .medal-circle-bronze{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-bronze);
     height: 32px;
     width: 32px;
     border-radius: 1000px;
 }
-
+.medal-circle-bronze:hover{
+    box-shadow: 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze);
+}
 .table-responsive{
     width: 100%;
     overflow-x: auto;
+    border-collapse: collapse;
+    margin-top: 2.5rem;
+    width: 100%;
 }
 
-@media only screen and (max-width:1200px){
-    
+/*Estadísiticas*/
+.statistics-section2{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+.mini-charts{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+@media only screen and (max-width:1200px){ 
+    .cards{
+        grid-template-columns: repeat(3, 1fr);
+    }
     nav{
         width: 70px;
     }
-    
     nav li{
         padding-left: 1rem;
         text-align: center;
@@ -373,6 +410,7 @@ td{
     }
     
     .container{
+        width: calc(100%-70px);
         margin-left: 70px;
     }
     
@@ -399,6 +437,36 @@ td{
     nav:hover li a span{
         display: inline;
     }
+
+    #nav-toggle:checked + nav{
+        z-index: 100;
+        width: 345px;
+    }
+
+    #nav-toggle:checked + nav, 
+    #nav-toggle:checked + nav li{
+        padding-left: 2rem;
+        text-align: left;
+    }
+
+    #nav-toggle:checked + nav li a{
+        padding-left: 1rem;
+    }
+    
+    #nav-toggle:checked + nav .logo,
+    #nav-toggle:checked + nav li a span{
+        display: inline;
+    }
+    #nav-toggle:checked ~ .container{
+        margin-left: 345px;
+    } 
+    #nav-toggle:checked ~ .container header{
+        width: calc(100% - 345px);
+        left: 345px;
+    } 
+    #nav-toggle:checked ~ .container .cards{
+        grid-template-columns: repeat(2, 1fr);
+    } 
 }
 
 @media only screen and (max-width:960px){
@@ -411,7 +479,6 @@ td{
     .cards{
         grid-template-columns: repeat(2, 1fr);
     }
-
     nav{
         left: -100% !important;
     }
@@ -470,25 +537,39 @@ td{
     #nav-toggle:checked + nav li a span{
         display: inline;
     }
-
     #nav-toggle:checked ~ .container{
-        margin-left: 0rem !important;
-    }
+        margin-left: 0px;
+    } 
+    #nav-toggle:checked ~ .container header{
+        width: calc(100% - 345px);
+        left: 345px;
+    } 
 }
 
-
 @media only screen and (max-width:560px){
+    main{
+        padding: 1rem 3.5rem;
+    }
+    main h1 {
+        font-size: 50px !important;
+    }
     .cards{
+        grid-template-columns: 100%;
+    }
+    #nav-toggle:checked ~ .container .cards{
         grid-template-columns: 100%;
     }
 }
 
-
+@media only screen and (max-width:360px){
+    main{
+        padding: 1rem 2rem;
+    }
+}
 footer{
     background-color: aqua;
     top: 20%;
 }
-
 
 .filterSports{
     display: flex;
@@ -535,4 +616,19 @@ footer{
 }
 .acordeon .bloque.activo .contenido{
     height: 24em;
+}
+
+/*Estadísiticas*/
+.statistics-section2{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+.mini-charts{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }

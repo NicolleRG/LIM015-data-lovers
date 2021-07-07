@@ -119,8 +119,7 @@ const average = (data, key, round) => {
 }
 
 const athletesByGender = (data, key) => data.filter(item=>item.gender===key);
-
-export const percentage = (num, total) => ((num/total)*100).toFixed(2);
+export const percentage = (num, total) => parseFloat((num/total*100).toFixed(2));
 
 export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, sortDataTwo, sortDataTwoByNumber, average, athletesByGender }
 
