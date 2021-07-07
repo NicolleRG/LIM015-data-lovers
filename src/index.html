@@ -21,11 +21,11 @@
        </section>
 
        <ul class="sidebar-menu">
-        <li><a class="active" href="#"><i class="fas fa-running"></i><span>Atletas</span></a></li>
-        <li><a href="#"><i class="fas fa-flag"></i><span>Paises</span></a></li>
-        <li><a href="#"><i class="fas fa-futbol"></i><span>Deportes</span></a></li>
-        <li><a href="#"><i class="fas fa-chart-line"></i><span>Estadisticas</span></a></li>
-        <li><a href="#"><i class="fas fa-comment-alt"></i><span>Comentarios</span></a></li>
+        <li id="op-1"><a href="#"><i class="fas fa-running"></i><span>Atletas</span></a></li>
+        <li id="op-2"><a href="#"><i class="fas fa-flag"></i><span>Paises</span></a></li>
+        <li id="op-3"><a href="#"><i class="fas fa-futbol"></i><span>Deportes</span></a></li>
+        <li id="op-4"><a href="#"><i class="fas fa-chart-line"></i><span>Estadisticas</span></a></li>
+        <li id="op-5"><a href="#"><i class="fas fa-comment-alt"></i><span>Comentarios</span></a></li>
        </ul>
   </nav>
   <section class="container">
@@ -41,7 +41,9 @@
           <h2>Olimpiadas Rio de Janeiro 2016 </h2> </span>
     </header>
 
+
     <main>
+    <div class="sidebar-menu" id="op-1-text">
 <!--------------------------------ATLETAS-------------->
       <section id="athletes" class="mainSection">
         <h1>Atletas</h1>
@@ -259,9 +261,9 @@
         <div></style><i class="previous-icon fas fa-arrow-circle-left"></i></div>
         <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
       </section>
-    
+    </div>
 <!----------------------------PAISES--------------  -->
-
+    <div class="sidebar-menu" id="op-2-text">
       <section id="country" class="mainSection">
         <h1>Países</h1>
         <h2>Top 3 países con más medallas</h2>
@@ -483,16 +485,15 @@
         <div><i class="previous-icon fas fa-arrow-circle-left"></i></div>
         <div><i class="next-icon fas fa-arrow-circle-right"></i></div>
       </section>
-
+    </div>
 <!-----------------------DEPORTES-------------------->
-
+    <div class="sidebar-menu" id="op-3-text">
     <!-- Filtro deporte--------------------->
       <section id="sports" class="mainSection">
         <h1>Deportes</h1>
-
-        <tr><p>N° de eventos total</p></tr>                                  
+        <p id="numEvent">N° de eventos total: 306</p>    
         <h3>Todos los deportes</h3>
-        
+      <div class="filterSports">
         <section class="filter-container" id="sportFilter">
           <section class="select-box">
             <label class="select">
@@ -511,7 +512,7 @@
           <section class="select-box">
             <label class="select">
               <div class="content-select">
-                <p class="filter-criteria">Deportes</p>
+                <p class="filter-criteria">Eventos</p>
               </div>
               <i class="down-icon fas fa-sort-down"></i>
             </label>
@@ -520,24 +521,25 @@
           </section>
           <input type="hidden" class="user-selection" id="sportSelection">
         </section>
+      </div>
+      </section>
 
-        <!--------------------tabla de deportes---------------------->
+<!----------------tabla de deportes------------------->
 
         <div class="group1">
           <div class="tableSport"> 
 
           <article class="cardArchery">
-                      <a href="sports.html?data=Archery" class="Archery">
-                      <figure class="articleImg">
-                        <picture>
-                          <img src="img-deportes/Archery.svg" style="width: 170px; height: 130px;" atl="Archery">
-                        </picture>
-                        <div class="articleContent">
-                          <p class="sportTitle">Archery</p>
-                        </div>
-                      </figure>
-                      </a>
-                      
+            <a href="sports.html?data=Archery" class="Archery">
+              <figure class="articleImg">
+                <picture>
+                  <img src="img-deportes/Archery.svg" style="width: 170px; height: 130px;" atl="Archery">
+                </picture>
+                <div class="articleContent">
+                  <p class="sportTitle">Archery</p>
+                </div>
+              </figure>
+            </a>           
           </article>
 
           <article class="cardAthletics">
@@ -701,7 +703,7 @@
           </a>
          </article>
 
-      <article class="cardGolf">
+          <article class="cardGolf">
           <a href="sports.html?data=Golf" class="golf">
            <figure class="articleImg">
              <picture>
@@ -713,9 +715,9 @@
            </figure>
           </a>
           
-      </article>
+          </article>
   
-      <article class="cardGymnastics">
+         <article class="cardGymnastics">
           <a href="sports.html?data=Gymnastics" class="gymnastics">
            <figure class="articleImg">
              <picture>
@@ -727,7 +729,7 @@
            </figure>
           </a>
           
-      </article>
+          </article>
 
       <article class="cardHandball">
         <a href="sports.html?data=Handball" class="handball">
@@ -742,38 +744,39 @@
            </a>
       </article>
 
-      <article class="cardHockey">
-        <a href="sports.html?data=Hockey" class="hockey">
-         <figure class="articleImg">
-           <picture>
-             <img src="img-deportes/Hockey.svg" style="width: 190px; height: 130px;" atl="Judo">
-           </picture>
-           <div class="articleContent">
-            <p class="sportTitle">Hockey</p>
-          </div>
-         </figure>
-        </a>
-        
-      </article>
-
-      <article class="cardJudo">
-        <a href="sports.html?data=Judo" class="judo">
-         <figure class="articleImg">
-           <picture>
-             <img src="img-deportes/Judo.svg" style="width: 190px; height: 130px;" atl="Judo">
-           </picture>
-           <div class="articleContent">
-            <p class="sportTitle">Judo</p>
-          </div>
-         </figure>
-        </a>
-        
-      </article>
       </div>
         </div>
 
         <div class="group4">
         <div class="tableSport">
+
+          <article class="cardHockey">
+            <a href="sports.html?data=Hockey" class="hockey">
+             <figure class="articleImg">
+               <picture>
+                 <img src="img-deportes/Hockey.svg" style="width: 190px; height: 130px;" atl="Judo">
+               </picture>
+               <div class="articleContent">
+                <p class="sportTitle">Hockey</p>
+              </div>
+             </figure>
+            </a>
+            
+          </article>
+    
+          <article class="cardJudo">
+            <a href="sports.html?data=Judo" class="judo">
+             <figure class="articleImg">
+               <picture>
+                 <img src="img-deportes/Judo.svg" style="width: 190px; height: 130px;" atl="Judo">
+               </picture>
+               <div class="articleContent">
+                <p class="sportTitle">Judo</p>
+              </div>
+             </figure>
+            </a>
+            
+          </article>
 
       <article class="cardModernPentathlon">
           <a href="sports.html?data=ModernPentathlon" class="modernPentathlon">
@@ -817,7 +820,13 @@
           
       </article>
   
-      <article class="cardRugbySevens">
+        </div>
+        </div>
+
+    <div class="group5">
+      <div class="tableSport">
+
+        <article class="cardRugbySevens">
           <a href="sports.html?data=RugbySevens" class="rugbySevens">
            <figure class="articleImg">
              <picture>
@@ -857,12 +866,6 @@
         </a>
       </article>
 
-        </div>
-        </div>
-
-    <div class="group5">
-      <div class="tableSport">
-
       <article class="cardSwimming">
           <a href="sports.html?data=Swimming" class="swimming">
            <figure class="articleImg">
@@ -890,7 +893,14 @@
         </a>
       </article>
   
-      <article class="cardTableTennis">
+      
+      </div>
+    </div>
+     
+    <div class="group6">
+      <div class="tableSport">
+      
+        <article class="cardTableTennis">
           <a href="sports.html?data=TableTennis" class="tableTennis">
            <figure class="articleImg">
              <picture>
@@ -945,12 +955,6 @@
           
       </article>
 
-      </div>
-    </div>
-     
-    <div class="group6">
-      <div class="tableSport">
-        
       <article class="cardTriathlon">
           <a href="sports.html?data=Triathlon" class="triathlon">
           <figure class="articleImg">
@@ -964,6 +968,12 @@
           </a>
           
       </article>
+
+    </div>
+    </div>
+
+    <div class="group7">
+        <div class="tableSport">
 
       <article class="cardVolleyball">
           <a href="sports.html?data=Volleyball" class="volleyball">
@@ -1020,10 +1030,13 @@
       </article>
       </div>
     </div>
-      </section>
+    
+  
+  </div>
 
-
+    
  <!-----------------------ESTADÍSTICAS-------------------->
+    <div class="sidebar-menu" id="op-4-text">
       <section id="statistics" class="mainSection">
         <canvas id="topCountry" width="400" height="400">
           
@@ -1031,7 +1044,10 @@
         <canvas id="doughnut">
         </canvas>
       </section>
-    </main>  
+
+    </div>
+    </main>
+
 <!-----------------------FOOTER-------------------->
     <footer>
       <img class="rings-logo" src="./img-logo/rings.png"/>
