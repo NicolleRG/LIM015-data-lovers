@@ -380,7 +380,7 @@ let myChartBar = new Chart (ctx, {
     ]
     },
     options: {
-        // indexAxis: 'y',
+        indexAxis: 'y',
         elements: {
             bar: {
               borderWidth: 2,
