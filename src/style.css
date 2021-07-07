@@ -666,6 +666,10 @@ footer .rings-logo{
 
 /*SPORT.HMTL*/
 
+
+.sportTitle{
+    color: black;
+}
 .sportContent{
     background-color: #2500f7;
     margin: 0px;
