@@ -115,7 +115,6 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
           <div class="img-box"><img class="img-card"src="./img-atletas/${accesInformation[0].name !=='Kathleen Genevieve "Katie" Ledecky'? accesInformation[0].name :'KathleenGenevieve'}.jpg"></div>
          
           <p class="name-athlete-card">${accesInformation[0].name}</p>
-          <tr class="line-card"></tr>
           <p class="sport-athlete-card">${accesInformation[0].sport}</p>
           <div class="team-athlete-card">
             <img src= "./img-paises/${accesInformation[0].team}.png" alt="flag">

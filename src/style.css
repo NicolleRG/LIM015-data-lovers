@@ -98,7 +98,6 @@ nav .logo{
     transition: margin-left 300ms;
     margin-left: 345px;
 }
-
 header{
     background: white;
     display: flex;
@@ -112,18 +111,15 @@ header{
     z-index: 100;
     transition: left 300ms;
 }
-
 .header-title{
     align-items: center;
     color: var(--color-orange);
     padding-right: 2.8rem;
 }
-
 header label i{
     font-size: 1.7rem;
     padding-right: 1rem;
 }
-
 main{
     margin-top: 110px;
     padding: 2rem 4.3rem;
@@ -131,14 +127,12 @@ main{
     min-height: calc(100vh - 90px);
     overflow: hidden;
 }
-
-/*----------ATLETAS TARJETAS---------------*/
-
 main h1{
     color: #02A650;
     font-size: 78px;
     margin-top: 20px;
 }
+/*----------ATLETAS TARJETAS---------------*/
 
 .cards{
     display: grid;
@@ -146,7 +140,16 @@ main h1{
     grid-gap: 2rem;
     margin-top: 1rem;
 }
-
+#country .cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 1rem;
+}
+.cards .name-athlete-card, .name-country-card{
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--color-dark-silver);
+}
 .card-athlete, .card-country{
     display: flex;
     flex-direction: column;
@@ -311,6 +314,16 @@ img{
     width: 40px;
     border-radius: 100;
 }
+.table-responsive{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-top: 2.5rem;
+    width: 100%;
+}
 td{
     padding: .5rem 1rem;
     font-size: .9rem;
@@ -318,7 +331,16 @@ td{
 }
 table{
     width: 100%;
-
+}
+.icons-arrows{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.next-icon, .previous-icon{
+    width: 30px;
+    height: 30px;
 }
 .medal .medal-circle-golden{
     box-shadow: 0 0 5px var(--color-gold), 0 0 5px var(--color-gold), 0 0 5px var(--color-gold);
@@ -365,13 +387,6 @@ table{
 .medal-circle-bronze:hover{
     box-shadow: 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze);
 }
-.table-responsive{
-    width: 100%;
-    overflow-x: auto;
-    border-collapse: collapse;
-    margin-top: 2.5rem;
-    width: 100%;
-}
 
 /*Estadísiticas*/
 .statistics-section2{
@@ -380,14 +395,45 @@ table{
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 50px;
 }
 .mini-charts{
     display: flex;
     flex-direction: column;
     width: 50%;
 }
+.mini-charts.one{
+    padding: 30px;
+}
+.mini-charts.two{
+    padding-top:60px;
+}
+.titleCharts{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
 
+footer{
+    background-color: var(--main-color-green);
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+footer .rings-logo{
+    width: 70px;
+    height: 60px;
+}
+.footer-sections{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 @media only screen and (max-width:1200px){ 
     .cards{
         grid-template-columns: repeat(3, 1fr);
@@ -473,6 +519,9 @@ table{
     .cards{
         grid-template-columns: repeat(3, 1fr);
     }
+    #country .cards{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media only screen and (max-width:768px){
@@ -556,6 +605,9 @@ table{
     .cards{
         grid-template-columns: 100%;
     }
+    #country .cards{
+        grid-template-columns: 100%;
+    }
     #nav-toggle:checked ~ .container .cards{
         grid-template-columns: 100%;
     }
@@ -566,10 +618,7 @@ table{
         padding: 1rem 2rem;
     }
 }
-footer{
-    background-color: aqua;
-    top: 20%;
-}
+
 
 .filterSports{
     display: flex;
@@ -618,17 +667,3 @@ footer{
     height: 24em;
 }
 
-/*Estadísiticas*/
-.statistics-section2{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-}
-.mini-charts{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
