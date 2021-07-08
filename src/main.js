@@ -1,4 +1,4 @@
-import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, sortDataTwo, searchTable, sortDataTwoByNumber, average, athletesByGender, percentage} from './data.js';
+import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, filterByKey, sortDataTwo, searchTable, sortDataTwoByNumber, average, athletesByGender, percentage} from './data.js';
 import data from './data/athletes/athletes.js';
 //---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
@@ -243,53 +243,142 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
     i2<3? i2++ : false;
 })
 
+// Filtrado por Género
+const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
+const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
+const onlyMales = athletesByGender(dataOnlyOneName,'M');
+const arrayOnlyMales = onlyMales.map(item =>item.name);
+const arrayOnlyFemales = onlyFemales.map(item =>item.name);
+const select1 = document.querySelector('#genderFilter .select');
+const options1 = document.getElementById('optionsFiterGender');
+const contentSelect1 = document.querySelector('#genderFilter .content-select');
+const hiddenInput1 = document.querySelector('#genderFilter .user-selection');
 
-
-//FILTRADO
-const select= document.querySelectorAll('.select');
-const options = document.querySelectorAll('.options');
-const contentSelect = document.querySelectorAll('.select .content-select');
-const hiddenInput = document.querySelectorAll('.user-selection');
-
-//función que captura la opción seleccionada y la muestra en el select, guardar el valor en hiddenInput;   
-
-function createElementsInOptions(indexTag, key) { 
-    const newTable = filterOnlyOneName(dataAthletes, key);
-    sortDataTwo(newTable, key);
+(function showDataFilteredByGender() { 
+    const arrayOptions = ['F','M'];
     const fragment = new DocumentFragment();
-    for(let i = 0; i<newTable.length ; i++) {
+    for(let i = 0; i<arrayOptions.length ; i++) {
         const aTag = document.createElement('a');
         const hAtt = document.createAttribute('href');
         hAtt.value = '#';
         aTag.setAttributeNode(hAtt);
         const classAtt = document.createAttribute('class')
-        classAtt.value = 'option'+indexTag;
+        classAtt.value = 'option';
         aTag.setAttributeNode(classAtt);
-        
         aTag.innerHTML= `<div class="content-option">
-                            <p class="data">${newTable[i][key]}</p>
+                            <p class="data">${arrayOptions[i]==='F'? 'Femenino' : 'Masculino'}</p>
                         </div>`
     fragment.appendChild(aTag);
     }
-    options[indexTag].appendChild(fragment);
-
-    select[indexTag].addEventListener('click', () => {
-        select[indexTag].classList.toggle('active');
-        options[indexTag].classList.toggle('active');
+    options1.appendChild(fragment);
+    select1.addEventListener('click', () => {
+        contentSelect2.innerText = `Equipo`;
+        contentSelect3.innerText = `Deporte`;
+        select1.classList.toggle('active');
+        options1.classList.toggle('active');
     });
-    
-    document.querySelectorAll('.options > .option'+indexTag).forEach( option => {
+    options1.querySelectorAll('.option').forEach( option => {
             option.addEventListener('click', (e) => {
                 e.preventDefault();
-                contentSelect[indexTag].innerHTML = e.currentTarget.querySelector('.data').innerText;
-                select[indexTag].classList.toggle('active');
-                options[indexTag].classList.toggle('active');
-                hiddenInput[indexTag].value = e.currentTarget.querySelector('.data').innerText;
+                contentSelect1.innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select1.classList.toggle('active');
+                options1.classList.toggle('active');
+                hiddenInput1.value = e.currentTarget.querySelector('.data').innerText;
+                hiddenInput1.value==='Femenino'? showDataTable(arrayOnlyFemales,0): showDataTable(arrayOnlyMales,0)
             });
     });     
-}
-createElementsInOptions(0,'name');
-createElementsInOptions(1,'team');
+}());
+
+// filtrado por NOC
+const select2 = document.querySelector('#nocFilter .select');
+const options2 = document.getElementById('optionsNocFilter');
+const contentSelect2 = document.querySelector('#nocFilter .content-select');
+const hiddenInput2 = document.querySelector('#nocFilter .user-selection');
+
+(function showDataFilteredByNoc() { 
+    const arrayOptions = Object.keys(dataNoc);
+    sortData(arrayOptions,'asc');
+    const fragment = new DocumentFragment();
+    for(let i = 0; i<arrayOptions.length ; i++) {
+        const aTag = document.createElement('a');
+        const hAtt = document.createAttribute('href');
+        hAtt.value = '#';
+        aTag.setAttributeNode(hAtt);
+        const classAtt = document.createAttribute('class')
+        classAtt.value = 'option';
+        aTag.setAttributeNode(classAtt);
+        aTag.innerHTML= `<div class="content-option">
+                            <p class="data">${arrayOptions[i]}</p>
+                        </div>`
+    fragment.appendChild(aTag);
+    }
+    options2.appendChild(fragment);
+    select2.addEventListener('click', () => {
+        contentSelect1.innerText = `Género`;
+        contentSelect3.innerText = `Deporte`;
+        select2.classList.toggle('active');
+        options2.classList.toggle('active');
+    });
+    options2.querySelectorAll('.option').forEach( option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                contentSelect2.innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select2.classList.toggle('active');
+                options2.classList.toggle('active');
+                hiddenInput2.value = e.currentTarget.querySelector('.data').innerText;
+                const dataFilteredByValue = filterByKey(dataOnlyOneName, 'noc', hiddenInput2.value);
+                const arrayNames = dataFilteredByValue.map(item=>item.name);
+                showDataTable(arrayNames,0);
+            });
+    });     
+}());
+
+// filtrado por Deporte
+const select3 = document.querySelector('#sportFilter .select');
+const options3 = document.getElementById('optionsSportFilter');
+const contentSelect3 = document.querySelector('#sportFilter .content-select');
+const hiddenInput3 = document.querySelector('#sportFilter .user-selection');
+const groupBySport = groupBy('sport');
+const dataSport = groupBySport(dataAthletes);
+
+(function showDataFilteredBySport() { 
+    const arrayOptions = Object.keys(dataSport);
+    sortData(arrayOptions,'asc');
+    const fragment = new DocumentFragment();
+    for(let i = 0; i<arrayOptions.length ; i++) {
+        const aTag = document.createElement('a');
+        const hAtt = document.createAttribute('href');
+        hAtt.value = '#';
+        aTag.setAttributeNode(hAtt);
+        const classAtt = document.createAttribute('class')
+        classAtt.value = 'option';
+        aTag.setAttributeNode(classAtt);
+        aTag.innerHTML= `<div class="content-option">
+                            <p class="data">${arrayOptions[i]}</p>
+                        </div>`
+    fragment.appendChild(aTag);
+    }
+    options3.appendChild(fragment);
+    select3.addEventListener('click', () => {
+        contentSelect1.innerText = `Género`;
+        contentSelect2.innerText = `Equipo`;
+        select3.classList.toggle('active');
+        options3.classList.toggle('active');
+    });
+    options3.querySelectorAll('.option').forEach( option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                contentSelect3.innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select3.classList.toggle('active');
+                options3.classList.toggle('active');
+                hiddenInput3.value = e.currentTarget.querySelector('.data').innerText;
+                const dataFilteredByValue = filterByKey(dataOnlyOneName, 'sport', hiddenInput3.value);
+                sortDataTwo(dataFilteredByValue,'name');
+                const arrayNames = dataFilteredByValue.map(item=>item.name);
+                showDataTable(arrayNames,0);
+            });
+    });     
+}());
 
 //Input de filtrado
 const searchInput = document.getElementById('searchInput');
@@ -298,7 +387,6 @@ searchInput.addEventListener('keyup',(e) => {
     const filterData = searchTable(value, dataGroupByName);
     showDataTable(filterData, 0);
 });
-
 const searchInputCountry = document.getElementById('searchInputCountry');
 searchInputCountry.addEventListener('keyup',(e) => {
     const value = e.currentTarget.value;
@@ -307,14 +395,11 @@ searchInputCountry.addEventListener('keyup',(e) => {
 });
 
 //ESTADISTICAS - CANVAS
-const sortHeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'height');
-const sortWeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'weight');
-const sortAge = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'age');
-
+// const sortHeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'height');
+// const sortWeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'weight');
+// const sortAge = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'age');
 const arrayMedals = topRankingCountry.map(item=>item[1][item[1].length-1]);
-const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
-const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
-const onlyMales = athletesByGender(dataOnlyOneName,'M');
+
 //Gráficas de Barras Top Country
 const countryLabels = topRankingCountry.map(item=>item[1][0].team);
 const arrayTotalMedalsByTopCountrys = arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze);

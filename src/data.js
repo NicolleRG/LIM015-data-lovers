@@ -75,7 +75,6 @@ function searchTable(value, data) {
    for (let i = 0; i < data.length; i++) {
       value = value.toLowerCase();
       const name = data[i][0].toLowerCase();
-
       if (name.includes(value)) {
          filterData.push(data[i][0]);
       }
@@ -86,6 +85,10 @@ function searchTable(value, data) {
 function filterOnlyOneName(data, key) {
    const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
    return dataOnlyNames;
+}
+export function filterByKey(data,key, value){
+   const dataFilter = data.filter(item => item[key]===value);
+   return dataFilter
 }
 
 function sortDataTwo(data, key) {
