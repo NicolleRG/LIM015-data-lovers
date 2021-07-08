@@ -1,7 +1,5 @@
 import data from './data/athletes/athletes.js';
 import { filterOnlyOneName } from './data.js';
-
-
 //SPORT.HTML
 let remplaza = /\+/gi; //expresion regular
 let url = window.location.href; //Captura la URL de la ventana actual
@@ -51,10 +49,10 @@ console.log(dataAthletes);
 let plantillaHTML = "";
 
 for (let key in dataEvents) {
-    
     let sportArray = dataEvents[key]; //{ 'sport': 'Archery' }
+    //console.log(sportArray);
     if (sportArray.sport.toUpperCase() == sportName) { 
-        //console.log("Data= ", sportArray);
+        // console.log("Data= ", sportArray);
         plantillaHTML += `
             <div class="acordeon">
                 <div class="bloque">

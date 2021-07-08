@@ -11,7 +11,7 @@ const nocTextColumn1 = document.querySelectorAll('#athleteTable .noc-text');
 const avatarColumn2 = document.querySelectorAll('#athleteTable .avatar');
 const nameColumn2 = document.querySelectorAll('#athleteTable .name-text');
 const sportColumn3 = document.querySelectorAll('#athleteTable .sport-text');
-const medalQuantityGold = document.querySelectorAll('#athleteTable .medal-quantity-golden');
+const medalQuantityGold = document.querySelectorAll('#athleteTable .medal-quantity-gold');
 const medalQuantitySilver = document.querySelectorAll('#athleteTable .medal-quantity-silver');
 const medalQuantityBronze = document.querySelectorAll('#athleteTable .medal-quantity-bronze');
 
@@ -25,7 +25,6 @@ function groupBy(key){
         }, {});
     };
 }
-
 const groupByName = groupBy('name');
 const dataGroupByName = groupByName(dataAthletes);
 
@@ -94,7 +93,7 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
     cardAthlete.innerHTML += `
           <div class="medals">
             <div class="medal">
-              <div class="medal-circle-golden">
+              <div class="medal-circle-gold">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Gold}</span>
               </div>
               <span class="medal-letter">O</span>
@@ -127,7 +126,7 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
 const imgCountryTable = document.querySelectorAll('#countryTable img');
 const nocTextCountry = document.querySelectorAll('#countryTable .noc-text');
 const numberAthletes = document.querySelectorAll('#countryTable .number-athletes')
-const medalQuantityGoldCountry = document.querySelectorAll('#countryTable .medal-quantity-golden');
+const medalQuantityGoldCountry = document.querySelectorAll('#countryTable .medal-quantity-gold');
 const medalQuantitySilverCountry = document.querySelectorAll('#countryTable .medal-quantity-silver');
 const medalQuantityBronzeCountry = document.querySelectorAll('#countryTable .medal-quantity-bronze');
 const totalMedals = document.querySelectorAll('.total-medals');
@@ -218,7 +217,7 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
     cardCountry.innerHTML += `
                         <div class="medals">
                             <div class="medal">
-                                <div class="medal-circle-golden">
+                                <div class="medal-circle-gold">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Gold}</span>
                                 </div>
                                 <span class="medal-letter">O</span>
@@ -505,6 +504,50 @@ let myChartRadar = new Chart (ctxRadar, {
     },
 });
 
+//Mostrar información detallada cada atleta en un Pop Up
+const popUp = document.getElementById('popUpAtletas');
+const column2 = document.querySelectorAll('#tableContentAthlete .column-2');
+
+(function showAndCloseDataInPopUp(key){
+    const fragment = new DocumentFragment;
+        let div = document.createElement('div');
+        div.classList.add('popUpContent');
+    column2.forEach(name=>{
+        name.addEventListener('click', () => {
+            popUp.classList.add('active');
+            const textSpan = name.childNodes[1].innerText;
+            const getDataByName = dataOnlyOneName.find(item => item[key]===textSpan);
+            div.innerHTML = ``;
+            div.innerHTML += `
+                            <div class="popUp-header">
+                                <h2>${getDataByName.name}</h2>
+                                <label class="popUp-close">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                            <div class="popUp-main">
+                                <div class="popUp-img"><img src="./img-paises/${getDataByName.team}.png"></div>
+                                <div class="popUp-info">
+                                    <div><span class="popUp-key">Equipo:    </span></span><span class="popUp-value">${getDataByName.team}</span></div>
+                                    <div><span class="popUp-key">Edad:  </span></span><span class="popUp-value">${getDataByName.age} años</span></div> 
+                                    <div><span class="popUp-key">Altura:    </span><span class="popUp-value">${getDataByName.height} cm</span></div>
+                                    <div><span class="popUp-key">Peso:  </span></span><span class="popUp-value">${getDataByName.weight} kg</span></div>
+                                    <div><span class="popUp-key">Género:    </span></span><span class="popUp-value">${getDataByName.gender}</span></div>
+                                    <div><span class="popUp-key">Deporte:   </span></span><span class="popUp-value">${getDataByName.sport}</span></div>
+                                </div>
+                            </div>
+                            `
+            fragment.appendChild(div);
+            popUp.appendChild(fragment);
+            const closeButton = document.querySelector('.popUp-close');
+            closeButton.addEventListener('click', () => {
+                popUp.classList.remove('active');
+                popUp.innerHTML = ``;
+            });
+        })
+        
+    })
+}('name'));
 
 
 
@@ -535,56 +578,69 @@ let myChartRadar = new Chart (ctxRadar, {
 });*/
 
 
-
+const navMenu = document.getElementById("nav-toggle");
 const btnop1 = document.getElementById("op-1");
 const btnop2 = document.getElementById("op-2");
 const btnop3 = document.getElementById("op-3");
 const btnop4 = document.getElementById("op-4");
-const op1Text = document.getElementById("op-1-text");
-const op2Text = document.getElementById("op-2-text");
-const op3Text = document.getElementById("op-3-text");
-const op4Text = document.getElementById("op-4-text");
+const op1Text = document.getElementById("athletes");
+const op2Text = document.getElementById("country");
+const op3Text = document.getElementById("sports");
+const op4Text = document.getElementById("statistics");
 
-btnop1.onclick =function(){
+btnop1.onclick = function(){
+    navMenu.checked = false;
     op1Text.style.display="block";
     op2Text.style.display="none";
     op3Text.style.display="none";
     op4Text.style.display="none";
-    btnop1.style.borderBottom="3px solid #ffffff"
+    btnop1.classList.add('active');
     btnop2.style.borderBottom="none";
+    btnop2.classList.remove('active');
     btnop3.style.borderBottom="none";
+    btnop3.classList.remove('active');
     btnop4.style.borderBottom="none";
+    btnop4.classList.remove('active');
 }
-
 btnop2.onclick =function(){
+    navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="block";
     op3Text.style.display="none";
     op4Text.style.display="none";
-    btnop1.style.borderBottom="none"
-    btnop2.style.borderBottom= "3px solid #ffffff";
+    btnop1.style.borderBottom="none";
+    btnop2.classList.add('active');
+    btnop1.classList.remove('active');
     btnop3.style.borderBottom="none";
+    btnop3.classList.remove('active');
     btnop4.style.borderBottom="none";
+    btnop4.classList.remove('active');
 }
-
 btnop3.onclick =function(){
+    navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="none";
     op3Text.style.display="block";
     op4Text.style.display="none";
     btnop1.style.borderBottom="none"
+    btnop1.classList.remove('active');
     btnop2.style.borderBottom="none";
-    btnop3.style.borderBottom="3px solid #ffffff";
+    btnop2.classList.remove('active');
+    btnop3.classList.add('active');
     btnop4.style.borderBottom="none";
+    btnop4.classList.remove('active');
 }
-
 btnop4.onclick =function(){
+    navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="none";
     op3Text.style.display="none";
     op4Text.style.display="block";
-    btnop1.style.borderBottom="none"
+    btnop1.style.borderBottom="none";
+    btnop1.classList.remove('active');
     btnop2.style.borderBottom="none";
+    btnop2.classList.remove('active');
     btnop3.style.borderBottom="none";
-    btnop4.style.borderBottom="3px solid #ffffff";
+    btnop3.classList.remove('active');
+    btnop4.classList.add('active');
 }
