@@ -1,4 +1,4 @@
-import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, filterByKey, sortDataTwo, searchTable, sortDataTwoByNumber, average, athletesByGender, percentage} from './data.js';
+import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, filterByValue, sortDataTwo, searchTable, average, athletesByGender, percentage} from './data.js';
 import data from './data/athletes/athletes.js';
 //---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
@@ -36,40 +36,44 @@ for (let key in dataGroupByName){
     const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
     dataGroupByName[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
-const showDataTable = (array, startIndexProperty) => {
-    let i = 0;
-    for (let key in dataGroupByName){
-        key = array[i+startIndexProperty];
-        const arrayInProperty = dataGroupByName[key]; //[{},{},{}]
-            imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
-            nocTextColumn1[i].innerText = arrayInProperty[0].noc;
-            nameColumn2[i].innerText = arrayInProperty[0].name;
-            avatarColumn2[i].innerText = arrayInProperty[0].gender;
-            sportColumn3[i].innerText = arrayInProperty[0].sport;
-            medalQuantityGold[i].innerText = arrayInProperty[arrayInProperty.length-1]['Gold'];
-            medalQuantitySilver[i].innerText = arrayInProperty[arrayInProperty.length-1]['Silver'];
-            medalQuantityBronze[i].innerText = arrayInProperty[arrayInProperty.length-1]['Bronze'];
-        i<19? i++ : false;
+const showDataTable = (array) => {
+    let startIndexProperty;
+    function showData(startIndexProperty){
+        let i = 0;
+        for (let key in dataGroupByName){
+            key = array[i+startIndexProperty];
+            const arrayInProperty = dataGroupByName[key]; //[{},{},{}]
+                imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
+                nocTextColumn1[i].innerText = arrayInProperty[0].noc;
+                nameColumn2[i].innerText = arrayInProperty[0].name;
+                avatarColumn2[i].innerText = arrayInProperty[0].gender;
+                sportColumn3[i].innerText = arrayInProperty[0].sport;
+                medalQuantityGold[i].innerText = arrayInProperty[arrayInProperty.length-1]['Gold'];
+                medalQuantitySilver[i].innerText = arrayInProperty[arrayInProperty.length-1]['Silver'];
+                medalQuantityBronze[i].innerText = arrayInProperty[arrayInProperty.length-1]['Bronze'];
+            i<19? i++ : false;
+        }
     }
+    startIndexProperty = 0;
+    showData(startIndexProperty);
+    nextIcon[0].addEventListener('click', () => {
+        startIndexProperty += 20; 
+        // console.log(startIndexProperty);
+        showData(startIndexProperty);
+    });
+    previousIcon[0].addEventListener('click', () => {
+        startIndexProperty === 0 ? startIndexProperty = 0 : startIndexProperty -= 20;
+        // console.log(startIndexProperty);
+        showData(startIndexProperty);
+    });
+
 }
 let arrayNames = rankingOnlyMedals(dataGroupByName, 'Gold', 'desc');
-showDataTable(arrayNames, 0);
-
-// Flechas siguiente y atrás muestran la data que corresponde
-let index = 0;
-nextIcon[0].addEventListener('click', () => {
-    index += 20;
-    return showDataTable(arrayNames , index); 
-});
-previousIcon[0].addEventListener('click', () => {
-    index === 0 ? index = 0 : index -= 20;
-    return showDataTable(arrayNames , index);
-});
+showDataTable(arrayNames);
 
 //Orden alfabético Atletas
 const sortName = order => {
-    index = 0;
-    return showDataTable(sortData(arrayNames,order),index);
+    return showDataTable(sortData(arrayNames,order));
 }
 iconDown[0].addEventListener('click', () => sortName('desc'));
 iconUp[0].addEventListener('click', () => sortName('asc'));
@@ -77,8 +81,7 @@ iconUp[0].addEventListener('click', () => sortName('asc'));
 //Ranking por medalla de Oro, Plata y Bronze
 const rankingMedal = (medalType, order) =>{
     arrayNames = rankingOnlyMedals(dataGroupByName, medalType, order);
-    index = 0;
-    return showDataTable(arrayNames, index);
+    return showDataTable(arrayNames);
 }
 document.querySelectorAll('.icons').forEach( icon =>{
     icon.addEventListener('click', (e) => {
@@ -145,39 +148,41 @@ function totalAthletes(array) {
     const onlyNames = array.map(element=>element.name).filter((element,index,arr)=>arr.indexOf(element)===index);
     return  onlyNames.length-1;
 }
-function showDataTableCountry (array , startIndexProperty) {
-    let i = 0;
-    for (let key in dataNoc){
-        key = array[i+startIndexProperty];
-        const arrayInProperty = dataNoc[key]; //[{},{},{}]
-            imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
-            nocTextCountry[i].textContent = arrayInProperty[0].team;
-            numberAthletes[i].textContent = totalAthletes(arrayInProperty);
-            medalQuantityGoldCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
-            medalQuantitySilverCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
-            medalQuantityBronzeCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
-            totalMedals[i].textContent = arrayInProperty.length-1;
-        i<19? i++ : false;
+function showDataTableCountry (array) {
+    let startIndexProperty;
+    function showData(startIndexProperty){
+        let i = 0;
+        for (let key in dataNoc){
+            key = array[i+startIndexProperty];
+            const arrayInProperty = dataNoc[key]; //[{},{},{}]
+                imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
+                nocTextCountry[i].textContent = arrayInProperty[0].team;
+                numberAthletes[i].textContent = totalAthletes(arrayInProperty);
+                medalQuantityGoldCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
+                medalQuantitySilverCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
+                medalQuantityBronzeCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
+                totalMedals[i].textContent = arrayInProperty.length-1;
+            i<19? i++ : false;
+        }
     }
+    startIndexProperty = 0;
+    showData(startIndexProperty);
+
+    nextIcon[1].addEventListener('click', () => {
+        startIndexProperty += 20; 
+        showData(startIndexProperty);
+    });
+    previousIcon[1].addEventListener('click', () => {
+        startIndexProperty === 0 ? startIndexProperty = 0 : startIndexProperty -= 20;
+        showData(startIndexProperty);
+    });
 }
 let arrayNocs = rankingTotalMedals(dataNoc, 'desc');
-showDataTableCountry(arrayNocs, 0);
-
-// Flechas siguiente y atrás muestran la data que corresponde
-index = 0;
-nextIcon[1].addEventListener('click', () => {
-    index += 20;
-    showDataTableCountry(arrayNocs, index); 
-});
-previousIcon[1].addEventListener('click', () => {
-    index===0 ? index = 0 : index -= 20;
-    showDataTableCountry(arrayNocs, index);
-});
+showDataTableCountry(arrayNocs);
 
 //Orden Alfabético Equipo
 const sortNoc = order => {
-    index = 0;
-    return showDataTableCountry(sortData(arrayNocs, order), index);
+    return showDataTableCountry(sortData(arrayNocs, order));
 }
 iconDown[1].addEventListener('click', () => sortNoc('desc'));
 iconUp[1].addEventListener('click', () => sortNoc('asc'));
@@ -185,8 +190,7 @@ iconUp[1].addEventListener('click', () => sortNoc('asc'));
 //Ranking Nº de atletas
 const showRankingTotalAthletes = (order) =>{
     arrayNocs = rankingTotalAthletes(dataNoc, order)
-    index = 0;
-    return showDataTableCountry(arrayNocs, index);
+    return showDataTableCountry(arrayNocs);
 }
 iconDown[2].addEventListener('click', () => showRankingTotalAthletes('desc'));
 iconUp[2].addEventListener('click', () => showRankingTotalAthletes('asc'));
@@ -194,17 +198,16 @@ iconUp[2].addEventListener('click', () => showRankingTotalAthletes('asc'));
 //Ranking Medalla de Oro, Plata y Bronze
 const rankingMedalCountry = (typeMedal, order) =>{
     arrayNocs = rankingOnlyMedals(dataNoc, typeMedal, order);
-    index = 0;
-    return showDataTableCountry(arrayNocs, index);
+    return showDataTableCountry(arrayNocs);
 }
 document.querySelectorAll('#countryTable .icons').forEach( icon =>{
     icon.addEventListener('click', (e) => rankingMedalCountry(e.target.dataset.medalType, e.target.dataset.order))
 })
+
 //Ranking Total de medallas
 const showRankingTotalMedals = (order) => {
     arrayNocs = rankingTotalMedals(dataNoc, order);
-    index = 0;
-    return showDataTableCountry(arrayNocs, index);
+    return showDataTableCountry(arrayNocs);
 }
 iconDown[3].addEventListener('click', () => showRankingTotalMedals('desc'));
 iconUp[3].addEventListener('click', () => showRankingTotalMedals('asc'));
@@ -284,7 +287,7 @@ const hiddenInput1 = document.querySelector('#genderFilter .user-selection');
                 select1.classList.toggle('active');
                 options1.classList.toggle('active');
                 hiddenInput1.value = e.currentTarget.querySelector('.data').innerText;
-                hiddenInput1.value==='Femenino'? showDataTable(arrayOnlyFemales,0): showDataTable(arrayOnlyMales,0)
+                hiddenInput1.value==='Femenino'? showDataTable(arrayOnlyFemales): showDataTable(arrayOnlyMales);
             });
     });     
 }());
@@ -326,9 +329,9 @@ const hiddenInput2 = document.querySelector('#nocFilter .user-selection');
                 select2.classList.toggle('active');
                 options2.classList.toggle('active');
                 hiddenInput2.value = e.currentTarget.querySelector('.data').innerText;
-                const dataFilteredByValue = filterByKey(dataOnlyOneName, 'noc', hiddenInput2.value);
+                const dataFilteredByValue = filterByValue(dataOnlyOneName, 'noc', hiddenInput2.value.toUpperCase());
                 const arrayNames = dataFilteredByValue.map(item=>item.name);
-                showDataTable(arrayNames,0);
+                showDataTable(arrayNames);
             });
     });     
 }());
@@ -372,26 +375,26 @@ const dataSport = groupBySport(dataAthletes);
                 select3.classList.toggle('active');
                 options3.classList.toggle('active');
                 hiddenInput3.value = e.currentTarget.querySelector('.data').innerText;
-                const dataFilteredByValue = filterByKey(dataOnlyOneName, 'sport', hiddenInput3.value);
+                const dataFilteredByValue = filterByValue(dataOnlyOneName, 'sport', hiddenInput3.value.toUpperCase());
                 sortDataTwo(dataFilteredByValue,'name');
                 const arrayNames = dataFilteredByValue.map(item=>item.name);
-                showDataTable(arrayNames,0);
+                showDataTable(arrayNames);
             });
     });     
 }());
 
 //Input de filtrado
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('keyup',(e) => {
+const searchInputAthletes = document.getElementById('searchInput');
+searchInputAthletes.addEventListener('keyup',(e) => {
     const value = e.currentTarget.value;
     const filterData = searchTable(value, dataGroupByName);
-    showDataTable(filterData, 0);
+    return showDataTable(filterData);
 });
 const searchInputCountry = document.getElementById('searchInputCountry');
 searchInputCountry.addEventListener('keyup',(e) => {
     const value = e.currentTarget.value;
     const filterData = searchTable(value, dataNoc);
-    showDataTableCountry(filterData, 0);
+    return showDataTableCountry(filterData);
 });
 
 //ESTADISTICAS - CANVAS
@@ -634,35 +637,7 @@ const column2 = document.querySelectorAll('#tableContentAthlete .column-2');
     })
 }('name'));
 
-
-
-
-
-// const showDataInTable = (data , startIndexItem) =>{
-//    for(let i = 0; i<20 ; i++){ 
-//         const item = data[i+startIndexItem];
-//         imgColumn1[i].src = `./img-paises/${item.team}.png`;
-//         nocTextColumn1[i].textContent = item['noc'];
-//         nameColumn2[i].textContent = item.name;
-//         avatarColumn2[i].textContent = item.gender;
-//         sportColumn3[i].textContent = item.sport;
-//     }
-// }
-// showDataInTable(dataAthletes , 0);
-
-/*tenDataAthletes.forEach(item=>{
-    tableContent.innerHTML+=`
-        <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text">${item.noc}</span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text">${item.name}</span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-            <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-            <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-        </tr>`
-});*/
-
-
+//Cambiar de opciones en el navegador
 const navMenu = document.getElementById("nav-toggle");
 const btnop1 = document.getElementById("op-1");
 const btnop2 = document.getElementById("op-2");
@@ -687,7 +662,7 @@ btnop1.onclick = function(){
     btnop4.style.borderBottom="none";
     btnop4.classList.remove('active');
 }
-btnop2.onclick =function(){
+btnop2.onclick = function(){
     navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="block";
@@ -701,7 +676,7 @@ btnop2.onclick =function(){
     btnop4.style.borderBottom="none";
     btnop4.classList.remove('active');
 }
-btnop3.onclick =function(){
+btnop3.onclick = function(){
     navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="none";

@@ -86,9 +86,9 @@ function filterOnlyOneName(data, key) {
    const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
    return dataOnlyNames;
 }
-export function filterByKey(data,key, value){
-   const dataFilter = data.filter(item => item[key]===value);
-   return dataFilter
+export function filterByValue(data, key, value){
+   const dataFilter = data.filter(item => item[key].toUpperCase()===value);
+   return dataFilter;
 }
 
 function sortDataTwo(data, key) {
@@ -98,7 +98,16 @@ function sortDataTwo(data, key) {
       return valueA<valueB ? -1 : (valueA>valueB ? 1 : 0) 
     })
     return newDataSort;
+}
+
+ export function sortByMedal(data) {
+   const medals = {Gold: 1, Silver: 2, Bronze: 3}
+    const newDataSort = data.sort((a, b) => {
+      return medals[a.medal] - medals[b.medal]
+    })
+   return newDataSort;
  }
+
  function sortDataTwoByNumber (data, key){
    const newDataSort = data.sort((a,b)=>{
      const valueA = parseFloat(a[key]);
@@ -122,6 +131,7 @@ const average = (data, key, round) => {
 }
 
 const athletesByGender = (data, key) => data.filter(item=>item.gender===key);
+
 export const percentage = (num, total) => parseFloat((num/total*100).toFixed(2));
 
 export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, sortDataTwo, sortDataTwoByNumber, average, athletesByGender }
