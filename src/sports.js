@@ -43,7 +43,6 @@ const onlyEventsBySport = filterByValue(dataEvents, 'sport', sportName);
 let contentDiv = document.getElementById('container-events');
 
 function showDataEvents(dataEventsBySport) {
-    // console.log(dataEventsBySport);
     contentDiv.innerHTML = ``;
     sortByMedal(dataAthletes);
     let plantillaHTML = "";
@@ -59,7 +58,6 @@ function showDataEvents(dataEventsBySport) {
                     for (let key in dataAthletes) {
                         if( dataAthletes[key].event===item.event){
                             dataAthletes[key];
-                            // console.log("Atleta= ",dataAthletes[key]);
                             plantillaHTML += `
                                 <div class="card-athlete">
                                     <div class="medals">
@@ -90,7 +88,6 @@ function showDataEvents(dataEventsBySport) {
                 `;
         }
     contentDiv.innerHTML = plantillaHTML; //agregar plantilla html con innerhtml
-
     // Se muestra y se quita la data debajo de cada evento cuando se hace click en en el titulo;
     const bloques = document.querySelectorAll('.bloque');
     bloques.forEach( bloque =>{
@@ -109,7 +106,7 @@ const options1 = document.querySelector('#sportFilter .options');
 const contentSelect1 = document.querySelector('#sportFilter .content-select');
 const hiddenInput1 = document.querySelector('#sportFilter .user-selection');
 
-(function showDataEventsFilteredBySport() { 
+(function createOptionsSportFilterAndShowDataEvents() { 
     sortDataTwo(dataAthletes,'sport');
     const arrayOptions = filterOnlyOneName(dataAthletes,'sport').map(item=>item.sport);
     const fragment = new DocumentFragment();
