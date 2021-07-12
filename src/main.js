@@ -708,6 +708,6 @@ btnop4.onclick =function(){
 }
 const article = document.querySelectorAll('#sports article');
 
-article.forEach(article=>article.addEventListener('click',()=>{
-    return window.open('http://127.0.0.1:5500/src/sports.html?data=${}');
-}))
+// article.forEach(article=>article.addEventListener('click',()=>{
+//     return window.open('http://127.0.0.1:5500/src/sports.html?data=${}');
+// }))

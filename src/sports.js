@@ -39,7 +39,6 @@ const dataEvents = filterOnlyOneName(dataAthletes, 'event'); //306 eventos
 // [{sport:"",..."},{},{},...]
 
 const onlyEventsBySport = filterByValue(dataEvents, 'sport', sportName);
-
 let contentDiv = document.getElementById('container-events');
 
 function showDataEvents(dataEventsBySport) {
