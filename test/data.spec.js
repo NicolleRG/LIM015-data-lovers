@@ -1127,30 +1127,6 @@ describe('sortDataTwoByNumber', () => {
         "team": "United States",
         "noc": "USA",
         "age": 27,
-        "event": "Swimming Men's 4 x 100 metres Freestyle Relay",
-        "medal": "Gold"
-      },
-      {
-        "name": "Nathan Ghar-Jun Adrian",
-        "gender": "M",
-        "height": "198",
-        "weight": "NA",
-        "sport": "Swimming",
-        "team": "United States",
-        "noc": "USA",
-        "age": 27,
-        "event": "Swimming Men's 4 x 100 metres Medley Relay",
-        "medal": "Gold"
-      },
-      {
-        "name": "Nathan Ghar-Jun Adrian",
-        "gender": "M",
-        "height": "198",
-        "weight": "100",
-        "sport": "Swimming",
-        "team": "United States",
-        "noc": "USA",
-        "age": 27,
         "event": "Swimming Men's 50 metres Freestyle",
         "medal": "Bronze"
       },
@@ -1165,7 +1141,32 @@ describe('sortDataTwoByNumber', () => {
         "age": 27,
         "event": "Swimming Men's 100 metres Freestyle",
         "medal": "Bronze"
-      }]);
+      },
+      {
+        "name": "Nathan Ghar-Jun Adrian",
+        "gender": "M",
+        "height": "198",
+        "weight": "100",
+        "sport": "Swimming",
+        "team": "United States",
+        "noc": "USA",
+        "age": 27,
+        "event": "Swimming Men's 4 x 100 metres Freestyle Relay",
+        "medal": "Gold"
+      },
+      {
+        "name": "Nathan Ghar-Jun Adrian",
+        "gender": "M",
+        "height": "198",
+        "weight": "NA",
+        "sport": "Swimming",
+        "team": "United States",
+        "noc": "USA",
+        "age": 27,
+        "event": "Swimming Men's 4 x 100 metres Medley Relay",
+        "medal": "Gold"
+      }
+    ]);
   });
 });
 describe('average', () => {

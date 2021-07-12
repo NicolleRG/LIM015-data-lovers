@@ -26,6 +26,20 @@ const rankingOnlyMedals = (data, key, order) => {
    }
    return newArray;
 }
+export const rankingOnlyMedalsTwo = (data, key, order) => {
+   data.sort((a, b) => {
+      const valueA = a[1][(a[1].length - 1)][key];
+      const valueB = b[1][(b[1].length - 1)][key];
+      if (valueA > valueB) {
+         return order === 'desc' ? -1 : 1
+      }
+      if (valueA < valueB) {
+         return order === 'desc' ? 1 : -1
+      }
+      return 0;
+   })
+   return data;
+}
 let arrayDataCountry;
 const rankingTotalMedals = (data, order) => {
    arrayDataCountry = Object.entries(data);
@@ -76,10 +90,10 @@ function searchTable(value, data) {
       value = value.toLowerCase();
       const name = data[i][0].toLowerCase();
       if (name.includes(value)) {
-         filterData.push(data[i][0]);
+         filterData.push(data[i]);
       }
    }
-   return filterData;
+   return filterData; 
 }
 // Procesamiento de data FORMA 2 data original
 
@@ -88,7 +102,10 @@ function filterOnlyOneName(data, key) {
    return dataOnlyNames;
 }
 function filterByValue(data, key, value){
-   const dataFilter = data.filter(item => item[key].toUpperCase()===value);
+   const newArray = Object.entries(data);
+   const dataFilter = newArray.filter(item => {
+      return (item[1][0][key]).toUpperCase()===value; 
+   });
    return dataFilter;
 }
 function sortDataTwo(data, key) {
@@ -107,11 +124,12 @@ function sortByMedal(data) {
     })
    return newDataSort;
 }
-
 function sortDataTwoByNumber (data, key){
-   const newDataSort = data.sort((a,b)=>{
-     const valueA = parseFloat(a[key]);
-     const valueB = parseFloat(b[key]);
+   const newDataSort = data.sort((a,b) => {
+      let valueA = parseFloat(a[key]);
+      let valueB = parseFloat(b[key]);
+      Number.isNaN(valueA)? valueA=0 : false;
+      Number.isNaN(valueB)? valueB=0 : false;
      return valueA-valueB;
    })
    return newDataSort;
