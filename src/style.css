@@ -20,15 +20,15 @@
     list-style-type: none;
 }
 nav{
-    width: 345px;
+    width: 280px;
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
-    background: var(--main-color-green);
     z-index: 100;
     transition: width 300ms;
     align-items: center;
+    background: linear-gradient(to bottom, #FAA700, #02a650);
 }
 nav .logo{
     height: 230px;
@@ -70,7 +70,7 @@ nav .logo{
 }
 .container{
     transition: margin-left 300ms;
-    margin-left: 345px;
+    margin-left: 280px;
     position: relative;
 }
 header{
@@ -80,8 +80,8 @@ header{
     padding: 1rem 1.5rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     position: fixed;
-    left: 345px;
-    width: calc(100% - 345px);
+    left: 280px;
+    width: calc(100% - 280px);
     top: 0;
     z-index: 100;
     transition: left 300ms;
@@ -524,13 +524,13 @@ table{
     padding-bottom: 10px;
 }
 footer{
-    background-color: var(--main-color-green);
     top: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
+    background: linear-gradient(to bottom, #FAA700, #02a650);
 }
 footer .rings-logo{
     width: 70px;
