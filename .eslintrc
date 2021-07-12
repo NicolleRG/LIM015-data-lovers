@@ -9,6 +9,8 @@
   "extends": "eslint:recommended",
   "rules": {
     "no-console": "warn",
-    "import/extensions": 0
+    "import/extensions": 0,
+    "no-undef": "off",
+    "no-unused-vars": "off"
   }
 }

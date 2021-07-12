@@ -1,4 +1,4 @@
-import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, sortDataTwo, searchTable, sortDataTwoByNumber, average, athletesByGender, percentage} from './data.js';
+import { sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, arrRankingCardAthlete, arrayDataCountry, filterOnlyOneName, filterByValue, sortDataTwo, searchTable, average, athletesByGender, percentage} from './data.js';
 import data from './data/athletes/athletes.js';
 //---------------ATLETAS-----------------------------------------------------------------------------
 const dataAthletes = data.athletes;
@@ -11,7 +11,7 @@ const nocTextColumn1 = document.querySelectorAll('#athleteTable .noc-text');
 const avatarColumn2 = document.querySelectorAll('#athleteTable .avatar');
 const nameColumn2 = document.querySelectorAll('#athleteTable .name-text');
 const sportColumn3 = document.querySelectorAll('#athleteTable .sport-text');
-const medalQuantityGold = document.querySelectorAll('#athleteTable .medal-quantity-golden');
+const medalQuantityGold = document.querySelectorAll('#athleteTable .medal-quantity-gold');
 const medalQuantitySilver = document.querySelectorAll('#athleteTable .medal-quantity-silver');
 const medalQuantityBronze = document.querySelectorAll('#athleteTable .medal-quantity-bronze');
 
@@ -25,7 +25,6 @@ function groupBy(key){
         }, {});
     };
 }
-
 const groupByName = groupBy('name');
 const dataGroupByName = groupByName(dataAthletes);
 
@@ -37,40 +36,46 @@ for (let key in dataGroupByName){
     const bronzeQuantity = medalArray.filter(element=>element==='Bronze').length;
     dataGroupByName[key].push({Gold:goldQuantity, Silver:silverQuantity, Bronze:bronzeQuantity });
 }
-const showDataTable = (array, startIndexProperty) => {
-    let i = 0;
-    for (let key in dataGroupByName){
-        key = array[i+startIndexProperty];
-        const arrayInProperty = dataGroupByName[key]; //[{},{},{}]
-            imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
-            nocTextColumn1[i].innerText = arrayInProperty[0].noc;
-            nameColumn2[i].innerText = arrayInProperty[0].name;
-            avatarColumn2[i].innerText = arrayInProperty[0].gender;
-            sportColumn3[i].innerText = arrayInProperty[0].sport;
-            medalQuantityGold[i].innerText = arrayInProperty[arrayInProperty.length-1]['Gold'];
-            medalQuantitySilver[i].innerText = arrayInProperty[arrayInProperty.length-1]['Silver'];
-            medalQuantityBronze[i].innerText = arrayInProperty[arrayInProperty.length-1]['Bronze'];
-        i<19? i++ : false;
+imgColumn1.forEach(img => img.createAttribute = 'src');
+
+const showDataTable = (array) => {
+    let startIndexProperty;
+    function showData(startIndexProperty){
+        let i = 0;
+        for (let key in dataGroupByName){
+            key = array[i+startIndexProperty];
+            const arrayInProperty = dataGroupByName[key]; //[{},{},{}]
+                imgColumn1[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
+                nocTextColumn1[i].innerText = arrayInProperty[0].noc;
+                nameColumn2[i].innerText = arrayInProperty[0].name;
+                avatarColumn2[i].innerText = arrayInProperty[0].gender;
+                sportColumn3[i].innerText = arrayInProperty[0].sport;
+                medalQuantityGold[i].innerText = arrayInProperty[arrayInProperty.length-1]['Gold'];
+                medalQuantitySilver[i].innerText = arrayInProperty[arrayInProperty.length-1]['Silver'];
+                medalQuantityBronze[i].innerText = arrayInProperty[arrayInProperty.length-1]['Bronze'];
+            i<19? i++ : false;
+        }
     }
+    startIndexProperty = 0;
+    showData(startIndexProperty);
+    nextIcon[0].addEventListener('click', () => {
+        startIndexProperty += 20; 
+        // console.log(startIndexProperty);
+        showData(startIndexProperty);
+    });
+    previousIcon[0].addEventListener('click', () => {
+        startIndexProperty === 0 ? startIndexProperty = 0 : startIndexProperty -= 20;
+        // console.log(startIndexProperty);
+        showData(startIndexProperty);
+    });
+
 }
 let arrayNames = rankingOnlyMedals(dataGroupByName, 'Gold', 'desc');
-showDataTable(arrayNames, 0);
-
-// Flechas siguiente y atrás muestran la data que corresponde
-let index = 0;
-nextIcon[0].addEventListener('click', () => {
-    index += 20;
-    return showDataTable(arrayNames , index); 
-});
-previousIcon[0].addEventListener('click', () => {
-    index === 0 ? index = 0 : index -= 20;
-    return showDataTable(arrayNames , index);
-});
+showDataTable(arrayNames);
 
 //Orden alfabético Atletas
 const sortName = order => {
-    index = 0;
-    return showDataTable(sortData(arrayNames,order),index);
+    return showDataTable(sortData(arrayNames,order));
 }
 iconDown[0].addEventListener('click', () => sortName('desc'));
 iconUp[0].addEventListener('click', () => sortName('asc'));
@@ -78,8 +83,7 @@ iconUp[0].addEventListener('click', () => sortName('asc'));
 //Ranking por medalla de Oro, Plata y Bronze
 const rankingMedal = (medalType, order) =>{
     arrayNames = rankingOnlyMedals(dataGroupByName, medalType, order);
-    index = 0;
-    return showDataTable(arrayNames, index);
+    return showDataTable(arrayNames);
 }
 document.querySelectorAll('.icons').forEach( icon =>{
     icon.addEventListener('click', (e) => {
@@ -94,28 +98,27 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
     cardAthlete.innerHTML += `
           <div class="medals">
             <div class="medal">
-              <div class="medal-circle-golden">
+              <div class="medal-circle-gold">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Gold}</span>
               </div>
-              <span class="medal-letter">Oro</span>
+              <span class="medal-letter">O</span>
             </div>
             <div class="medal">
               <div class="medal-circle-silver">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Silver}</span>
               </div>
-              <span class="medal-letter">Plata</span>
+              <span class="medal-letter">P</span>
             </div>
             <div class="medal">
               <div class="medal-circle-bronze">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Bronze}</span>
               </div>
-              <span class="medal-letter">Bronce</span>
+              <span class="medal-letter">B</span>
             </div>
           </div>
           <div class="img-box"><img class="img-card"src="./img-atletas/${accesInformation[0].name !=='Kathleen Genevieve "Katie" Ledecky'? accesInformation[0].name :'KathleenGenevieve'}.jpg"></div>
          
           <p class="name-athlete-card">${accesInformation[0].name}</p>
-          <tr class="line-card"></tr>
           <p class="sport-athlete-card">${accesInformation[0].sport}</p>
           <div class="team-athlete-card">
             <img src= "./img-paises/${accesInformation[0].team}.png" alt="flag">
@@ -128,7 +131,7 @@ document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
 const imgCountryTable = document.querySelectorAll('#countryTable img');
 const nocTextCountry = document.querySelectorAll('#countryTable .noc-text');
 const numberAthletes = document.querySelectorAll('#countryTable .number-athletes')
-const medalQuantityGoldCountry = document.querySelectorAll('#countryTable .medal-quantity-golden');
+const medalQuantityGoldCountry = document.querySelectorAll('#countryTable .medal-quantity-gold');
 const medalQuantitySilverCountry = document.querySelectorAll('#countryTable .medal-quantity-silver');
 const medalQuantityBronzeCountry = document.querySelectorAll('#countryTable .medal-quantity-bronze');
 const totalMedals = document.querySelectorAll('.total-medals');
@@ -147,66 +150,66 @@ function totalAthletes(array) {
     const onlyNames = array.map(element=>element.name).filter((element,index,arr)=>arr.indexOf(element)===index);
     return  onlyNames.length-1;
 }
-function showDataTableCountry (array , startIndexProperty) {
-    let i = 0;
-    for (let key in dataNoc){
-        key = array[i+startIndexProperty];
-        const arrayInProperty = dataNoc[key]; //[{},{},{}]
-            imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
-            nocTextCountry[i].textContent = arrayInProperty[0].team;
-            numberAthletes[i].textContent = totalAthletes(arrayInProperty);
-            medalQuantityGoldCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
-            medalQuantitySilverCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
-            medalQuantityBronzeCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
-            totalMedals[i].textContent = arrayInProperty.length-1;
-        i<19? i++ : false;
+imgCountryTable.forEach(img => img.createAttribute = 'src');
+function showDataTableCountry (array) {
+    let startIndexProperty;
+    function showData(startIndexProperty){
+        let i = 0;
+        for (let key in dataNoc){
+            key = array[i+startIndexProperty];
+            const arrayInProperty = dataNoc[key]; //[{},{},{}]
+                imgCountryTable[i].src = `./img-paises/${arrayInProperty[0].team}.png`;
+                nocTextCountry[i].textContent = arrayInProperty[0].team;
+                numberAthletes[i].textContent = totalAthletes(arrayInProperty);
+                medalQuantityGoldCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Gold'];
+                medalQuantitySilverCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Silver'];
+                medalQuantityBronzeCountry[i].textContent = arrayInProperty[arrayInProperty.length-1]['Bronze'];
+                totalMedals[i].textContent = arrayInProperty.length-1;
+            i<19? i++ : false;
+        }
     }
+    startIndexProperty = 0;
+    showData(startIndexProperty);
+
+    nextIcon[1].addEventListener('click', () => {
+        startIndexProperty += 20; 
+        showData(startIndexProperty);
+    });
+    previousIcon[1].addEventListener('click', () => {
+        startIndexProperty === 0 ? startIndexProperty = 0 : startIndexProperty -= 20;
+        showData(startIndexProperty);
+    });
 }
 let arrayNocs = rankingTotalMedals(dataNoc, 'desc');
-showDataTableCountry(arrayNocs, 0);
-
-// Flechas siguiente y atrás muestran la data que corresponde
-index = 0;
-nextIcon[1].addEventListener('click', () => {
-    index += 20;
-    showDataTableCountry(arrayNocs, index); 
-});
-previousIcon[1].addEventListener('click', () => {
-    index===0 ? index = 0 : index -= 20;
-    showDataTableCountry(arrayNocs, index);
-});
+showDataTableCountry(arrayNocs);
 
 //Orden Alfabético Equipo
 const sortNoc = order => {
-    index = 0;
-    return showDataTableCountry(sortData(arrayNocs, order), index);
+    return showDataTableCountry(sortData(arrayNocs, order));
 }
 iconDown[1].addEventListener('click', () => sortNoc('desc'));
 iconUp[1].addEventListener('click', () => sortNoc('asc'));
 
 //Ranking Nº de atletas
 const showRankingTotalAthletes = (order) =>{
-    arrayNocs = rankingTotalAthletes(dataNoc, order)
-    index = 0;
-    return showDataTableCountry(arrayNocs, index);
+    arrayNocs = rankingTotalAthletes(dataNoc, order);
+    return showDataTableCountry(arrayNocs);
 }
 iconDown[2].addEventListener('click', () => showRankingTotalAthletes('desc'));
 iconUp[2].addEventListener('click', () => showRankingTotalAthletes('asc'));
-
 //Ranking Medalla de Oro, Plata y Bronze
 const rankingMedalCountry = (typeMedal, order) =>{
     arrayNocs = rankingOnlyMedals(dataNoc, typeMedal, order);
-    index = 0;
-    return showDataTableCountry(arrayNocs, index);
+    return showDataTableCountry(arrayNocs);
 }
 document.querySelectorAll('#countryTable .icons').forEach( icon =>{
     icon.addEventListener('click', (e) => rankingMedalCountry(e.target.dataset.medalType, e.target.dataset.order))
 })
+
 //Ranking Total de medallas
 const showRankingTotalMedals = (order) => {
     arrayNocs = rankingTotalMedals(dataNoc, order);
-    index = 0;
-    return showDataTableCountry(arrayNocs, index);
+    return showDataTableCountry(arrayNocs);
 }
 iconDown[3].addEventListener('click', () => showRankingTotalMedals('desc'));
 iconUp[3].addEventListener('click', () => showRankingTotalMedals('asc'));
@@ -219,22 +222,22 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
     cardCountry.innerHTML += `
                         <div class="medals">
                             <div class="medal">
-                                <div class="medal-circle-golden">
+                                <div class="medal-circle-gold">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Gold}</span>
                                 </div>
-                                <span class="medal-letter">Oro</span>
+                                <span class="medal-letter">O</span>
                              </div>
                              <div class="medal">
                              <div class="medal-circle-silver">
                                  <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Silver}</span>
                              </div>
-                             <span class="medal-letter">Plata</span>
+                             <span class="medal-letter">P</span>
                           </div>
                           <div class="medal">
                                 <div class="medal-circle-bronze">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Bronze}</span>
                                 </div>
-                                <span class="medal-letter">Bronce</span>
+                                <span class="medal-letter">B</span>
                              </div>
                         </div>
                         <div class="img-box"><img class="img-card" src="./img-paises/${accesInformation[0].team}.png" alt="flag"></div>
@@ -245,103 +248,178 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
     i2<3? i2++ : false;
 })
 
+// Filtrado por Género
+const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
+const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
+const onlyMales = athletesByGender(dataOnlyOneName,'M');
+const arrayOnlyMales = onlyMales.map(item =>item.name);
+const arrayOnlyFemales = onlyFemales.map(item =>item.name);
+const select1 = document.querySelector('#genderFilter .select');
+const options1 = document.getElementById('optionsFiterGender');
+const contentSelect1 = document.querySelector('#genderFilter .content-select');
+const hiddenInput1 = document.querySelector('#genderFilter .user-selection');
 
-
-//FILTRADO
-const select= document.querySelectorAll('.select');
-const options = document.querySelectorAll('.options');
-const contentSelect = document.querySelectorAll('.select .content-select');
-const hiddenInput = document.querySelectorAll('.user-selection');
-
-//función que captura la opción seleccionada y la muestra en el select, guardar el valor en hiddenInput;   
-
-function createElementsInOptions(indexTag, key) { 
-    const newTable = filterOnlyOneName(dataAthletes, key);
-    sortDataTwo(newTable, key);
+(function showDataFilteredByGender() { 
+    const arrayOptions = ['F','M'];
     const fragment = new DocumentFragment();
-    for(let i = 0; i<newTable.length ; i++) {
+    for(let i = 0; i<arrayOptions.length ; i++) {
         const aTag = document.createElement('a');
         const hAtt = document.createAttribute('href');
         hAtt.value = '#';
         aTag.setAttributeNode(hAtt);
         const classAtt = document.createAttribute('class')
-        classAtt.value = 'option'+indexTag;
+        classAtt.value = 'option';
         aTag.setAttributeNode(classAtt);
-        
         aTag.innerHTML= `<div class="content-option">
-                            <p class="data">${newTable[i][key]}</p>
+                            <p class="data">${arrayOptions[i]==='F'? 'Femenino' : 'Masculino'}</p>
                         </div>`
     fragment.appendChild(aTag);
     }
-    options[indexTag].appendChild(fragment);
-
-    select[indexTag].addEventListener('click', () => {
-        select[indexTag].classList.toggle('active');
-        options[indexTag].classList.toggle('active');
+    options1.appendChild(fragment);
+    select1.addEventListener('click', () => {
+        contentSelect2.innerText = `Equipo`;
+        contentSelect3.innerText = `Deporte`;
+        select1.classList.toggle('active');
+        options1.classList.toggle('active');
     });
-    
-    document.querySelectorAll('.options > .option'+indexTag).forEach( option => {
+    options1.querySelectorAll('.option').forEach( option => {
             option.addEventListener('click', (e) => {
                 e.preventDefault();
-                contentSelect[indexTag].innerHTML = e.currentTarget.querySelector('.data').innerText;
-                select[indexTag].classList.toggle('active');
-                options[indexTag].classList.toggle('active');
-                hiddenInput[indexTag].value = e.currentTarget.querySelector('.data').innerText;
+                contentSelect1.innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select1.classList.toggle('active');
+                options1.classList.toggle('active');
+                hiddenInput1.value = e.currentTarget.querySelector('.data').innerText;
+                hiddenInput1.value==='Femenino'? showDataTable(arrayOnlyFemales): showDataTable(arrayOnlyMales);
             });
     });     
-}
-createElementsInOptions(0,'name');
-createElementsInOptions(1,'team');
+}());
+
+// filtrado por NOC
+const select2 = document.querySelector('#nocFilter .select');
+const options2 = document.getElementById('optionsNocFilter');
+const contentSelect2 = document.querySelector('#nocFilter .content-select');
+const hiddenInput2 = document.querySelector('#nocFilter .user-selection');
+
+(function showDataFilteredByNoc() { 
+    const arrayOptions = Object.keys(dataNoc);
+    sortData(arrayOptions,'asc');
+    const fragment = new DocumentFragment();
+    for(let i = 0; i<arrayOptions.length ; i++) {
+        const aTag = document.createElement('a');
+        const hAtt = document.createAttribute('href');
+        hAtt.value = '#';
+        aTag.setAttributeNode(hAtt);
+        const classAtt = document.createAttribute('class')
+        classAtt.value = 'option';
+        aTag.setAttributeNode(classAtt);
+        aTag.innerHTML= `<div class="content-option">
+                            <p class="data">${arrayOptions[i]}</p>
+                        </div>`
+    fragment.appendChild(aTag);
+    }
+    options2.appendChild(fragment);
+    select2.addEventListener('click', () => {
+        contentSelect1.innerText = `Género`;
+        contentSelect3.innerText = `Deporte`;
+        select2.classList.toggle('active');
+        options2.classList.toggle('active');
+    });
+    options2.querySelectorAll('.option').forEach( option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                contentSelect2.innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select2.classList.toggle('active');
+                options2.classList.toggle('active');
+                hiddenInput2.value = e.currentTarget.querySelector('.data').innerText;
+                const dataFilteredByValue = filterByValue(dataOnlyOneName, 'noc', hiddenInput2.value.toUpperCase());
+                const arrayNames = dataFilteredByValue.map(item=>item.name);
+                showDataTable(arrayNames);
+            });
+    });     
+}());
+
+// filtrado por Deporte
+const select3 = document.querySelector('#sportFilter .select');
+const options3 = document.getElementById('optionsSportFilter');
+const contentSelect3 = document.querySelector('#sportFilter .content-select');
+const hiddenInput3 = document.querySelector('#sportFilter .user-selection');
+const groupBySport = groupBy('sport');
+const dataSport = groupBySport(dataAthletes);
+
+(function showDataFilteredBySport() { 
+    const arrayOptions = Object.keys(dataSport);
+    sortData(arrayOptions,'asc');
+    const fragment = new DocumentFragment();
+    for(let i = 0; i<arrayOptions.length ; i++) {
+        const aTag = document.createElement('a');
+        const hAtt = document.createAttribute('href');
+        hAtt.value = '#';
+        aTag.setAttributeNode(hAtt);
+        const classAtt = document.createAttribute('class')
+        classAtt.value = 'option';
+        aTag.setAttributeNode(classAtt);
+        aTag.innerHTML= `<div class="content-option">
+                            <p class="data">${arrayOptions[i]}</p>
+                        </div>`
+    fragment.appendChild(aTag);
+    }
+    options3.appendChild(fragment);
+    select3.addEventListener('click', () => {
+        contentSelect1.innerText = `Género`;
+        contentSelect2.innerText = `Equipo`;
+        select3.classList.toggle('active');
+        options3.classList.toggle('active');
+    });
+    options3.querySelectorAll('.option').forEach( option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                contentSelect3.innerHTML = e.currentTarget.querySelector('.data').innerText;
+                select3.classList.toggle('active');
+                options3.classList.toggle('active');
+                hiddenInput3.value = e.currentTarget.querySelector('.data').innerText;
+                const dataFilteredByValue = filterByValue(dataOnlyOneName, 'sport', hiddenInput3.value.toUpperCase());
+                sortDataTwo(dataFilteredByValue,'name');
+                const arrayNames = dataFilteredByValue.map(item=>item.name);
+                showDataTable(arrayNames);
+            });
+    });     
+}());
 
 //Input de filtrado
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('keyup',(e) => {
+const searchInputAthletes = document.getElementById('searchInput');
+searchInputAthletes.addEventListener('keyup',(e) => {
     const value = e.currentTarget.value;
     const filterData = searchTable(value, dataGroupByName);
-    showDataTable(filterData, 0);
+    return showDataTable(filterData);
 });
-
 const searchInputCountry = document.getElementById('searchInputCountry');
 searchInputCountry.addEventListener('keyup',(e) => {
     const value = e.currentTarget.value;
     const filterData = searchTable(value, dataNoc);
-    showDataTableCountry(filterData, 0);
+    return showDataTableCountry(filterData);
 });
 
 //ESTADISTICAS - CANVAS
-const sortHeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'height');
-const sortWeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'weight');
-const sortAge = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'age');
-
+// const sortHeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'height');
+// const sortWeight = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'weight');
+// const sortAge = sortDataTwoByNumber(filterOnlyOneName(dataAthletes, 'name'),'age');
 const arrayMedals = topRankingCountry.map(item=>item[1][item[1].length-1]);
 
+//Gráficas de Barras Top Country
+const countryLabels = topRankingCountry.map(item=>item[1][0].team);
 const arrayTotalMedalsByTopCountrys = arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze);
-// console.log(arrayTotalMedalsByTopCountrys)
-const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
-
-const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
-const percentageFemales = percentage(onlyFemales.length, dataOnlyOneName.length);
-// console.log(percentageFemales);
-const onlyMales = athletesByGender(dataOnlyOneName,'M');
-//console.log(onlyMales.length)
-const averageWeight = average(dataOnlyOneName, 'weight', 2);
-// console.log(`${averageWeight} + ${dataOnlyOneName.length}`);
-const averageWeightFemales = average(onlyFemales,'weight', 2);
-const averageWeightMales = average(onlyMales,'weight', 2);
-// console.log(`${averageWeightFemales} + ${onlyFemales.length}`);
-// console.log(`${averageWeightMales} + ${onlyMales.length}`);
-const averageHeight = average(dataOnlyOneName, 'height', 2);
-const averageAge = average(dataOnlyOneName, 'age', 0);
-
+const arrayGoldMedalQuantity = topRankingCountry.map(item=>item[1][item[1].length-1].Gold);
+const arraySilverMedalQuantity = topRankingCountry.map(item=>item[1][item[1].length-1].Silver);
+const arrayBronzeMedalQuantity = topRankingCountry.map(item=>item[1][item[1].length-1].Bronze);
 let ctx = document.getElementById('topCountry').getContext('2d');
-let myChartTopCountry = new Chart (ctx, {
+let myChartBar = new Chart (ctx, {
     type: 'bar',
     data: {
-        labels: topRankingCountry.map(item=>item[1][0].team),
+        labels: countryLabels,
         datasets: [
         {
             label: 'Total medallas',
-            data: arrayMedals.map(item=>item.Gold +item.Silver +item.Bronze),
+            data: arrayTotalMedalsByTopCountrys,
             backgroundColor: [
                 'rgba(153, 102, 255, 1)',    
             ],
@@ -354,7 +432,7 @@ let myChartTopCountry = new Chart (ctx, {
         },
         {
             label: 'Oro',
-            data: topRankingCountry.map(item=>item[1][item[1].length-1].Gold),
+            data: arrayGoldMedalQuantity,
             backgroundColor: [
                 'rgba(255, 206, 86, 0.5)'
             ],
@@ -366,7 +444,7 @@ let myChartTopCountry = new Chart (ctx, {
         },
         {
             label: 'Plata',
-            data: topRankingCountry.map(item=>item[1][item[1].length-1].Silver),
+            data: arraySilverMedalQuantity,
             backgroundColor: [
                 'rgba(54, 162, 235, 0.5)'
             ],
@@ -378,7 +456,7 @@ let myChartTopCountry = new Chart (ctx, {
         },
         {
             label: 'Bronce',
-            data: topRankingCountry.map(item=>item[1][item[1].length-1].Bronze),
+            data: arrayBronzeMedalQuantity,
             backgroundColor: [
                 'rgba(255, 159, 64, 0.5)'
             ],
@@ -391,7 +469,7 @@ let myChartTopCountry = new Chart (ctx, {
     ]
     },
     options: {
-        // indexAxis: 'y',
+        indexAxis: 'y',
         elements: {
             bar: {
               borderWidth: 2,
@@ -417,14 +495,18 @@ let myChartTopCountry = new Chart (ctx, {
         }
       }
 });
+
+//Gráfica Dona % por género
+const percentageFemales = percentage(onlyFemales.length, dataOnlyOneName.length);
+const percentageMales = percentage(onlyMales.length, dataOnlyOneName.length);
 let ctxDoughnut = document.getElementById('doughnut').getContext('2d');
 let myChartDoughnut = new Chart (ctxDoughnut, {
     type: 'doughnut',
     data: {
-        labels: ['Atletas Mujeres', 'Atletas Varones'],
+        labels: ['% Atletas Mujeres', ' % Atletas Varones'],
         datasets: [{
             label: 'Atletas',
-            data: [onlyFemales.length, onlyMales.length],
+            data: [percentageFemales, percentageMales],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -450,89 +532,182 @@ let myChartDoughnut = new Chart (ctxDoughnut, {
         }
     }
 });
+// Radar de Promedios Altura, Peso y Edad
+const averageAge = average(dataOnlyOneName, 'age', 0);
+const averageAgeFemales = average(onlyFemales,'age', 0);
+const averageAgeMales = average(onlyMales,'age', 0);
+const averageHeight = average(dataOnlyOneName, 'height', 2);
+const averageHeightFemales = average(onlyFemales,'height', 0);
+const averageHeightMales = average(onlyMales,'height', 0);
+const averageWeight = average(dataOnlyOneName, 'weight', 2);
+const averageWeightFemales = average(onlyFemales,'weight', 2);
+const averageWeightMales = average(onlyMales,'weight', 2);
+let ctxRadar = document.getElementById('radar').getContext('2d');
+let myChartRadar = new Chart (ctxRadar, {
+    type: 'radar',
+    data: {
+        labels: ['Cm altura promedio', 'Kg peso promedio', 'Edad promedio'],
+        datasets: [
+        {
+            label: 'Total atletas',
+            data: [ averageHeight, averageWeight, averageAge],
+            backgroundColor: [
+                'rgba(153, 102, 255, 0.2)',    
+            ],
+            borderColor: [
+                'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1,
+        },
+        {
+            label: 'Mujeres',
+            data: [averageHeightFemales, averageWeightFemales, averageAgeFemales],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', 
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1,
+        },
+        {
+            label: 'Varones',
+            data: [averageHeightMales, averageWeightMales, averageAgeMales],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1,
+        }
+    ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Promedios: altura, peso y edad'
+          }
+        }
+    },
+});
 
+//Mostrar información detallada cada atleta en un Pop Up
+const popUp = document.getElementById('popUpAtletas');
+const column2 = document.querySelectorAll('#tableContentAthlete .column-2');
 
+(function showAndCloseDataInPopUp(key){
+    const fragment = new DocumentFragment;
+        let div = document.createElement('div');
+        div.classList.add('popUpContent');
+    column2.forEach(name=>{
+        name.addEventListener('click', () => {
+            popUp.classList.add('active');
+            const textSpan = name.childNodes[1].innerText;
+            const getDataByName = dataOnlyOneName.find(item => item[key]===textSpan);
+            div.innerHTML = ``;
+            div.innerHTML += `
+                            <div class="popUp-header">
+                                <h2>${getDataByName.name}</h2>
+                                <label class="popUp-close">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </label>
+                            </div>
+                            <div class="popUp-main">
+                                <div class="popUp-img"><img src="./img-paises/${getDataByName.team}.png"></div>
+                                <div class="popUp-info">
+                                    <div><span class="popUp-key">Equipo:    </span></span><span class="popUp-value">${getDataByName.team}</span></div>
+                                    <div><span class="popUp-key">Edad:  </span></span><span class="popUp-value">${getDataByName.age} años</span></div> 
+                                    <div><span class="popUp-key">Altura:    </span><span class="popUp-value">${getDataByName.height} cm</span></div>
+                                    <div><span class="popUp-key">Peso:  </span></span><span class="popUp-value">${getDataByName.weight} kg</span></div>
+                                    <div><span class="popUp-key">Género:    </span></span><span class="popUp-value">${getDataByName.gender}</span></div>
+                                    <div><span class="popUp-key">Deporte:   </span></span><span class="popUp-value">${getDataByName.sport}</span></div>
+                                </div>
+                            </div>
+                            `
+            fragment.appendChild(div);
+            popUp.appendChild(fragment);
+            const closeButton = document.querySelector('.popUp-close');
+            closeButton.addEventListener('click', () => {
+                popUp.classList.remove('active');
+                popUp.innerHTML = ``;
+            });
+        })
+        
+    })
+}('name'));
 
-
-
-
-
-
-// const showDataInTable = (data , startIndexItem) =>{
-//    for(let i = 0; i<20 ; i++){ 
-//         const item = data[i+startIndexItem];
-//         imgColumn1[i].src = `./img-paises/${item.team}.png`;
-//         nocTextColumn1[i].textContent = item['noc'];
-//         nameColumn2[i].textContent = item.name;
-//         avatarColumn2[i].textContent = item.gender;
-//         sportColumn3[i].textContent = item.sport;
-//     }
-// }
-// showDataInTable(dataAthletes , 0);
-
-/*tenDataAthletes.forEach(item=>{
-    tableContent.innerHTML+=`
-        <tr>
-            <td class="column-1"><img src="" alt="flag"><span class="noc-text">${item.noc}</span></td>
-            <td class="column-2"><div class="avatar-circle"><span class="avatar"></span></div><span class="name-text">${item.name}</span></td>
-            <td class="column-3"><span class="sport-text"></span></td>
-            <td class="column-4"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-            <td class="column-5"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-            <td class="column-6"> <div class="medal-circle"><span class="medal-quantity"></span></div></td>
-        </tr>`
-});*/
-
-
-
+//Cambiar de opciones en el navegador
+const navMenu = document.getElementById("nav-toggle");
 const btnop1 = document.getElementById("op-1");
 const btnop2 = document.getElementById("op-2");
 const btnop3 = document.getElementById("op-3");
 const btnop4 = document.getElementById("op-4");
-const op1Text = document.getElementById("op-1-text");
-const op2Text = document.getElementById("op-2-text");
-const op3Text = document.getElementById("op-3-text");
-const op4Text = document.getElementById("op-4-text");
+const op1Text = document.getElementById("athletes");
+const op2Text = document.getElementById("country");
+const op3Text = document.getElementById("sports");
+const op4Text = document.getElementById("statistics");
 
-btnop1.onclick =function(){
+btnop1.onclick = function(){
+    navMenu.checked = false;
     op1Text.style.display="block";
     op2Text.style.display="none";
     op3Text.style.display="none";
     op4Text.style.display="none";
-    btnop1.style.borderBottom="3px solid #ffffff"
+    btnop1.classList.add('active');
     btnop2.style.borderBottom="none";
+    btnop2.classList.remove('active');
     btnop3.style.borderBottom="none";
+    btnop3.classList.remove('active');
     btnop4.style.borderBottom="none";
+    btnop4.classList.remove('active');
 }
-
-btnop2.onclick =function(){
+btnop2.onclick = function(){
+    navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="block";
     op3Text.style.display="none";
     op4Text.style.display="none";
-    btnop1.style.borderBottom="none"
-    btnop2.style.borderBottom= "3px solid #ffffff";
+    btnop1.style.borderBottom="none";
+    btnop2.classList.add('active');
+    btnop1.classList.remove('active');
     btnop3.style.borderBottom="none";
+    btnop3.classList.remove('active');
     btnop4.style.borderBottom="none";
+    btnop4.classList.remove('active');
 }
-
-btnop3.onclick =function(){
+btnop3.onclick = function(){
+    navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="none";
     op3Text.style.display="block";
     op4Text.style.display="none";
     btnop1.style.borderBottom="none"
+    btnop1.classList.remove('active');
     btnop2.style.borderBottom="none";
-    btnop3.style.borderBottom="3px solid #ffffff";
+    btnop2.classList.remove('active');
+    btnop3.classList.add('active');
     btnop4.style.borderBottom="none";
+    btnop4.classList.remove('active');
 }
-
 btnop4.onclick =function(){
+    navMenu.checked=false;
     op1Text.style.display="none";
     op2Text.style.display="none";
     op3Text.style.display="none";
     op4Text.style.display="block";
-    btnop1.style.borderBottom="none"
+    btnop1.style.borderBottom="none";
+    btnop1.classList.remove('active');
     btnop2.style.borderBottom="none";
+    btnop2.classList.remove('active');
     btnop3.style.borderBottom="none";
-    btnop4.style.borderBottom="3px solid #ffffff";
+    btnop3.classList.remove('active');
+    btnop4.classList.add('active');
 }
+const article = document.querySelectorAll('#sports article');
+
+// article.forEach(article=>article.addEventListener('click',()=>{
+//     return window.open('http://127.0.0.1:5500/src/sports.html?data=${}');
+// }))

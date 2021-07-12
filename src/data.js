@@ -1,11 +1,11 @@
-// Procesamiento de data FORMA 1
+// Procesamiento de data FORMA 1 data cambiada
 const sortData = (array, order) => {
    array.sort((a, b) => {
       return a.localeCompare(b);
    });
    return order === 'desc' ? array.reverse() : array;
 }
-export let arrRankingCardAthlete;
+let arrRankingCardAthlete;
 const rankingOnlyMedals = (data, key, order) => {
    arrRankingCardAthlete = Object.entries(data);
    arrRankingCardAthlete.sort((a, b) => {
@@ -26,7 +26,7 @@ const rankingOnlyMedals = (data, key, order) => {
    }
    return newArray;
 }
-export let arrayDataCountry;
+let arrayDataCountry;
 const rankingTotalMedals = (data, order) => {
    arrayDataCountry = Object.entries(data);
    arrayDataCountry.sort((a, b) => {
@@ -61,7 +61,7 @@ const rankingTotalAthletes = (data, order) => {
          return order === 'desc' ? 1 : -1
       }
       return 0;
-   })
+   });
    const newArray = new Array;
    for (let i in arrayData) {
       const k = arrayData[i][0];
@@ -75,19 +75,22 @@ function searchTable(value, data) {
    for (let i = 0; i < data.length; i++) {
       value = value.toLowerCase();
       const name = data[i][0].toLowerCase();
-
       if (name.includes(value)) {
          filterData.push(data[i][0]);
       }
    }
    return filterData;
 }
-// Procesamiento de data FORMA 2
+// Procesamiento de data FORMA 2 data original
+
 function filterOnlyOneName(data, key) {
    const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
    return dataOnlyNames;
 }
-
+function filterByValue(data, key, value){
+   const dataFilter = data.filter(item => item[key].toUpperCase()===value);
+   return dataFilter;
+}
 function sortDataTwo(data, key) {
    const newDataSort = data.sort((a, b) => {
       const valueA = a[key].toUpperCase();
@@ -95,8 +98,17 @@ function sortDataTwo(data, key) {
       return valueA<valueB ? -1 : (valueA>valueB ? 1 : 0) 
     })
     return newDataSort;
- }
- function sortDataTwoByNumber (data, key){
+}
+
+function sortByMedal(data) {
+   const medals = {Gold: 1, Silver: 2, Bronze: 3}
+    const newDataSort = data.sort((a, b) => {
+      return medals[a.medal] - medals[b.medal]
+    })
+   return newDataSort;
+}
+
+function sortDataTwoByNumber (data, key){
    const newDataSort = data.sort((a,b)=>{
      const valueA = parseFloat(a[key]);
      const valueB = parseFloat(b[key]);
@@ -115,16 +127,14 @@ const average = (data, key, round) => {
        return acum += parseFloat(item[key])
    },0)
    let avg = sum/(data.length-numberKeysWithoutValue);
-   return avg.toFixed(round)
+   return parseFloat(avg.toFixed(round))
 }
 
 const athletesByGender = (data, key) => data.filter(item=>item.gender===key);
 
-export const percentage = (num, total) => ((num/total)*100).toFixed(2);
+const percentage = (num, total) => parseFloat((num/total*100).toFixed(2));
 
-export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, sortDataTwo, sortDataTwoByNumber, average, athletesByGender }
-
-
+export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, filterByValue, sortDataTwo, sortByMedal, sortDataTwoByNumber, average, athletesByGender, percentage, arrayDataCountry, arrRankingCardAthlete }
 
 // export const sortDataTwo = (data,key,order) =>{
 //    const arrayData = Object.entries(data);
