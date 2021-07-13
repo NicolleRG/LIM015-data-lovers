@@ -368,6 +368,7 @@ h3{
 }
 .options.active{
     display: block;
+    z-index: 2;
 }
 .content-option{
     width: 100%;
