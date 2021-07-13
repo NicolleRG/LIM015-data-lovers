@@ -95,18 +95,23 @@ function searchTable(value, data) {
    }
    return filterData; 
 }
-// Procesamiento de data FORMA 2 data original
-
-function filterOnlyOneName(data, key) {
-   const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
-   return dataOnlyNames;
-}
 function filterByValue(data, key, value){
    const newArray = Object.entries(data);
    const dataFilter = newArray.filter(item => {
       return (item[1][0][key]).toUpperCase()===value; 
    });
    return dataFilter;
+}
+// Procesamiento de data FORMA 2 data original
+export function filterByValueTwo(data, key, value){
+      const dataFilter = data.filter(item => {
+      return (item[key]).toUpperCase()===value; 
+   });
+   return dataFilter;
+}
+function filterOnlyOneName(data, key) {
+   const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
+   return dataOnlyNames;
 }
 function sortDataTwo(data, key) {
    const newDataSort = data.sort((a, b) => {
@@ -116,7 +121,6 @@ function sortDataTwo(data, key) {
     })
     return newDataSort;
 }
-
 function sortByMedal(data) {
    const medals = {Gold: 1, Silver: 2, Bronze: 3}
     const newDataSort = data.sort((a, b) => {

@@ -278,8 +278,6 @@ document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
 const dataOnlyOneName = filterOnlyOneName(dataAthletes, 'name');
 const onlyFemales = athletesByGender(dataOnlyOneName, 'F');
 const onlyMales = athletesByGender(dataOnlyOneName,'M');
-const arrayOnlyMales = onlyMales.map(item =>item.name);
-const arrayOnlyFemales = onlyFemales.map(item =>item.name);
 const select1 = document.querySelector('#genderFilter .select');
 const options1 = document.getElementById('optionsFiterGender');
 const contentSelect1 = document.querySelector('#genderFilter .content-select');
@@ -290,6 +288,7 @@ function showDataFilter (data) {
     tableAthlete.innerHTML = '' ;
     let plantilla = ``; 
     rankingOnlyMedalsTwo(data, 'Gold', 'desc');
+    
     for(let i in data){
         const item = data[i][1];
             plantilla += `
