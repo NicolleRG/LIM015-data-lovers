@@ -1,4 +1,4 @@
-# ¡Data Lovers| Athletes! 🤾
+# ¡Data Lovers: Athletes! 🤾
 >*Olimpiadas Rio de Janeiro 2016*
 
 **Creadoras 💁‍♀️:**
@@ -22,8 +22,6 @@
 * [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
 * [9. Checklist](#9-checklist)
 
-***
-
 ## 1. Introducción
 
 ###### Según [Forbes](https://www.forbes.com/sites/bernardmarr/2018/05/21/how-much-data-do-we-create-every-day-the-mind-blowing-stats-everyone-should-read),
@@ -44,51 +42,8 @@ al lado derecho.######
 
 ## 2. Resumen del proyecto
 
-
-Se creo está aplicación con la función de poder crear mensajes cifrados o descifrados de acuerdo a la intención del usuario.
-Este va dirigido a todas las personas en general, especialmente para quienes tienen redes sociales y quieran sentirse más seguros. 
-
-En este proyecto **construirás una _página web_ para visualizar un
-_conjunto (set) de datos_** que se adecúe a lo que descubras que tu usuario
-necesita.
-
-Como entregable final tendrás una página web que permita **visualizar la data,
-filtrarla, ordenarla y hacer algún cálculo agregado**. Con cálculo agregado
-nos referimos a distintos cálculos que puedes hacer con la data para mostrar
-información aún más relevante para los usuarios (promedio, el valor máximo
-o mínimo, etc).
-
-Esta vez te proponemos una serie de datos de diferentes _temáticas_ para que
-explores y decidas con qué temática te interesa trabajar. Hemos elegido
-específicamente estos sets de datos porque creemos que se adecúan bien a esta
-etapa de tu aprendizaje.
-
-Una vez que definas tu área de interés, buscar entender quién es tu usuario
-y qué necesita saber o ver exactamente; luego podrás construir la interfaz que
-le ayude a interactuar y entender mejor esos datos.
-
-Estos son datos que te proponemos:
-
-* [Pokémon](src/data/pokemon/pokemon.json):
-  En este set encontrarás una lista con los 251 Pokémon de la región de Kanto
-  y Johto, junto con sus respectivas estadísticas usadas en el juego
-  [Pokémon GO](http://pokemongolive.com).
-  - [Investigación con jugadores de Pokémon Go](src/data/pokemon/README.md)
-
-* [League of Legends - Challenger leaderboard](src/data/lol/lol.json):
-  Este set de datos muestra la lista de campeones en una liga del
-  juego League of Legends (LoL).
-  - [Investigación con jugadores de LoL](src/data/lol/README.md)
-
-* [Rick and Morty](src/data/rickandmorty/rickandmorty.json).
-  Este set nos proporciona la lista de los personajes de la serie Rick and
-  Morty. [API Rick and Morty](https://rickandmortyapi.com).
-  - [Investigación con seguidores de Rick and Morty](src/data/rickandmorty/README.md)
-
-* [Juegos Olímpicos de Río de Janeiro](src/data/athletes/athletes.json).
-  Este set nos proporciona la lista de los atletas que ganaron medallas en las
-  olímpiadas de Río de Janeiro.
-  - [Investigación con interesados en juegos olímpicos de Río de Janeiro](/src/data/athletes/README.md)
+Olimpedia, es un página web creada para usuarios en general, pero con el fin de llegar a aquellos aficionados al deporte,
+esta página les será de mucha ayuda para poder obtener información de sus atletas favoritos, así como también de los paises participantes con un ranking de medalleros. A si mismo nos mostrará cuales son los deportes y eventos en los que participaron dichos atletas, finalmente tenemos las estadisticas por top 10 de los mejores puestos por País, así  como el promedio y el número de atletas por género. 
 
 ## 3. Objetivos de aprendizaje
 
@@ -153,45 +108,58 @@ Los criterios para considerar que has completado este proyecto son:
 
 ### Definición del producto
 
-Para realizar nuestro prototipo, primero empezamos por nuestras historias de usuario, el cual nos guiamos de algunos ejemplos que encontramos, la forma correcta y las preguntas que deberiamos realizarnos, así mismo nuestros criterios de aceptación y definición de terminado. me iba imaginando y poniendome en el lugar del usuario,  como es que queria yo poder acceder a una página, que sea entendible, con estética  y fácil de usar. Ahora ellos podrán tener sus mensajes y contraseñas más seguras. 
-
-Esta es la plantilla plasmé como es que queria que se viera mi aplicación. 
-
->![Prototipo de Cipher](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/cipher.png)
-
-* Usuarios de producto: Todos en general que busquen seguridad en sus redes sociales. 
-* Objetivos de estos usuarios: Usar la aplicación para fines de seguridad, tanto en el cifrado o descifrado. 
-* Resolviendo sus problemas: Ahora todo será más secreto, confiable y sencillo de usar.
+Para realizar nuestro prototipo, primero empezamos por nuestras historias de usuario, el cual nos guiamos de algunos ejemplos que encontramos, la forma correcta y las preguntas que deberiamos realizarnos, así mismo nuestros criterios de aceptación y definición de terminado. 
 ### Historias de usuario
 
+HU1. Mostrar todos los atletas, países participantes, deportes
+
+>Yo como : 'aficcionado al deporte olímpico'
+>Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
+>Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
 
 ### Diseño de la Interfaz de Usuario
 
 
->![Entrada](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/1.jpg)
+>![Atletas]( )
 
-La interfaz debe permitir al usuario:
+>![Información del atleta](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/2.jpg)
 
-* Elegir un desplazamiento (offset) indicando cuántas posiciones queremos que el cifrado desplace cada caracter.
-* Insertar un mensaje (texto) que queremos cifrar.
-* Ver el resultado del mensaje cifrado.
+>![Buscador de atletas]( )
 
->![Cifrado](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/2.jpg)
+>![Filtro por Género ]( )
 
-* Insertar un mensaje (texto) a descifrar.
-* Ver el resultado del mensaje descifrado.
+>![Filtro por Equipo ]( )
 
->![Descifrado](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/3.jpg)
+>![Filtro por Deporte ]( )
 
-* Me manda una alerta cada vez que ingreso números menores a 1.
+>![Limpiar ]( )
 
->![Entrada](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/4.jpg)
-#### Prototipo de baja fidelidad
+>![Países ]( )
 
-Durante tu trabajo deberás haber hecho e iterado bocetos (_sketches_) de tu
-solución usando papel y lápiz. Te recomendamos tomar fotos de todas las
-iteraciones que hagas, que las subas a tu repositorio y las menciones en tu
-`README.md`.
+>![Deportes ]( )
+
+>![Eventos ]( )
+
+>![Estadisticas ]( )
+#### Prototipo de alta fidelidad
+
+Estas son las plantillas plasmamos como es que queria que se viera nuestra página web.
+
+>![Atletas]( )
+
+>![Prototipo de DataLovers]( )
+
+>![Prototipo de DataLovers]( )
+
+>![Países]( )
+
+>![Deportes]( )
+
+>![Deportes con filtro]( )
+
+>![Eventos por deporte]( )
+
+>![Estadisticas]( )
 
 #### Testeos de usabilidad
 
@@ -201,7 +169,7 @@ en base a los resultados, deberás iterar tus diseños.
 Uno de los problemas que tuvimos es que al pasar el puntero por el nombre del atleta no se entendia que 
 deberia darle 'click' para más información. 
 
--Así que lo que hicimos para mejorar es, agregar un hoover y al pasar el puntero nos cambie de color de letra,
+* Así que lo que hicimos para mejorar es, agregar un hoover y al pasar el puntero nos cambie de color de letra,
 muestre el pointer y un pequeño box-shadow.
 
 
@@ -213,12 +181,10 @@ Tu tiempo de hacking es escaso, así que deberás priorizar
 
 Como mínimo, tu implementación debe:
 
-[✅] 1. Mostrar la data en una interfaz: puede ser un card, una tabla, una lista,
-   etc.
-[✅] 2. Permitir al usuario interactuar para obtener la infomación que necesita.
-[✅] 3. Ser _responsive_, es decir, debe visualizarse sin problemas desde distintos
-   tamaños de pantallas: móviles, tablets y desktops.
-[✅] 4. Que la interfaz siga los fundamentos de _visual design_.
+* [✅] 1. Mostrar la data en una interfaz: puede ser un card, una tabla, una lista, etc.
+* [✅] 2. Permitir al usuario interactuar para obtener la infomación que necesita.
+* [✅] 3. Ser _responsive_, es decir, debe visualizarse sin problemas desde distintos tamaños de pantallas: móviles, tablets y desktops.
+* [✅] 4. Que la interfaz siga los fundamentos de _visual design_.
 
 ### Pruebas unitarias
 
@@ -239,15 +205,9 @@ profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
 
 Features/características extra sugeridas:
 
-[✅]* En lugar de consumir la data estática brindada en este repositorio, puedes
-  consumir la data de forma dinámica, cargando un archivo JSON por medio de
-  `fetch`. La carpeta `src/data` contiene una versión `.js` y una `.json` de
-  de cada set datos.
-[✅]* Agregarle a tu interfaz de usuario implementada visualizaciones gráficas. Para
-  ello te recomendamos explorar librerías de gráficas como
-  [Chart.js](https://www.chartjs.org/)
-  o [Google Charts](https://developers.google.com/chart/).
-[✅]* 100% Coverage
+* [✅] En lugar de consumir la data estática brindada en este repositorio, puedes consumir la data de forma dinámica, cargando un archivo JSON por medio de `fetch`. La carpeta `src/data` contiene una versión `.js` y una `.json` de cada set datos.
+* [✅]* Agregarle a tu interfaz de usuario implementada visualizaciones gráficas. Para ello te recomendamos explorar librerías de gráficas como [Chart.js](https://www.chartjs.org/) o [Google Charts](https://developers.google.com/chart/).
+* [✅]* 100% Coverage
 
 ## 7. Consideraciones técnicas
 
