@@ -104,24 +104,25 @@ let i = 0;
 document.querySelectorAll('.cards > .card-athlete').forEach((cardAthlete)=>{
     const accesInformation = topRankingAthlete[i][1];
     cardAthlete.innerHTML += `
+          <span class="medalsTitle">Medallas</span>
           <div class="medals">
             <div class="medal">
               <div class="medal-circle-gold">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Gold}</span>
               </div>
-              <span class="medal-letter">O</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
               <div class="medal-circle-silver">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Silver}</span>
               </div>
-              <span class="medal-letter">P</span>
+              <span class="medal-letter"></span>
             </div>
             <div class="medal">
               <div class="medal-circle-bronze">
                 <span class="medal-quantity">${accesInformation[accesInformation.length -1].Bronze}</span>
               </div>
-              <span class="medal-letter">B</span>
+              <span class="medal-letter"></span>
             </div>
           </div>
           <div class="img-box"><img class="img-card"src="./img-atletas/${accesInformation[0].name !=='Kathleen Genevieve "Katie" Ledecky'? accesInformation[0].name :'KathleenGenevieve'}.jpg"></div>
@@ -246,24 +247,25 @@ let i2 = 0;
 document.querySelectorAll('.cards > .card-country').forEach(cardCountry => {
     const accesInformation = topRankingCountry[i2][1];
     cardCountry.innerHTML += `
+                        <span class="medalsTitle">Medallas</span>
                         <div class="medals">
                             <div class="medal">
                                 <div class="medal-circle-gold">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Gold}</span>
                                 </div>
-                                <span class="medal-letter">O</span>
+                                <span class="medal-letter"></span>
                              </div>
                              <div class="medal">
                              <div class="medal-circle-silver">
                                  <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Silver}</span>
                              </div>
-                             <span class="medal-letter">P</span>
+                             <span class="medal-letter"></span>
                           </div>
                           <div class="medal">
                                 <div class="medal-circle-bronze">
                                     <span class="medal-quantity">${accesInformation[topRankingCountry[i2][1].length -1].Bronze}</span>
                                 </div>
-                                <span class="medal-letter">B</span>
+                                <span class="medal-letter"></span>
                              </div>
                         </div>
                         <div class="img-box"><img class="img-card" src="./img-paises/${accesInformation[0].team}.png" alt="flag"></div>

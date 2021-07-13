@@ -108,6 +108,15 @@ function filterByValue(data, key, value){
    });
    return dataFilter;
 }
+
+export function filterByValue2(data, key, value){
+   const dataFilter = data.filter(item => {
+      return (item[key]).toUpperCase()===value; 
+   });
+   return dataFilter;
+}
+
+
 function sortDataTwo(data, key) {
    const newDataSort = data.sort((a, b) => {
       const valueA = a[key].toUpperCase();
