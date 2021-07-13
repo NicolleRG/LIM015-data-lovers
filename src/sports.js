@@ -38,9 +38,12 @@ const dataEvents = filterOnlyOneName(dataAthletes, 'event'); //306 eventos
 
 // [{sport:"",..."},{},{},...]
 const onlyEventsBySport = filterByValueTwo(dataEvents, 'sport', sportName);
+
 let contentDiv = document.getElementById('container-events');
 
+
 function showDataEvents(dataEventsBySport) {
+    console.log(dataEventsBySport);
     contentDiv.innerHTML = ``;
     sortByMedal(dataAthletes);
     let plantillaHTML = "";
@@ -136,6 +139,7 @@ const hiddenInput1 = document.querySelector('#sportFilter .user-selection');
                 options1.classList.toggle('active');
                 hiddenInput1.value = e.currentTarget.querySelector('.data').innerText;
                 const onlyEventsBySport = filterByValueTwo(dataEvents, 'sport', hiddenInput1.value.toUpperCase());
+
                 showDataEvents(onlyEventsBySport);
                 title.textContent = hiddenInput1.value.toUpperCase()
             });

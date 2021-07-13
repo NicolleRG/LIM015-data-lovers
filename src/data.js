@@ -102,17 +102,20 @@ function filterByValue(data, key, value){
    });
    return dataFilter;
 }
+
 // Procesamiento de data FORMA 2 data original
-export function filterByValueTwo(data, key, value){
+function filterByValueTwo(data, key, value){
       const dataFilter = data.filter(item => {
       return (item[key]).toUpperCase()===value; 
    });
    return dataFilter;
 }
+
 function filterOnlyOneName(data, key) {
    const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
    return dataOnlyNames;
 }
+
 function sortDataTwo(data, key) {
    const newDataSort = data.sort((a, b) => {
       const valueA = a[key].toUpperCase();
@@ -156,7 +159,7 @@ const athletesByGender = (data, key) => data.filter(item=>item.gender===key);
 
 const percentage = (num, total) => parseFloat((num/total*100).toFixed(2));
 
-export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, filterByValue, sortDataTwo, sortByMedal, sortDataTwoByNumber, average, athletesByGender, percentage, arrayDataCountry, arrRankingCardAthlete }
+export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, filterByValue, filterByValueTwo, sortDataTwo, sortByMedal, sortDataTwoByNumber, average, athletesByGender, percentage, arrayDataCountry, arrRankingCardAthlete }
 
 // export const sortDataTwo = (data,key,order) =>{
 //    const arrayData = Object.entries(data);

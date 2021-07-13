@@ -20,15 +20,15 @@
     list-style-type: none;
 }
 nav{
-    width: 345px;
+    width: 280px;
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
-    background: var(--main-color-green);
     z-index: 100;
     transition: width 300ms;
     align-items: center;
+    background: linear-gradient(to bottom, #FAA700, #02a650);
 }
 nav .logo{
     height: 230px;
@@ -54,6 +54,7 @@ nav .logo{
     padding-bottom: 1rem;
     color: var(--main-color-green);
     border-radius: 30px 0px 0px 30px;
+    transition: 700ms;
 }
 .sidebar-menu a i{
     font-size: 1.5rem;
@@ -62,26 +63,20 @@ nav .logo{
 .sidebar-menu input{
     display: none;
 }
-/*Deportes*/
-.tableSport{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 0rem;
-}
 .container{
     transition: margin-left 300ms;
-    margin-left: 345px;
+    margin-left: 280px;
     position: relative;
 }
 header{
     background: white;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     position: fixed;
-    left: 345px;
-    width: calc(100% - 345px);
+    left: 280px;
+    width: calc(100% - 280px);
     top: 0;
     z-index: 100;
     transition: left 300ms;
@@ -93,7 +88,8 @@ header{
 .header-title{
     align-items: center;
     color: var(--color-orange);
-    padding-right: 2.8rem;
+    padding-right: 1rem;
+    text-transform: uppercase;
 }
 header label i{
     font-size: 1.7rem;
@@ -101,16 +97,16 @@ header label i{
     cursor: pointer;
 }
 main{
-    margin-top: 110px;
-    padding: 2rem 4.3rem;
+    margin-top: 90px;
+    padding: 1.5rem 3.5rem;
     background: white;
     min-height: calc(100vh - 90px);
     overflow: hidden;
 }
 main h1{
     color: #02A650;
-    font-size: 78px;
-    margin-top: 20px;
+    font-size: 65px;
+    margin-top: 15px;
 }
 #nav-toggle:checked + nav{
     width: 70px;
@@ -136,7 +132,8 @@ main h1{
 #nav-toggle:checked ~ .container .tableSport{
     grid-template-columns: repeat(5,1fr);
 }
-/*PopUp*/
+
+/*-------------------PopUp----------------*/
 .popUp{
     display: 'none';
 }
@@ -154,18 +151,19 @@ main h1{
     color: var(--color-darK-green);
     font-size: 18px;
     z-index: 1;
-    transition: all 500ms ease;
+    transition: all 300ms ease;
 }
 .popUpContent{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 500px;
-    height: 400px;
-    margin:auto;
+    height: 350px;
+    margin-top: 3rem;
+    margin-left: 5rem;
     background-color: white;
     box-shadow: 1px 7px 25px rgba(0,0,0,0.6);
-    transition: all 500ms ease;
+    transition: all 400ms ease;
 }
 .popUpContent .popUp-header{
     display: flex;
@@ -173,9 +171,11 @@ main h1{
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--main-color-green);
+    background: linear-gradient(to left, #FAA700, #02a650);
     color: white;
+    font-size: 15px;
     padding: 1.5rem 0;
+    
 }
 .popUpContent .popUp-header h2{
     padding-left: 1rem;
@@ -224,17 +224,20 @@ main h1{
 
 
 /*----------ATLETAS TARJETAS---------------*/
+.cards .medalsTitle{
+    text-align: center;  
+}
 .cards{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 #country .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 .cards .name-athlete-card, .name-country-card{
     padding-bottom: 5px;
@@ -245,22 +248,29 @@ main h1{
     flex-direction: column;
     justify-content: space-between;
     background: var(--color-light-silver);
-    padding: 2rem;
+    padding: 1rem 1.5rem 1.5rem;
     border-radius: 5px;
     height: 350px;
+}
+.team-athlete-card{
+    display: flex;
+}
+.team-name{
+    padding-top: 0.7rem;
+    padding-left: 0.5rem
 }
 .img-box {
     display: flex;
     justify-content: center;
 }
 .cards .img-card{
-    height: 120px;
-    width: 120px;
+    height: 115px;
+    width: 115px;
     border-radius: 100%;
 }
 .medals{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items:center;
 }
 .medal{
@@ -269,26 +279,25 @@ main h1{
     justify-content: space-between;
     align-items: center;
 }
-.medal-letter{
-    padding-left: 5px;
+.card-country .medals{
+    align-items:center;
+    justify-content: space-around;
 }
-.medals .medal-circle{
-    background-color: var(--color-gold);
-    height: 32px;
-    width: 32px;
-    border-radius: 1000px;
+.medal-letter{
+    padding-left: 3px;
 }
 h3{
-    margin-top: 3.5rem;
+    margin-top: 3rem;
 }
 
 /*---------------FILTRADO---------------*/
 .inputFilter {
     margin-top: 2rem;
-    width: 270px;
+    width: 500px;
+
 }
 .search-input{
-    width: 80%;
+    width: 90%;
     border: 0;
     box-shadow: none;
     outline: none;
@@ -308,11 +317,42 @@ h3{
     border: 1px solid  #BABFC3;
     border-radius: 15px;
 }
-.filter-container{
-    margin-top: 2rem;
+#filterAthletes{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
 }
 .select-box{
     width: 270px;
+}
+#btn-clean1, #btn-clean2{
+    
+    background-color: var(--color-orange);
+    padding:8px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid  #3f3d3d;
+    border-radius: 17px;
+}
+#btn-clean1{
+    position: relative;
+    left: 35rem;
+    bottom: 5.8rem;
+}
+#btn-clean1:hover{
+    color: white;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
+    border-color:white;
+}
+#btn-clean2:hover{
+    color: white;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
+    border-color:white;
+}
+#btn-clean2{
+    position: relative;
+    bottom: 2rem;
+    left:35rem;
 }
 .select{
     display: flex;
@@ -332,13 +372,12 @@ h3{
 .select .content-select{
     width: 217px;
     height: 20px;
-    left: 26.5px;
     top: 8px;
     border-radius: 4px;
 }
 .filter-criteria{
     width: fit-content;
-    height: 18px;
+    height: 25px;
     left: -3.5px;
     top: 1px;
     font-style: normal;
@@ -375,7 +414,8 @@ h3{
     display: flex;
     align-items: center;
     transition: .2s ease all;
-    height: 64px;
+    height: 40px;
+    color: black;
 }
 .content-option img{
     width: 30px;
@@ -393,6 +433,7 @@ thead th{
     font-weight: 600;
     font-size: 1rem;
     text-align: left;
+    
 }
 img, .avatar-circle{
     height: 40px;
@@ -436,23 +477,48 @@ table{
     align-items: center;
     background-color: var(--color-light-silver);
     border-radius: 100%;
+    margin-right: 1rem;
 }
 #tableContentAthlete .column-2:hover{
     cursor: pointer;
     box-shadow: 0 0 5px var(--color-silver), 0 0 5px var(--color-silver), 0 0 5px var(--color-silver);
+    color: #02A650;
 }
+
 .icons-arrows{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding-top: 10px;
+    padding-top: 30px;
+    padding-left: 20rem;
+    padding-right: 20rem;
+    
 }
-.next-icon, .previous-icon{
-    width: 30px;
-    height: 30px;
+.icons-arrows i{
+    font-size: 1.5rem;
+    color: rgb(112, 110, 110);
+    cursor: pointer;
+}
+.icons-arrows i:hover{
+    color: var(--color-orange);
+}
+.icon-up{
+    position: relative;
+    left: 5rem;
+    margin-bottom: -0.8rem;
+}
+.icon-down{
+    position: relative;
+    left: 5rem;
+}
+.icons{
+    position: relative;
+    left: 3.8rem;
+    margin-bottom: -0.8rem;
 }
 .medal .medal-circle-gold{
     box-shadow: 0 0 5px var(--color-gold), 0 0 5px var(--color-gold), 0 0 5px var(--color-gold);
+
 }
 .medal .medal-circle-silver{
     box-shadow: 0 0 5px var(--color-silver), 0 0 5px var(--color-silver), 0 0 5px var(--color-silver);
@@ -496,6 +562,128 @@ table{
 .medal-circle-bronze:hover{
     box-shadow: 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze);
 }
+/*---------------Paises----------*/
+#countryTable td{
+    text-align: center;
+}
+.columnOne{
+    text-align: left !important;
+}
+/*-------------Deportes---------------------*/
+.tableSport{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0rem;
+    margin-top: 0.5rem;
+}
+#numEvent{
+    position: relative;
+    border-bottom: 1px solid var(--color-dark-silver);
+}
+.group1{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+}
+.group2{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+}
+.group3{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+}
+.group4{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+}
+.group5{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+}
+.group6{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+}
+.group7{
+    display: flex;
+    justify-content:space-between;
+    background-color: var(--color-light-silver);
+    margin-top: 2rem;
+    height: 250px;
+    width: 800px;
+}
+.sportTitle{
+    color: black;
+    margin-left: 3rem;
+}
+.sportContent{
+    position: relative;
+    margin-top: 2rem;
+    padding: 0px;
+    left:10rem;
+    display:block;
+    width: 80%;
+    height: 1000%;
+}
+#title{
+    padding-left: 2rem;
+}
+#sportFilter{
+  position: relative;
+}
+.acordeon{
+    width: 80%;
+    max-width: 120em;
+    background-color: var(--color-light-silver);
+    padding: 2em;
+}
+.acordeon .bloque{
+
+    background: linear-gradient(to left, #FAA700, #02a650);
+    margin: 0 0 1em;
+    padding: 1em;
+    
+}
+.acordeon .h2 {
+    color:white;
+    margin: 0 0 1em;
+    padding: 0.5em;
+}
+.acordeon .contenido {
+    padding: 1em;
+    height: 0;
+    padding: 0em;
+    overflow: hidden;
+    transition: all .5s ease;
+}
+.acordeon .bloque.activo .contenido{
+    height: 24em;
+    overflow: auto;
+}
+.contenido .cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 1rem; 
+}
 
 /*Estadísiticas*/
 .statistics-section2{
@@ -525,13 +713,13 @@ table{
     padding-bottom: 10px;
 }
 footer{
-    background-color: var(--main-color-green);
     top: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
+    background: linear-gradient(to bottom, #FAA700, #02a650);
 }
 footer .rings-logo{
     width: 70px;
@@ -547,54 +735,6 @@ footer .rings-logo{
     padding-top: 10px;
 }
 
-/*SPORT.HMTL*/
-.sportTitle{
-    color: black;
-}
-.sportContent{
-    background-color: #2500f7;
-    margin: 0px;
-    padding: 0px;
-    display:block;
-    width: 80%;
-    height: 1000%;
-}
-.acordeon{
-    width: 80%;
-    max-width: 120em;
-    background-color: #02A650;
-    padding: 2em;
-}
-.acordeon .bloque{
-
-    background-color: #fad700;
-    margin: 0 0 1em;
-    padding: 1em;
-}
-.acordeon .h2 {
-    background-color: rgb(226, 241, 241);
-    margin: 0 0 1em;
-    padding: 0.5em;
-
-}
-.acordeon .contenido {
-    background-color: #DCB386;
-    padding: 1em;
-    height: 0;
-    padding: 0em;
-    overflow: hidden;
-    transition: all .5s ease;
-}
-.acordeon .bloque.activo .contenido{
-    height: 24em;
-    overflow: auto;
-}
-.contenido .cards{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
-    margin-top: 1rem; 
-}
 
 @media only screen and (max-width:1201px){ 
     .tableSport{

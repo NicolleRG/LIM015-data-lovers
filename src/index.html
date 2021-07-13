@@ -17,7 +17,7 @@
   <input type="checkbox" id="nav-toggle">
   <nav id="navPrincipal">
        <section class="logo">
-        <a href="#"><img src="img-logo/logo1.png" style="width: 250px; height: 200px;" ></a>
+        <a href="#"><img src="img-logo/logo1.png" style="width: 220px; height: 200px;" ></a>
        </section>
        <ul class="sidebar-menu">
         <li><a id="op-1" class="active" href="#"><label id="nav-label"><i class="fas fa-running"></i><span>Atletas</span></label></a></li>
@@ -65,7 +65,8 @@
               </label>
         </section>
       <!-- Filtro Atleta--------------------->
-      <section class="filter-container" id="genderFilter">
+      <section id="filterAthletes">
+        <section class="filter-container" id="genderFilter">
         <section class="select-box">
           <label class="select">
             <div class="content-select">
@@ -77,9 +78,9 @@
           </label>
         </section>
         <input type="hidden" class="user-selection">
-      </section>
+        </section>
 
-      <section class="filter-container" id="nocFilter">
+        <section class="filter-container" id="nocFilter">
         <section class="select-box">
           <label class="select">
             <div class="content-select">
@@ -91,9 +92,9 @@
           </label>
         </section>
         <input type="hidden" class="user-selection">
-      </section>
+        </section>
 
-      <section class="filter-container" id="sportFilter">
+        <section class="filter-container" id="sportFilter">
         <section class="select-box">
           <label class="select">
             <div class="content-select">
@@ -105,6 +106,7 @@
           </label>
         </section>
         <input type="hidden" class="user-selection">
+        </section>
       </section>
       <button id="btn-clean1">Limpiar</button>
       <!-----------TABLA ATLETAS---------------------------------------------->
@@ -300,7 +302,7 @@
         <!----InputFilter Países------------------------------------>
         <section class="inputFilter">
           <label class="input-label" for="searchInput">
-            <input type="text" class="search-input" id="searchInputCountry" autocomplete="off">
+            <input type="text" class="search-input" id="searchInputCountry" autocomplete="off" placeholder="Nombre del equipo">
             <i class="fas fa-search"></i>
           </label>
         </section>
@@ -318,7 +320,7 @@
           </thead>
           <tbody class="table-content" id="countryTableBody">
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -326,7 +328,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -334,7 +336,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -342,7 +344,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -350,7 +352,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -358,7 +360,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -366,7 +368,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -374,7 +376,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -382,7 +384,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -390,7 +392,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -398,7 +400,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -406,7 +408,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -414,7 +416,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -422,7 +424,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -430,7 +432,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -438,7 +440,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -446,7 +448,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -454,7 +456,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -462,7 +464,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
@@ -470,7 +472,7 @@
               <td><span class="total-medals"></span></td>
             </tr>
             <tr>
-              <td><img alt="flag"><span class="noc-text"></span></td>
+              <td class="columnOne"><img alt="flag"><span class="noc-text"></span></td>
               <td><span class="number-athletes"></span></td>
               <td><div class="medal-circle-gold"><span class="medal-quantity-gold"></span></div></td>
               <td><div class="medal-circle-silver"><span class="medal-quantity-silver"></span></div></td>
