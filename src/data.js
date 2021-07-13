@@ -95,12 +95,6 @@ function searchTable(value, data) {
    }
    return filterData; 
 }
-// Procesamiento de data FORMA 2 data original
-
-function filterOnlyOneName(data, key) {
-   const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
-   return dataOnlyNames;
-}
 function filterByValue(data, key, value){
    const newArray = Object.entries(data);
    const dataFilter = newArray.filter(item => {
@@ -109,13 +103,18 @@ function filterByValue(data, key, value){
    return dataFilter;
 }
 
-export function filterByValue2(data, key, value){
-   const dataFilter = data.filter(item => {
+// Procesamiento de data FORMA 2 data original
+function filterByValueTwo(data, key, value){
+      const dataFilter = data.filter(item => {
       return (item[key]).toUpperCase()===value; 
    });
    return dataFilter;
 }
 
+function filterOnlyOneName(data, key) {
+   const dataOnlyNames = data.filter((item, index, self) => index === self.findIndex(t => t[key] === item[key]));
+   return dataOnlyNames;
+}
 
 function sortDataTwo(data, key) {
    const newDataSort = data.sort((a, b) => {
@@ -125,7 +124,6 @@ function sortDataTwo(data, key) {
     })
     return newDataSort;
 }
-
 function sortByMedal(data) {
    const medals = {Gold: 1, Silver: 2, Bronze: 3}
     const newDataSort = data.sort((a, b) => {
@@ -161,7 +159,7 @@ const athletesByGender = (data, key) => data.filter(item=>item.gender===key);
 
 const percentage = (num, total) => parseFloat((num/total*100).toFixed(2));
 
-export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, filterByValue, sortDataTwo, sortByMedal, sortDataTwoByNumber, average, athletesByGender, percentage, arrayDataCountry, arrRankingCardAthlete }
+export{sortData, rankingOnlyMedals, rankingTotalMedals, rankingTotalAthletes, searchTable, filterOnlyOneName, filterByValue, filterByValueTwo, sortDataTwo, sortByMedal, sortDataTwoByNumber, average, athletesByGender, percentage, arrayDataCountry, arrRankingCardAthlete }
 
 // export const sortDataTwo = (data,key,order) =>{
 //    const arrayData = Object.entries(data);

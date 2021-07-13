@@ -1,5 +1,5 @@
 import data from './data/athletes/athletes.js';
-import { filterByValue, filterByValue2, filterOnlyOneName, sortByMedal, sortDataTwo } from './data.js';
+import { filterByValueTwo, filterOnlyOneName, sortByMedal, sortDataTwo } from './data.js';
 //SPORT.HTML
 let remplaza = /\+/gi; //expresion regular
 let url = window.location.href; //Captura la URL de la ventana actual
@@ -37,8 +37,8 @@ const dataAthletes = data.athletes;
 const dataEvents = filterOnlyOneName(dataAthletes, 'event'); //306 eventos
 
 // [{sport:"",..."},{},{},...]
+const onlyEventsBySport = filterByValueTwo(dataEvents, 'sport', sportName);
 
-const onlyEventsBySport = filterByValue2(dataEvents, 'sport', sportName);
 let contentDiv = document.getElementById('container-events');
 
 
@@ -138,7 +138,8 @@ const hiddenInput1 = document.querySelector('#sportFilter .user-selection');
                 select1.classList.toggle('active');
                 options1.classList.toggle('active');
                 hiddenInput1.value = e.currentTarget.querySelector('.data').innerText;
-                const onlyEventsBySport = filterByValue2(dataEvents, 'sport', hiddenInput1.value.toUpperCase());
+                const onlyEventsBySport = filterByValueTwo(dataEvents, 'sport', hiddenInput1.value.toUpperCase());
+
                 showDataEvents(onlyEventsBySport);
                 title.textContent = hiddenInput1.value.toUpperCase()
             });
