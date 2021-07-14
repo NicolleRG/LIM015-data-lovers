@@ -494,12 +494,16 @@ table{
     color: var(--color-orange);
 }
 .th-column6, .th-column5, .th-column4, .th-column3, .th-column2, .th-column1{
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
 }
-.icons, .icon-up, .icon-down{
+.icon-up, .icon-down{
     margin-bottom: -0.7rem;
-    margin-left: 0.5rem;
+    margin-left:0.5rem;
+}
+.icons{
+    margin-bottom: -0.7rem;
+    margin-left:0.5rem;
 }
 .medal .medal-circle-gold{
     box-shadow: 0 0 5px var(--color-gold), 0 0 5px var(--color-gold), 0 0 5px var(--color-gold);
@@ -570,49 +574,49 @@ table{
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
 }
 .group2{
     display: flex;
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
 }
 .group3{
     display: flex;
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
 }
 .group4{
     display: flex;
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
 }
 .group5{
     display: flex;
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
 }
 .group6{
     display: flex;
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
 }
 .group7{
     display: flex;
     justify-content:space-between;
     background-color: var(--color-light-silver);
     margin-top: 2rem;
-    height: 250px;
+    height: 210px;
     width: 800px;
 }
 .sportTitle{

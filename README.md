@@ -129,28 +129,58 @@ HU4. Cálculos Estadísticos
 
 ### Diseño de la Interfaz de Usuario
 
+Observamos la pantalla de Atletas con unas tarjetas de los mejores atletas.
+>![Atletas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/1.jpg)
 
->![Atletas]( )
+Aqui se muestra la tabla de atletas con toda la informaciòn posible.
+>![Tabla Atletas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/2.jpg)
 
->![Información del atleta]()
+>![Flechas de Atletas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.jpg)
 
->![Buscador de atletas]( )
+Aquì mostramos la informaciòn del atleta que se escoga.
+>![Información del atleta](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.1.jpg)
 
->![Filtro por Género ]( )
+Tenemos un buscador de Atletas asì con la opciòn de limpiar todo.
+>![Buscador de atletas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.2.jpg )
 
->![Filtro por Equipo ]( )
+Tambièn tenemos filtros, aqui se muestra el de equipo.
+>![Filtro por Equipo ](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.3.jpg )
 
->![Filtro por Deporte ]( )
+Cuando le damos 'click' en toogle nos muestra solo los iconos.
+>![Toogle ](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/4.jpg)
 
->![Limpiar ]( )
+Observamos los paìses con mas medallas ganadas, un top 3.
+>![Países ](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/5.jpg )
 
->![Países ]( )
+Aqui se muestra la tabla de paises con la informaciòn posible.
+>![Tabla Paises](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/6.jpg)
 
->![Deportes ]( )
+Tenemos un buscador de paìses.
+>![Buscador Paises](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/6.1.jpg)
 
->![Eventos ]( )
+Luego tenemos la secciòn de deportes con todos los deportes de las olimpiadas.
+>![Deportes](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/7.jpg )
 
->![Estadisticas ]( )
+Una pequeña ventana que nos muestra los eventos.
+>![Deportes y eventos](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/8.jpg)
+
+Aqui se muestra los atletas participantes por evento.
+>![Eventos ](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/9.jpg )
+
+Nuestra ultima secciòn de estadisticas, para poder ver nuestro ranking de paises, medallas, gènero.
+>![Estadisticas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/10.jpg )
+
+>![Estadisticas2](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/11.jpg)
+
+Una vista para una ipad pro.
+>![ipad](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/12.jpg)
+
+Una vista para una tablet
+>![table](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/13.jpg)
+
+Una vista para mobiles
+>![cel](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/14.jpg)
+
 #### Prototipo de alta fidelidad
 
 Estas son las plantillas plasmamos como es que queria que se viera nuestra página web.
