@@ -109,11 +109,11 @@ Para realizar nuestro prototipo, primero empezamos por nuestras historias de usu
 -Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
 -Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
 
-* HU2. Filtrado pestaña atletas (Nombre, género). Pestaña países (país, continente). Pestaña deporte (deporte, tipos eventos, género) //usuario puede filtrar por conveniencia y ver la información filtrada.
+HU2. Filtrado pestaña atletas (Nombre, género). Pestaña países (país, continente). Pestaña deporte (deporte, tipos eventos, género) //usuario puede filtrar por conveniencia y ver la información filtrada.
 
->Yo como: ' aficcionado al deporte olimpico'
->Quiero: 'Filtrar según países que me interesen, nombre de atletas y deportes'
->Para: 'Obtener información especifica y detallada de mis atletas, países y deportes de interés'
+* Yo como: ' aficcionado al deporte olimpico'
+* Quiero: 'Filtrar según países que me interesen, nombre de atletas y deportes'
+* Para: 'Obtener información especifica y detallada de mis atletas, países y deportes de interés'
 
 * HU3. Ranking: Pestaña atletas (ranking top 3 por medallas ganadas, ranking en orden descendente/ascendente por columna), países (top 3 de países por medallas ganadas, ranking en orden descendente/ascendente por columna ), deportes( top3 dentro de cada evento y cuando se filtra por evento: muestre ranking top 10, bandera, nombre y foto de los medallistas).
 
