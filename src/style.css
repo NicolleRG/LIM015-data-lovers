@@ -116,7 +116,7 @@ main h1{
     text-align: left;
 }
 #nav-toggle:checked + nav li a{
-    padding-left: 0rem;
+    padding-left: 1rem;
 }
 #nav-toggle:checked + nav .logo,
 #nav-toggle:checked + nav li a span{
@@ -293,8 +293,9 @@ h3{
 /*---------------FILTRADO---------------*/
 .inputFilter {
     margin-top: 2rem;
-    width: 500px;
-
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
 }
 .search-input{
     width: 90%;
@@ -308,7 +309,7 @@ h3{
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100%;
+    width: 50%;
     height: 36px;
     left: 0px;
     top: 1px;
@@ -326,7 +327,7 @@ h3{
     width: 270px;
 }
 #btn-clean1, #btn-clean2{
-    
+    margin-left: 1rem;
     background-color: var(--color-orange);
     padding:8px;
     font-size: 15px;
@@ -334,11 +335,7 @@ h3{
     border: 1px solid  #3f3d3d;
     border-radius: 17px;
 }
-#btn-clean1{
-    position: relative;
-    left: 35rem;
-    bottom: 5.8rem;
-}
+
 #btn-clean1:hover{
     color: white;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
@@ -349,11 +346,7 @@ h3{
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.16);
     border-color:white;
 }
-#btn-clean2{
-    position: relative;
-    bottom: 2rem;
-    left:35rem;
-}
+
 .select{
     display: flex;
     flex-direction: row;
@@ -635,37 +628,34 @@ table{
     margin-left: 3rem;
 }
 .sportContent{
-    position: relative;
+    
     margin-top: 2rem;
     padding: 0px;
-    left:10rem;
     display:block;
-    width: 80%;
+    width: 100%;
     height: 1000%;
 }
 #title{
-    padding-left: 2rem;
+    text-align:center;
+    color: #02a650;
 }
 #sportFilter{
   position: relative;
 }
 .acordeon{
-    width: 80%;
+    width: 100%;
     max-width: 120em;
-    background-color: var(--color-light-silver);
-    padding: 2em;
 }
 .acordeon .bloque{
-
     background: linear-gradient(to left, #FAA700, #02a650);
     margin: 0 0 1em;
     padding: 1em;
-    
 }
 .acordeon .h2 {
     color:white;
     margin: 0 0 1em;
-    padding: 0.5em;
+    display: flex;
+    justify-content: space-between;
 }
 .acordeon .contenido {
     padding: 1em;
@@ -676,16 +666,16 @@ table{
 }
 .acordeon .bloque.activo .contenido{
     height: 24em;
-    overflow: auto;
+    overflow-y: auto;
 }
 .contenido .cards{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     margin-top: 1rem; 
 }
 
-/*Estadísiticas*/
+/*----------------Estadísiticas-----------------*/
 .statistics-section2{
     display: flex;
     flex-direction: row;
@@ -734,7 +724,6 @@ footer .rings-logo{
     border-top: 1px solid white;
     padding-top: 10px;
 }
-
 
 @media only screen and (max-width:1201px){ 
     .tableSport{
@@ -796,17 +785,35 @@ footer .rings-logo{
         grid-template-columns: repeat(3, 1fr);
     } 
 }
-
 @media only screen and (max-width:961px){
     .cards{
         grid-template-columns: repeat(3, 1fr);
     }
     .tableSport{
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     } 
+    .group1, .group2, .group3, .group4, .group5, .group6{
+        height:360px;
+    }
     #nav-toggle:checked ~ .container .tableSport{
         grid-template-columns: repeat(2, 1fr);
     } 
+    #nav-toggle:checked ~ .container .group1, .group2, .group3, .group4, .group5, .group6, .group7{
+        height:510px;
+    }
+    #nav-toggle:checked ~ .container .group7{
+    width: 503px;
+    }
+    .acordeon .contenido .cards {
+        grid-gap: 0.5rem;
+    }
+    .acordeon .card-athlete {
+        padding: 0.5rem;
+        height: 300px;
+    }
+    .header-title{
+        font-size: 13px;
+    }
     #nav-toggle:checked ~ .container .statistics-section2{
         flex-direction: column;
     } 
@@ -820,8 +827,18 @@ footer .rings-logo{
     #nav-toggle:checked ~ .container .cards{
         grid-template-columns: repeat(2, 1fr);
     }
+    #nav-toggle:checked ~ .container .icons-arrows{
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+    #nav-toggle:checked ~ .container #filterAthletes{
+        flex-wrap:wrap;
+    }
+    #nav-toggle:checked ~ .container #filterAthletes .filter-container{
+        margin-top: 1rem;
+    }
+    
 }
-
 @media only screen and (max-width:769px){
     .cards{
         grid-template-columns: repeat(2, 1fr);
@@ -868,7 +885,7 @@ footer .rings-logo{
         left: 0 !important;
         padding-top: 0px;
         z-index: 100;
-        width: 345px;
+        width: 290px;
     }
     #nav-toggle:checked + nav, 
     #nav-toggle:checked + nav li{
@@ -879,7 +896,7 @@ footer .rings-logo{
         padding-left: 1rem;
     }
     #nav-toggle:checked + nav .logo img{
-        height: 190px !important;
+        height: 155px !important;
     }
     #nav-toggle:checked + nav .logo,
     #nav-toggle:checked + nav li a span{
@@ -895,11 +912,26 @@ footer .rings-logo{
     #nav-toggle:checked ~ .container .tableSport{
         grid-template-columns: repeat(3, 1fr);
     } 
+    #filterAthletes{
+        flex-wrap:wrap;
+    }
+    #filterAthletes .filter-container{
+        margin-top: 1rem;
+    }
+    .icons-arrows{
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+    .popUpContent{
+        margin-left: 0rem;
+        margin-top:0rem;
+        width: 60%
+    }
 }
-
 @media only screen and (max-width:561px){
     .popUpContent{
         height: 280px;
+        width: 80%;
     }
     .popUpContent .popUp-info{
         font-size: 14px;
@@ -927,6 +959,12 @@ footer .rings-logo{
     .tableSport{
         grid-template-columns: repeat(2, 1fr);
     } 
+    .group1, .group2, .group3, .group4, .group5, .group6{
+        height: 500px;
+    }
+    .group7{
+        width: 448px;
+    }
     .statistics-section2{
         flex-direction: column;
     } 
@@ -943,6 +981,7 @@ footer .rings-logo{
     #nav-toggle:checked ~ .container .tableSport{
         grid-template-columns: repeat(2, 1fr);
     }
+    
 }
 @media only screen and (max-width:376px){
     header span {
@@ -954,8 +993,41 @@ footer .rings-logo{
     .cards{
         grid-template-columns: 100%;
     }
+    .medals{
+        justify-content: space-around;
+    }
     #country .cards{
         grid-template-columns: 100%;
+    }
+    .input-label{
+        width: 60%;
+    }
+    #filterAthletes{
+        margin-top: 0.5rem
+    }
+    .icons-arrows {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+    .tableSport{
+        grid-template-columns: repeat(2, 1fr);
+        height: 160px;
+    }
+    .acordeon .bloque.activo .contenido {
+        height: 17em;
+    }
+    .acordeon .contenido .cards {
+        grid-gap: 0.5rem;
+    }
+    .acordeon .card-athlete {
+        padding: 0.3rem;
+        height: 250px;
+    }
+    .acordeon .card-athlete .img-card{
+        height: 80px;
+        width: 80px;
     }
     main{
         padding: 0rem 2rem;
@@ -981,10 +1053,15 @@ footer .rings-logo{
         height: 10px !important;
     }
     .group1, .group2, .group3, .group4, .group5, .group6, .group7{
-        padding-left: 20%;
+        padding-left: 0;
+        height: 530px;
     }
-    .tableSport{
-        grid-template-columns: 100%
+    .group7{
+        width: 311px;
+        height: 380px;
+    }
+    .articleImg{
+        width: 120px;
     }
     .statistics-section1{
         width: 100%;
@@ -1016,9 +1093,7 @@ footer .rings-logo{
         text-align: center;
     }
 }
-.filterSports{
-    display: flex;
-}
+
 
 /*------------------------------------------------------------------*/
 
