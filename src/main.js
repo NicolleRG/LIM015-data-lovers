@@ -815,7 +815,7 @@ a.forEach( a => {
     a.addEventListener('click',(e)=>{
     e.preventDefault();
     const url = a.getAttribute('href');
-    let width = 600;
+    let width = 652;
     let height = 500;
     let left = (screen.width - width)/2;
     let top = (screen.height - height)/2;
@@ -828,6 +828,12 @@ a.forEach( a => {
     else if(screen.width <= 560){
         width = 400;
         height = 300;
+        left = (screen.width - width)/2;
+        top = (screen.height - height)/2;
+    }
+    else if(screen.width <= 960){
+        width = 500;
+        height = 400;
         left = (screen.width - width)/2;
         top = (screen.height - height)/2;
     }

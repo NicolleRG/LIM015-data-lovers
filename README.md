@@ -23,7 +23,6 @@
 * [9. Checklist](#9-checklist)
 
 ## 1. Introducción
-
 ###### Según [Forbes](https://www.forbes.com/sites/bernardmarr/2018/05/21/how-much-data-do-we-create-every-day-the-mind-blowing-stats-everyone-should-read),
 el 90% de la data que existe hoy ha sido creada durante los últimos dos años.
 Cada día generamos 2.5 millones de terabytes de datos, una cifra sin
@@ -33,13 +32,6 @@ No obstante, los datos por sí mismos son de poca utilidad. Para que esas
 grandes cantidades de datos se conviertan en **información** fácil de leer para
 los usuarios, necesitamos entender y procesar estos datos. Una manera simple de
 hacerlo es creando _interfaces_ y _visualizaciones_.
-
-En la siguiente imagen, podrás ver cómo con la data que que se ve en la parte
-izquierda se puede construir una interfaz amigable y entendible por el usuario
-al lado derecho.######
-
-![json-interfaz](https://lh4.googleusercontent.com/Tn-RPXS26pVvOTdUzRT1KVaJ-_QbFs9SpcGLxSPE43fgbHaXtFgMUInuDt7kV41DkT1j8Tt29V0LxQW7SMtC6digOIhfTXSBKdwI08wUwhD3RAqlwy0hjfmhZ2BFe91mtmCSEqysfgk)
-
 ## 2. Resumen del proyecto
 
 Olimpedia, es un página web creada para usuarios en general, pero con el fin de llegar a aquellos aficionados al deporte,
@@ -113,16 +105,34 @@ Para realizar nuestro prototipo, primero empezamos por nuestras historias de usu
 
 HU1. Mostrar todos los atletas, países participantes, deportes
 
->Yo como : 'aficcionado al deporte olímpico'
->Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
->Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
+* Yo como : 'aficcionado al deporte olímpico'
+* Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
+* Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
+
+HU2. Filtrado pestaña atletas (Nombre, género). Pestaña países (país, continente). Pestaña deporte (deporte, tipos eventos, género) //usuario puede filtrar por conveniencia y ver la información filtrada.
+
+* Yo como: ' aficcionado al deporte olimpico'
+* Quiero: 'Filtrar según países que me interesen, nombre de atletas y deportes'
+* Para: 'Obtener información especifica y detallada de mis atletas, países y deportes de interés'
+
+HU3. Ranking: Pestaña atletas (ranking top 3 por medallas ganadas, ranking en orden descendente/ascendente por columna), países (top 3 de países por medallas ganadas, ranking en orden descendente/ascendente por columna ), deportes( top3 dentro de cada evento y cuando se filtra por evento: muestre ranking top 10, bandera, nombre y foto de los medallistas).
+
+* Yo como: 'aficionado al deporte olimpico'
+* Quiero: 'Saber el ranking de los atletas, países y deportes que se llevaron más medallas'
+* Para: 'Encontrar al mejor atleta, país más competitivo y los medallistas de cada evento'
+
+HU4. Cálculos Estadísticos
+
+* Yo como: ' periodista deportivo'
+* Quiero: 'Saber estadisticas (% genero participantes, %mujeres, varones, otros con medallas; ranking top 5 de ganadores medallistas, ranking top 5 países con más medallas)'
+* Para: 'descargar datos estadisticos (captura de pantalla u otro) y mostrarlo al público lector de su contenido'
 
 ### Diseño de la Interfaz de Usuario
 
 
 >![Atletas]( )
 
->![Información del atleta](https://github.com/NicolleRG/LIM015-cipher/blob/main/src/assets/2.jpg)
+>![Información del atleta]()
 
 >![Buscador de atletas]( )
 
@@ -145,21 +155,37 @@ HU1. Mostrar todos los atletas, países participantes, deportes
 
 Estas son las plantillas plasmamos como es que queria que se viera nuestra página web.
 
->![Atletas]( )
+Atletas:
 
->![Prototipo de DataLovers]( )
+>![Atletas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/1.Atletas%20v2.jpg )
 
->![Prototipo de DataLovers]( )
+Filtros en Atletas:
 
->![Países]( )
+>![AtletasFiltrado](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/1.Atletas%20v2%20filtrado.jpg )
 
->![Deportes]( )
+Informaciòn por Atleta:
 
->![Deportes con filtro]( )
+>![Informaciòn Atletas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/1.Atletas%20v2%20informaci%C3%B3n.jpg )
 
->![Eventos por deporte]( )
+Paises:
 
->![Estadisticas]( )
+>![Países](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/2.%20Pa%C3%ADses.jpg )
+
+Deportes:
+
+>![Deportes](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.%20Deportes.jpg)
+
+Filtro por Deporte:
+
+>![Deportes con filtro](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.1.%20Deportes%20filtrado.jpg )
+
+Eventos por cada deporte:
+
+>![Eventos por deporte](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/3.1.1.%20Filtrado%20Deporte.jpg )
+
+Càlculos estadìsticos:
+
+>![Estadisticas](https://github.com/NicolleRG/LIM015-data-lovers/blob/ramaCris/src/assets/4.%20Estad%C3%ADsticas.jpg )
 
 #### Testeos de usabilidad
 

@@ -50,7 +50,7 @@ function showDataEvents(dataEventsBySport) {
                 plantillaHTML += `
                     <div class="acordeon">
                         <div class="bloque">
-                            <h2 class="h2">${item.event}</h2>
+                            <h2 class="h2">${item.event} <i class="down-icon fas fa-sort-down"></i></h2>
                             <div class="contenido">
                                 <section class="cards">
                 `;
