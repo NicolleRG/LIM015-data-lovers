@@ -19,7 +19,7 @@ const sportName = function obtener_valor(variable) { //Funcion que obtiene el va
         var pos_separador = url.indexOf("?", variable_may);
         if (pos_separador != -1) {
             // console.log(url.substring(variable_pos + variable_may.length + 1,  pos_separador));
-            return url.substring(variable_pos + variable_may.length + 1, pos_separador);
+            return url.substring(variable_pos + variable_may.length + 1);
         } else {
             // console.log(url.substring(variable_pos + variable_may.length + 1, url.lenght))
             return url.substring(variable_pos + variable_may.length + 1);
