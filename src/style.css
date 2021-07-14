@@ -428,12 +428,11 @@ h3{
     color: white; 
 }
 thead th{
-    padding: .5rem 1rem;
+    padding: .5rem 0rem;
     border-bottom: 2px solid var(--color-dark-silver);
     font-weight: 600;
     font-size: 1rem;
     text-align: left;
-    
 }
 img, .avatar-circle{
     height: 40px;
@@ -492,7 +491,6 @@ table{
     padding-top: 30px;
     padding-left: 20rem;
     padding-right: 20rem;
-    
 }
 .icons-arrows i{
     font-size: 1.5rem;
@@ -502,19 +500,13 @@ table{
 .icons-arrows i:hover{
     color: var(--color-orange);
 }
-.icon-up{
-    position: relative;
-    left: 5rem;
-    margin-bottom: -0.8rem;
+.th-column6, .th-column5, .th-column4, .th-column3, .th-column2, .th-column1{
+    display: flex;
+    align-items: center;
 }
-.icon-down{
-    position: relative;
-    left: 5rem;
-}
-.icons{
-    position: relative;
-    left: 3.8rem;
-    margin-bottom: -0.8rem;
+.icons, .icon-up, .icon-down{
+    margin-bottom: -0.7rem;
+    margin-left: 0.5rem;
 }
 .medal .medal-circle-gold{
     box-shadow: 0 0 5px var(--color-gold), 0 0 5px var(--color-gold), 0 0 5px var(--color-gold);

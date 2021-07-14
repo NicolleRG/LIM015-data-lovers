@@ -825,7 +825,7 @@ a.forEach( a => {
         left = (screen.width - width)/2;
         top = (screen.height - height)/2;
     }
-    if(screen.width <= 560){
+    else if(screen.width <= 560){
         width = 400;
         height = 300;
         left = (screen.width - width)/2;

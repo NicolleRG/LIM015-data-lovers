@@ -19,7 +19,7 @@ const sportName = function obtener_valor(variable) { //Funcion que obtiene el va
         var pos_separador = url.indexOf("?", variable_may);
         if (pos_separador != -1) {
             // console.log(url.substring(variable_pos + variable_may.length + 1,  pos_separador));
-            return url.substring(variable_pos + variable_may.length + 1);
+            return url.substring(variable_pos + variable_may.length + 1, pos_separador);
         } else {
             // console.log(url.substring(variable_pos + variable_may.length + 1, url.lenght))
             return url.substring(variable_pos + variable_may.length + 1);
@@ -31,7 +31,6 @@ const sportName = function obtener_valor(variable) { //Funcion que obtiene el va
 
 let title = document.getElementById('title')
 title.textContent = sportName;
-
 //Mostrar los eventos y sus atletas
 const dataAthletes = data.athletes;
 const dataEvents = filterOnlyOneName(dataAthletes, 'event'); //306 eventos
@@ -43,7 +42,6 @@ let contentDiv = document.getElementById('container-events');
 
 
 function showDataEvents(dataEventsBySport) {
-    console.log(dataEventsBySport);
     contentDiv.innerHTML = ``;
     sortByMedal(dataAthletes);
     let plantillaHTML = "";
