@@ -8,7 +8,7 @@
 
 **Link:**
 
-[DataLovers](http://127.0.0.1:5500/src/index.html)
+[DataLovers](https://nicollerg.github.io/LIM015-data-lovers/)
 
 ## Índice ⭐
 
