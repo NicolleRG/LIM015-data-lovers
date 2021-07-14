@@ -105,9 +105,9 @@ Para realizar nuestro prototipo, primero empezamos por nuestras historias de usu
 
 * HU1. Mostrar todos los atletas, países participantes, deportes
 
->Yo como : 'aficcionado al deporte olímpico'
->Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
->Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
+-Yo como : 'aficcionado al deporte olímpico'
+-Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
+-Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
 
 * HU2. Filtrado pestaña atletas (Nombre, género). Pestaña países (país, continente). Pestaña deporte (deporte, tipos eventos, género) //usuario puede filtrar por conveniencia y ver la información filtrada.
 
