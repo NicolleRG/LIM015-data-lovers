@@ -548,9 +548,9 @@ table{
     box-shadow: 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze), 0 0 10px var(--color-bronze);
 }
 /*---------------Paises----------*/
-#countryTable td{
+/* #countryTable td{
     text-align: center;
-}
+} */
 .columnOne{
     text-align: left !important;
 }
