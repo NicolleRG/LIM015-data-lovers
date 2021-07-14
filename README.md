@@ -103,11 +103,11 @@ Los criterios para considerar que has completado este proyecto son:
 Para realizar nuestro prototipo, primero empezamos por nuestras historias de usuario, el cual nos guiamos de algunos ejemplos que encontramos, la forma correcta y las preguntas que deberiamos realizarnos, así mismo nuestros criterios de aceptación y definición de terminado. 
 ### Historias de usuario
 
-* HU1. Mostrar todos los atletas, países participantes, deportes
+HU1. Mostrar todos los atletas, países participantes, deportes
 
--Yo como : 'aficcionado al deporte olímpico'
--Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
--Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
+* Yo como : 'aficcionado al deporte olímpico'
+* Quiero: 'Saber los datos relevantes de los atletas (nombre, equipo, deporte, medallas ganadas) y la información de los países participantes (países, Nº atletas, medallas y Nº de medallas). Deportes ( deportes, Nº de eventos, tipos de eventos).
+* Para: 'Conocerlos los datos más importantes de los atletas, los países participantes y deportes'
 
 HU2. Filtrado pestaña atletas (Nombre, género). Pestaña países (país, continente). Pestaña deporte (deporte, tipos eventos, género) //usuario puede filtrar por conveniencia y ver la información filtrada.
 
@@ -115,17 +115,17 @@ HU2. Filtrado pestaña atletas (Nombre, género). Pestaña países (país, conti
 * Quiero: 'Filtrar según países que me interesen, nombre de atletas y deportes'
 * Para: 'Obtener información especifica y detallada de mis atletas, países y deportes de interés'
 
-* HU3. Ranking: Pestaña atletas (ranking top 3 por medallas ganadas, ranking en orden descendente/ascendente por columna), países (top 3 de países por medallas ganadas, ranking en orden descendente/ascendente por columna ), deportes( top3 dentro de cada evento y cuando se filtra por evento: muestre ranking top 10, bandera, nombre y foto de los medallistas).
+HU3. Ranking: Pestaña atletas (ranking top 3 por medallas ganadas, ranking en orden descendente/ascendente por columna), países (top 3 de países por medallas ganadas, ranking en orden descendente/ascendente por columna ), deportes( top3 dentro de cada evento y cuando se filtra por evento: muestre ranking top 10, bandera, nombre y foto de los medallistas).
 
->Yo como: 'aficionado al deporte olimpico'
->Quiero: 'Saber el ranking de los atletas, países y deportes que se llevaron más medallas'
->Para: 'Encontrar al mejor atleta, país más competitivo y los medallistas de cada evento'
+* Yo como: 'aficionado al deporte olimpico'
+* Quiero: 'Saber el ranking de los atletas, países y deportes que se llevaron más medallas'
+* Para: 'Encontrar al mejor atleta, país más competitivo y los medallistas de cada evento'
 
-* HU4. Cálculos Estadísticos
+HU4. Cálculos Estadísticos
 
->Yo como: ' periodista deportivo'
->Quiero: 'Saber estadisticas (% genero participantes, %mujeres, varones, otros con medallas; ranking top 5 de ganadores medallistas, ranking top 5 países con más medallas)'
->Para: 'descargar datos estadisticos (captura de pantalla u otro) y mostrarlo al público lector de su contenido'
+* Yo como: ' periodista deportivo'
+* Quiero: 'Saber estadisticas (% genero participantes, %mujeres, varones, otros con medallas; ranking top 5 de ganadores medallistas, ranking top 5 países con más medallas)'
+* Para: 'descargar datos estadisticos (captura de pantalla u otro) y mostrarlo al público lector de su contenido'
 
 ### Diseño de la Interfaz de Usuario
 
