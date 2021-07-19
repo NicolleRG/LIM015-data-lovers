@@ -4,7 +4,7 @@
 **Creadoras 💁‍♀️:**
 
 1. Alisson Cruz Holguin
-2. Cristina Nicolle Rebaza Garcia
+2. Cristina Rebaza Garcia
 
 **Link:**
 
